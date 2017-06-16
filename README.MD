@@ -5,8 +5,7 @@ WIP Library with pre-build directives for Angular 2
 ## Table of contents 
 1. [Installation](#installation)
 2. [Available Modules](#available-modules)
-3. [Modules Description](#modules-description)
-4. [Usage](#usage)
+3. [Modules Description & Usage](#modules-description-&-usage)
 
 # Installation
 
@@ -24,17 +23,13 @@ I'm planning create more modules with the time.
 
 1. [OverStyle](#overstyle)
 
-# Modules Description
+# Modules Description & Usage
 
 ### OverStyle:
 
 Overstyle is a directive that allow to create multiple styles to different browsers and operating systems.
 
-
-# Usage
-
-### OverStyle
-
+**Usage:**
 Once you install Duality:
 
 ```bash
