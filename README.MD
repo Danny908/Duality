@@ -12,7 +12,7 @@ WIP Library with pre-build directives for Angular 2
 To install Duality, run:
 
 ```bash
-$ npm install duality --save
+$ npm install ngx-duality --save
 ```
 
 # Available Modules
@@ -34,7 +34,7 @@ Overstyle is a directive that allow to create multiple styles to different brows
 Once you install Duality:
 
 ```bash
-$ npm install duality
+$ npm install ngx-duality
 ```
 
 go to the `AppModule` of your project and import `DualOverStyleModule`:
