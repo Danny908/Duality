@@ -30,6 +30,7 @@ I'm planning create more modules with the time.
 Overstyle is a directive that allow to create multiple styles to different browsers and operating systems.
 
 **Usage:**
+
 Once you install Duality:
 
 ```bash
