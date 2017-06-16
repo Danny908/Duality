@@ -5,7 +5,7 @@ WIP Library with pre-build directives for Angular 2
 ## Table of contents 
 1. [Installation](#installation)
 2. [Available Modules](#available-modules)
-3. [Modules Description & Usage](#modules-description-&-usage)
+3. [Modules Description & Usage](#modules-description--usage)
 
 # Installation
 
