@@ -1,22 +1,47 @@
-# duality
+# Duality
 
-## Installation
+WIP Library with pre-build directives for Angular 2
 
-To install this library, run:
+## Table of contents 
+1. [Installation](#installation)
+2. [Available Modules](#available-modules)
+3. [Modules Description](#modules-description)
+4. [Usage](#usage)
+
+# Installation
+
+To install Duality, run:
 
 ```bash
 $ npm install duality --save
 ```
 
-## Consuming your library
+# Available Modules
 
-Once you have published your library to npm, you can import your library in any Angular application by running:
+I'm planning create more modules with the time.
+
+**List of modules:**
+
+1. [OverStyle](#overstyle)
+
+# Modules Description
+
+### OverStyle:
+
+Overstyle is a directive that allow to create multiple styles to different browsers and operating systems.
+
+
+# Usage
+
+### OverStyle
+
+Once you install Duality:
 
 ```bash
 $ npm install duality
 ```
 
-and then from your Angular `AppModule`:
+go to the `AppModule` of your project and import `DualOverStyleModule`:
 
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
@@ -24,8 +49,8 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
-// Import your library
-import { SampleModule } from 'duality';
+// Import OverStyle module
+import { DualOverStyleModule } from 'duality';
 
 @NgModule({
   declarations: [
@@ -34,8 +59,8 @@ import { SampleModule } from 'duality';
   imports: [
     BrowserModule,
 
-    // Specify your library as an import
-    LibraryModule
+    // Specify the module as an import
+    DualOverStyleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -43,29 +68,44 @@ import { SampleModule } from 'duality';
 export class AppModule { }
 ```
 
-Once your library is imported, you can use its components, directives and pipes in your Angular application:
+Once DualOverStyleModule is imported, you can use the directive in your Angular application:
 
 ```xml
-<!-- You can now use your library component in app.component.html -->
-<h1>
+<!-- Now add the OverStyle directive in the element that you want to enable the multi styles -->
+<h1 dualOverStyle>
   {{title}}
 </h1>
-<sampleComponent></sampleComponent>
+```
+Now you can create your styles for differents browsers and OS:
+```sass
+h1.WINDOWS {
+  // WINDOWS STYLES...
+  &.CHROME {
+    // CHROME STYLES...
+  }
+  &.FIREFOX {
+    // FIREFOX STYLES...
+  }
+  .
+  .
+  .
+}
 ```
 
-## Development
+**OverStyle provide the next classes**
 
-To generate all `*.js`, `*.d.ts` and `*.metadata.json` files:
+**OS classes:**
+* WINDOWS
+* LINUX
+* MAC
 
-```bash
-$ npm run build
-```
-
-To lint all `*.ts` files:
-
-```bash
-$ npm run lint
-```
+**Browser classes:**
+* CHROME
+* FIREFOX
+* OPERA
+* SAFARI
+* EDGE
+* IE
 
 ## License
 
