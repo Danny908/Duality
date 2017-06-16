@@ -21,6 +21,9 @@ export class DualOverStyleDirective implements OnInit {
         if (navigator.userAgent.includes('Windows')) {
             this.OS = 'WINDOWS';
         }
+        if (navigator.userAgent.includes('Linux')) {
+            this.OS = 'WINDOWS';
+        }
         // GET MACHINE BROWSER...
         if (this.window.InstallTrigger) {
             this.BROWSER = 'FIREFOX';
