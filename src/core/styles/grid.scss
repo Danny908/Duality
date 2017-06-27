@@ -6,10 +6,15 @@
   min-height: 1px;
   box-sizing: border-box;
 
+  .nx-auto {
+    flex: 1;
+  }
+
   [class*="nx-col"] {
     padding: 0 15px 0 15px;
     flex-wrap: wrap;
     display: flex;
+    box-sizing: border-box;
   }
   @for $i from 1 through 12 {
     .#{nx-col}-#{$i} {
