@@ -1,4 +1,7 @@
+@import './wrapper.scss';
 @import './grid.scss';
-body {
-    background-color: gray;
+
+html,body {
+    margin: 0;
+    padding: 0;
 }

@@ -1,0 +1,42 @@
+.wrapper {
+    display: flex;
+    min-height: 100%;
+    min-width: 100%;
+    flex-direction: column;
+    .content {
+        margin: auto;
+        flex: 1;
+    }
+}
+// PHONES
+  @media screen and(min-width: 0px) and (max-width: 700px) {
+    .wrapper {
+        .content {
+            width: 100%;
+        }
+    }
+  }
+  // TABLETS
+  @media screen and(min-width: 700px) {
+    .wrapper {
+        .content {
+            width: 90%;
+        }
+    }
+  }
+  // LAPTOPS
+  @media screen and(min-width: 1000px) {
+    .wrapper {
+        .content {
+            width: 80%;
+        }
+    }
+  }
+  // MONITORS
+  @media screen and(min-width: 1400px) {
+    .wrapper {
+        .content {
+            width: 1200px;
+        }
+    }
+  }
