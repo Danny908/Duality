@@ -4,6 +4,8 @@
     min-width: 100%;
     flex-direction: column;
     .content {
+        overflow-x: hidden;
+        word-break: break-all;
         margin: auto;
         flex: 1;
     }

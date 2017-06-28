@@ -6,6 +6,8 @@ import { SamplePipe } from './sample.pipe';
 import { SampleService } from './sample.service';
 
 import { DualOverStyleModule } from './over-style/dual-over-style.module';
+import { NgxHeaderModule } from './components/header/ngx-header.module';
+import { NgxFooterModule } from './components/footer/ngx-footer.module';
 
 export * from './sample.component';
 export * from './sample.directive';
@@ -17,20 +19,32 @@ export {
   DualOverStyleModule
 } from './over-style';
 
+export {
+  NgxHeaderComponent,
+  NgxHeaderModule
+} from './components/header'
+
+export {
+  NgxFooterComponent,
+  NgxFooterModule
+} from './components/footer'
+
 @NgModule({
   imports: [
     CommonModule,
-    DualOverStyleModule
+    DualOverStyleModule,
+    NgxHeaderModule,
+    NgxFooterModule
   ],
   declarations: [
     SampleComponent,
     SampleDirective,
-    SamplePipe
+    SamplePipe,
   ],
   exports: [
     SampleComponent,
     SampleDirective,
-    SamplePipe
+    SamplePipe,
   ]
 })
 export class SampleModule {
