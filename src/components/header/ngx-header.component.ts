@@ -21,11 +21,11 @@ export class NgxHeaderComponent implements OnInit {
             this.el.nativeElement.style.position = 'fixed';
             this.el.nativeElement.style.width = '100%';
             this.el.nativeElement.style.zIndex = 1000;
-            this.el.nativeElement.style.minHeight = `${this.height}px`;
+            this.el.nativeElement.style.maxHeight = `${this.height}px`;
             this.el.nativeElement.style.backgroundColor = this.color;
         }
         if (this.height) {
-            this.el.nativeElement.children[0].style.minHeight = `${this.height}px`;
+            this.el.nativeElement.children[0].style.maxHeight = `${this.height}px`;
             this.el.nativeElement.children[0].style.backgroundColor = this.color;
         }
   }
