@@ -1,5 +1,2 @@
 /* You can add global styles to this file, and also import other style files */
-div {
-  box-sizing: border-box;
-  border: 1px red solid;
-}
+@import '../node_modules/ngx-duality/core/styles/ngx-duality';
