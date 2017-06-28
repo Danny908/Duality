@@ -8,6 +8,7 @@ import { Component, OnInit, Input, ElementRef } from '@angular/core';
 export class NgxFooterComponent implements OnInit {
     @Input() fixed: boolean;
     @Input() height: number;
+    @Input() color: string;
     constructor(
         private el: ElementRef
     ) {}
@@ -22,9 +23,11 @@ export class NgxFooterComponent implements OnInit {
             this.el.nativeElement.style.zIndex = 1000;
             this.el.nativeElement.style.bottom = 0;
             this.el.nativeElement.style.height = `${this.height}px`;
+            this.el.nativeElement.style.backgroundColor = this.color;
         }
         if (this.height) {
             this.el.nativeElement.children[0].style.height = `${this.height}px`;
+            this.el.nativeElement.children[0].style.backgroundColor = this.color;
         }
   }
 }
