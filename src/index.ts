@@ -5,7 +5,7 @@ import { SampleDirective } from './sample.directive';
 import { SamplePipe } from './sample.pipe';
 import { SampleService } from './sample.service';
 
-import { DualOverStyleModule } from './over-style/dual-over-style.module';
+import { DualOverStyleModule } from './directives/over-style/dual-over-style.module';
 import { NgxHeaderModule } from './components/header/ngx-header.module';
 import { NgxFooterModule } from './components/footer/ngx-footer.module';
 
@@ -17,7 +17,7 @@ export * from './sample.service';
 export {
   DualOverStyleDirective,
   DualOverStyleModule
-} from './over-style';
+} from './directives/over-style';
 
 export {
   NgxHeaderComponent,
