@@ -6,10 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./logo.component.scss']
 })
 export class LogoComponent implements OnInit {
+  constructor(
+  ) { }
 
-  constructor() { }
+  ngOnInit(): void {
 
-  ngOnInit() {
   }
-
 }

@@ -1,5 +1,27 @@
-.title {
-  margin: 0;
-  line-height: 3;
-  padding-left: 50px;
+.nx-row {
+  .title {
+    line-height: 2.5;
+    letter-spacing: 3px;
+    margin: 0;
+    padding-left: 50px;
+    font-size: 40px;
+    color: whitesmoke;
+  }
+  .nx-auto {
+    nav {
+      float: right;
+      display: flex;
+      height: 100%;
+      width: 400px;
+      justify-content: space-between;
+      a {
+        color: whitesmoke;
+        margin: auto;
+        border: 2px solid #4A4B4D;
+        border-radius: 10px;
+        padding: 10px;
+        background-color: lightblue;
+      }
+    }
+  }
 }
