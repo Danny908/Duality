@@ -1,0 +1,21 @@
+@mixin text-3d($text-color, $lateral-color, $shadow-color) {
+    @keyframes text-3d {
+        from {
+            left: 55px;
+            bottom: -5px;
+        }
+        to {
+            left: 60px;
+            bottom: 0px;
+            text-shadow: 
+                0px 0px $text-color,
+                -1px 1px $lateral-color,
+                -2px 2px darken($lateral-color, 5%),
+                -3px 3px darken($lateral-color, 10%),
+                -4px 4px darken($lateral-color, 15%),
+                -5px 5px darken($lateral-color, 20%),
+                -6px 6px 10px rgba($shadow-color, .7),
+                -15px 10px 20px rgba($shadow-color, .6);
+        }
+    }
+}

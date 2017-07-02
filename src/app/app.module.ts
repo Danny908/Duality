@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgxHeaderComponent } from 'ngx-duality';
 import { NgxFooterComponent } from 'ngx-duality';
-import { DualOverStyleModule } from 'ngx-duality';
+// import { DualOverStyleModule } from 'ngx-duality';
 
 import { AppComponent } from './app.component';
 import { LogoComponent } from './logo/logo.component';
@@ -20,7 +20,7 @@ import { LogoComponent } from './logo/logo.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    DualOverStyleModule
+    // DualOverStyleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
