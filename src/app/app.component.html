@@ -6,6 +6,7 @@
       </h1>
       <div class="nx-auto">
         <nav>
+          <a class="divider" href="">GET STARTED</a>
           <a href="">COMPONENTS</a>
           <a href="">DIRECTIVES</a>
           <a href="">STYLES</a>
@@ -14,32 +15,7 @@
     </div>
   </ngx-header>
   <div class="content">
-    <app-logo></app-logo>
-    <div class="nx-row">
-      <div class="nx-col-12 main-content">
-        <h1>
-          D
-        </h1>
-        <p class="description">
-          uality it's a WIP Angular 2 library, created to reduce development time, this library will contain pre-build element 
-          most common used on web pages.
-          <br><br>
-          The library it's divided by three main sections...
-        </p>
-         <ul>
-            <li>
-              <b>Components:</b> Pre-build
-            </li>
-            <li>
-              <b>Directives:</b> 
-            </li>
-            <li>
-              <b>Styles:</b> Pre-defined styles files, necessary for most of components ofthis library, also contains the neccessary to 
-              start to work with any proyect, like a grid sytem with suport for responsive design based on flexbox, to keep all your stuffs
-              in his place ;)
-            </li>
-          </ul>
-      </div>
-    </div>
+   <app-main-content></app-main-content>
   </div>
+  <ngx-footer [height]="100" [fixed]="true" color="#474647"></ngx-footer>
 </div>

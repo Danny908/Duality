@@ -8,13 +8,15 @@ import { NgxFooterComponent } from 'ngx-duality';
 
 import { AppComponent } from './app.component';
 import { LogoComponent } from './logo/logo.component';
+import { MainContentComponent } from './main-content/main-content.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NgxHeaderComponent,
     NgxFooterComponent,
-    LogoComponent
+    LogoComponent,
+    MainContentComponent
   ],
   imports: [
     BrowserModule,

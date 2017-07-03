@@ -1,0 +1,29 @@
+.content {
+  margin-top: 70px;
+  .main-content{
+    margin-top: 50px;
+    color: #474647;
+    border-radius: 5px;
+    h1 {
+      display: inline-block;
+      margin-bottom: -30px;
+    }
+    .description {
+      &.intro {
+        text-indent: 27px;
+      }
+      line-height: 1.4;
+      text-align: justify;
+      display: inline-block;
+    }
+     ul {
+      border-bottom: 5px dashed rgba(lightcoral, 0.3);
+      padding-bottom: 20px;
+      margin-top: 30px;
+      margin-bottom: 30px;
+      li {
+
+      }
+    }
+  }
+}
