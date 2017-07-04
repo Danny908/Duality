@@ -5,15 +5,12 @@
     .title {
       line-height: 1.3;
       letter-spacing: 4px;
-      margin: 0;
+      margin: 15px 0 0 15px;
       font-size: 50px;
       z-index: 2;
-      position: absolute;
-      color: transparent;
-      animation: text-3d 1s forwards;
+      @include text-3d(white);
     }
     .nx-auto {
-      height: 100%;
       nav {
         float: right;
         display: flex;
@@ -28,8 +25,6 @@
             border-right: 2px solid rgba(white, 0.5);
           }
           &:hover {
-            // background-color: darken(#1a8cff, 10%);
-            // box-shadow: -1px -1px 0 rgba(#000, 0.2), 1px 1px 0 rgba(white, 0.2), inset 0px 0px 15px rgba(#000, 0.2);
             color: rgba(white, 1);
             position: relative;
           }
@@ -37,5 +32,7 @@
       }
     }
   }
-
-@include text-3d(white, #b3b3b3, black);
+.content {
+  margin-top: 70px;
+  overflow: hidden;
+}

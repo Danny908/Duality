@@ -1,28 +1,88 @@
-.content {
-  margin-top: 70px;
-  .main-content{
-    margin-top: 50px;
-    color: #474647;
-    border-radius: 5px;
-    h1 {
-      display: inline-block;
-      margin-bottom: -30px;
-    }
-    .description {
-      &.intro {
-        text-indent: 27px;
-      }
-      line-height: 1.4;
-      text-align: justify;
-      display: inline-block;
-    }
-     ul {
-      border-bottom: 5px dashed rgba(lightcoral, 0.3);
-      padding-bottom: 20px;
-      margin-top: 30px;
-      margin-bottom: 30px;
-      li {
+@import '../../assets/animations/3d-element';
+@import '../../assets/animations/3d-text';
 
+.main-content{
+  margin-top: 50px;
+  color: #474647;
+  border-radius: 5px;
+  h1 {
+    display: inline-block;
+    margin-bottom: -30px;
+  }
+  .description {
+    &.intro {
+      text-indent: 27px;
+    }
+    line-height: 1.4;
+    text-align: justify;
+    display: inline-block;
+  }
+    ul {
+    border-bottom: 5px dashed rgba(lightcoral, 0.3);
+    padding-bottom: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    li {
+      height: 300px;
+      position: relative;
+      h2 {
+        margin-bottom: 20px;
+        text-align: center;
+        width: 100%;
+        color: #474647;
+      }
+      .square-content {
+        opacity: (0.9);
+        width: 100%;
+        height: 100%;
+        position: relative;
+        .square {
+          position: absolute;
+          width: 130px;
+          height: 100px;
+          background-color: rgba(#5a9adb, 0.7);
+          &:nth-child(1) {
+            width: 30%;
+            top: 0;
+            left: 0;
+          }
+          &:nth-child(2) {
+            width: 30%;
+            top: 0;
+            left: 35%;
+          }
+          &:nth-child(3) {
+            width: 30%;
+            height: 215px;
+            top: 0;
+            left: 70%;
+          }
+          &:nth-child(4) {
+            width: 30%;
+            top: 115px;
+            left: 0;
+          }
+          &:nth-child(5) {
+            width: 30%;
+            top: 115px;
+            left: 35%;
+          }
+        }
+      }
+      .text-list {
+        font-family: 'Roboto';
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        font-size: 235px;
+        position: absolute;
+        top: 25px;
+        left: 0;
+        color: #5a9adb;
+        &.direc {
+          top: 47px;
+          font-size: 200px;
+        }
       }
     }
   }

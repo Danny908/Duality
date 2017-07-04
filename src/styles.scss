@@ -3,6 +3,9 @@
 @import url('https://fonts.googleapis.com/css?family=Pacifico');
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900');
 
+html, body {
+  background-color: rgba(#ff8d1a, 0.05);
+}
 @for $i from 1 through 6 {
   h#{$i} {
     font-family: 'Pacifico';

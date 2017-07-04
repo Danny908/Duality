@@ -1,21 +1,57 @@
-@mixin text-3d($text-color, $lateral-color, $shadow-color) {
-    @keyframes text-3d {
-        from {
-            left: 55px;
-            bottom: -5px;
-        }
-        to {
-            left: 60px;
-            bottom: 0px;
-            text-shadow: 
-                0px 0px $text-color,
-                -1px 1px $lateral-color,
-                -2px 2px darken($lateral-color, 5%),
-                -3px 3px darken($lateral-color, 10%),
-                -4px 4px darken($lateral-color, 15%),
-                -5px 5px darken($lateral-color, 20%),
-                -6px 6px 10px rgba($shadow-color, .7),
-                -15px 10px 20px rgba($shadow-color, .6);
-        }
+@import './replace';
+
+@mixin text($text-color, $animation: true) {
+  $name: str-replace(inspect($text-color), '#', '');
+  @if($animation) {
+    @keyframes text-#{$name} {
+      from {
+        color: transparent;
+        transform: translate(0px, 0px);
+      }
+      to {
+        color: transparent;
+        transform: translate(5px, - 5px);
+        @include color-light($text-color);
+      }
     }
+  }
+  @else {
+    @include color-light($text-color);
+  }
+}
+
+@mixin text-3d($text-color, $animation: true) {
+  $name: str-replace(inspect($text-color), '#', '');
+  @include text($text-color, $animation);
+  @if($animation) {
+     animation: text-#{$name} 1s forwards;
+  }
+  @else {
+    @include text($text-color, $animation);
+  }
+
+}
+@mixin color-light($text-color) {
+  @if(lightness($text-color) < 40) {
+    text-shadow:
+        0px 0px $text-color,
+        -1px 1px lighten($text-color, 30%),
+        -2px 2px lighten($text-color, 35%),
+        -3px 3px lighten($text-color, 40%),
+        -4px 4px lighten($text-color, 45%),
+        -5px 5px lighten($text-color, 50%),
+        -6px 6px 10px rgba(white, .7),
+        -15px 10px 20px rgba(white, .6);
+  }
+  @else {
+    text-shadow:
+      0px 0px $text-color,
+      -1px 1px darken($text-color, 20%),
+      -2px 2px darken($text-color, 23%),
+      -3px 3px darken($text-color, 26%),
+      -4px 4px darken($text-color, 29%),
+      -5px 5px darken($text-color, 32%),
+      -6px 6px 10px rgba(black, .7),
+      -15px 10px 20px rgba(black, .6);
+  }
 }
