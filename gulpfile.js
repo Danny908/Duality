@@ -157,6 +157,11 @@ gulp.task('copy:build', function () {
 *
 */
 gulp.task('copy:sass', function () {
+  return gulp.src([`${srcFolder}/styles/**/*`])
+    .pipe(gulp.dest(`${distFolder}/styles/`));
+});
+
+gulp.task('copy:sass-core', function () {
   return gulp.src([`${srcFolder}/core/**/*`])
     .pipe(gulp.dest(`${distFolder}/core/`));
 });
@@ -201,6 +206,7 @@ gulp.task('compile', function () {
     'rollup:umd',
     'copy:build',
     'copy:sass',
+    'copy:sass-core',
     'copy:manifest',
     'copy:readme',
     'clean:build',

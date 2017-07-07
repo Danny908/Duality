@@ -1,5 +1,6 @@
-@import './wrapper.scss';
-@import './grid.scss';
+@import './layout/wrapper.scss';
+@import './layout/grid.scss';
+@import './components/sidebar.scss';
 
 html,body {
     margin: 0;

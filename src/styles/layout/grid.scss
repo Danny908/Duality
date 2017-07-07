@@ -1,77 +1,79 @@
-.nx-row {
+@import  '../../core/styles/mixins/screen-breakpoints.scss';
+
+.ngx-row {
   flex-basis: 100%;
   display: flex;
   flex-wrap: wrap;
   padding: 0 15px 0 15px;
   min-height: 1px;
 
-  .nx-auto {
+  .ngx-auto {
     flex: 1;
   }
 
-  [class*="nx-col"] {
+  [class*="ngx-col"] {
     padding: 0 15px 0 15px;
     flex-wrap: wrap;
     display: flex;
   }
   @for $i from 1 through 12 {
-    .#{nx-col}-#{$i} {
+    .#{ngx-col}-#{$i} {
       flex-basis: 8.333333% * $i;
     }
   }
   // PHONES
-  @media screen and(min-width: 0px) and (max-width: 700px) {
-    [class*="nx-sd"] {
+  @include phone {
+    [class*="ngx-sd"] {
       padding: 0 15px 0 15px;
       flex-wrap: wrap;
       display: flex;
     }
     @for $i from 1 through 12 {
-      .#{nx-sd}-#{$i} {
+      .#{ngx-sd}-#{$i} {
         flex-basis: 8.333333% * $i;
       }
     }
   }
   // TABLETS
-  @media screen and(min-width: 700px) {
-    [class*="nx-md"] {
+  @include tablet {
+    [class*="ngx-md"] {
       padding: 0 15px 0 15px;
       flex-wrap: wrap;
       display: flex;
     }
     @for $i from 1 through 12 {
-      .#{nx-md}-#{$i} {
+      .#{ngx-md}-#{$i} {
         flex-basis: 8.333333% * $i;
       }
     }
   }
   // LAPTOPS
-  @media screen and(min-width: 1000px) {
-    [class*="nx-ld"] {
+  @include laptop {
+    [class*="ngx-ld"] {
       padding: 0 15px 0 15px;
       flex-wrap: wrap;
       display: flex;
     }
     @for $i from 1 through 12 {
-      .#{nx-ld}-#{$i} {
+      .#{ngx-ld}-#{$i} {
         flex-basis: 8.333333% * $i;
       }
     }
   }
   // MONITORS
-  @media screen and(min-width: 1400px) {
-    [class*="nx-xd"] {
+  @include monitor {
+    [class*="ngx-xd"] {
       padding: 0 15px 0 15px;
       flex-wrap: wrap;
       display: flex;
     }
     @for $i from 1 through 12 {
-      .#{nx-xd}-#{$i} {
+      .#{ngx-xd}-#{$i} {
         flex-basis: 8.333333% * $i;
       }
     }
   }
 }
-.nx-no-pad {
+.ngx-no-pad {
   padding: 0 !important;
 }
