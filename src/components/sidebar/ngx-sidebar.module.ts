@@ -1,7 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 
 import { NgxSidebarComponent } from './ngx-sidebar.component';
-import { ScreenService } from '../../core/services/screen.service';
 
 @NgModule({
   declarations: [NgxSidebarComponent],
@@ -10,8 +9,7 @@ import { ScreenService } from '../../core/services/screen.service';
 export class NgxSidebarModule {
   public static forRoot(): ModuleWithProviders {
     return {
-      ngModule: NgxSidebarModule,
-      providers: [ ScreenService ]
+      ngModule: NgxSidebarModule
     };
   }
 }

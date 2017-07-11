@@ -1,21 +1,26 @@
-import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
-
+import { Component, OnInit, Renderer2, Input } from '@angular/core';
 
 @Component({
   selector: 'ngx-sidebar',
   templateUrl: 'ngx-sidebar.component.html',
+  styleUrls: ['ngx-sidebar.component.scss']
 })
 export class NgxSidebarComponent implements OnInit {
+  @Input() toggle = false;
+  private screenSize: number;
+
   constructor(
-    private el: ElementRef,
     private renderer: Renderer2
-  ) {}
+  ) {
+      this.screenSize = this.getScreenSize();
+      renderer.listen('window', 'resize', size => {
+        this.screenSize = size.target.innerWidth;
+      });
+  }
 
-  ngOnInit(): void {
-    this.el.nativeElement.classList.add('ngx-sidebar');
+  ngOnInit(): void { }
 
-    this.renderer.listen('window', 'resize', size => {
-      console.log(size.target.innerWidth);
-    });
+  getScreenSize(): number {
+    return window.screen.width;
   }
 }

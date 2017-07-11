@@ -1,3 +1,5 @@
-<div class="sidebar">
-  <ng-content></ng-content>
+<div [ngClass]="[screenSize <= 1100 ? 'mobile' : '', toggle ? 'open' : 'close']" class="ngx-sidebar">
+  <div [ngClass]="[screenSize <= 1100 ? 'mobile' : '', toggle ? 'open' : 'close']" class="sidebar-content">
+    <ng-content></ng-content>
+  </div>
 </div>

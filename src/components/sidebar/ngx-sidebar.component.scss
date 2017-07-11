@@ -1,0 +1,37 @@
+.ngx-sidebar {
+  width: 300px;
+  height: 100%;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  background-color: transparent;
+  &.mobile {
+    width: 100%;
+    &.close {
+      background-color: transparent;
+      width: 0%;
+    }
+    &.open {
+      background-color: rgba(black, 0.5);
+    }
+  }
+  .sidebar-content {
+    width: 300px;
+    height: inherit;
+    position: absolute;
+    left: inherit;
+    top: inherit;
+    background-color:  whitesmoke;
+    box-shadow: 3px 0px 5px rgba(black, 0.5);
+    transition: left 0.3s ease-in-out;
+    &.mobile {
+      &.close {
+        left: -300px;
+      }
+      &.open {
+        left: inherit;
+      }
+    }
+  }
+}
