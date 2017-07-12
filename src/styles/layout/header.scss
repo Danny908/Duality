@@ -6,11 +6,8 @@
     top: 0;
     left: 0;
     z-index: 999;
-    &.sub-header {
-        position: relative;
-    }
+    transition: margin-left 0.3s ease-in-out;
     @include custom-screen(1100px) {
         margin-left: 0 !important;
-        transition: margin-left 0.3s ease-in-out;
     }
 }

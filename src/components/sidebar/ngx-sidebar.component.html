@@ -1,5 +1,5 @@
-<div [ngClass]="[screenSize <= 1100 ? 'mobile' : '', toggle ? 'open' : 'close']" class="ngx-sidebar ngx-row ngx-no-pad">
-  <div [ngClass]="[screenSize <= 1100 ? 'mobile' : '', toggle ? 'open' : 'close']" class="sidebar-content ngx-col-12 ngx-no-pad">
+<div [class.mobile]="screenSize <= 1100" [class.open]="toggle" [class.close]="!toggle" class="ngx-sidebar ngx-row ngx-no-pad">
+  <div [class.mobile]="screenSize <= 1100" [class.open]="toggle" [class.close]="!toggle" class="sidebar-content ngx-col-12 ngx-no-pad">
     <ng-content></ng-content>
   </div>
 </div>

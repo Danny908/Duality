@@ -4,8 +4,8 @@
     position: relative;
     z-index: 999;
     width: 100%;
+    transition: margin-left 0.3s ease-in-out;
     @include custom-screen(1100px) {
         margin-left: 0 !important;
-        transition: margin-left 0.3s ease-in-out;
     }
 }
