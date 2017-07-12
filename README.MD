@@ -15,6 +15,12 @@ To install Duality, run:
 $ npm install ngx-duality --save
 ```
 
+Then add the follow sass file into your main styles file (should be styles.sass), this file it's required for most of components.
+
+```sass
+  @import "~ngx-duality/styles/ngx-duality.scss";
+```
+
 # Available Modules
 
 I'm planning create more modules with the time.
@@ -22,6 +28,9 @@ I'm planning create more modules with the time.
 **List of modules:**
 
 1. [OverStyle](#overstyle)
+2. [Header](#header)
+3. [Footer](#footer)
+4. [Sidebar](#sidebar)
 
 # Modules Description & Usage
 
@@ -37,7 +46,7 @@ Once you install Duality:
 $ npm install ngx-duality
 ```
 
-go to the `AppModule` of your project and import `DualOverStyleModule`:
+go to the `AppModule` of your project and import `NgxOverStyleModule`:
 
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
@@ -46,7 +55,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 // Import OverStyle module
-import { DualOverStyleModule } from 'duality';
+import { NgxOverStyleModule } from 'duality';
 
 @NgModule({
   declarations: [
@@ -56,7 +65,7 @@ import { DualOverStyleModule } from 'duality';
     BrowserModule,
 
     // Specify the module as an import
-    DualOverStyleModule
+    NgxOverStyleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -64,11 +73,11 @@ import { DualOverStyleModule } from 'duality';
 export class AppModule { }
 ```
 
-Once DualOverStyleModule is imported, you can use the directive in your Angular application:
+Once NgxOverStyleModule is imported, you can use the directive in your Angular application:
 
 ```xml
 <!-- Now add the OverStyle directive in the element that you want to enable the multi styles -->
-<h1 dualOverStyle>
+<h1 overStyle>
   {{title}}
 </h1>
 ```
@@ -102,6 +111,13 @@ h1.WINDOWS {
 * SAFARI
 * EDGE
 * IE
+
+### Header:
+
+This it's a pre-build sass class, added into your proyect and make everything .
+
+**Usage**
+
 
 ## License
 

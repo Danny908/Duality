@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2, Input } from '@angular/core';
+import { Component, OnInit, Renderer2, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'ngx-sidebar',
@@ -7,6 +7,7 @@ import { Component, OnInit, Renderer2, Input } from '@angular/core';
 })
 export class NgxSidebarComponent implements OnInit {
   @Input() toggle = false;
+  @Output() isMobile: EventEmitter<boolean> = new EventEmitter();
   private screenSize: number;
 
   constructor(
@@ -15,6 +16,11 @@ export class NgxSidebarComponent implements OnInit {
       this.screenSize = this.getScreenSize();
       renderer.listen('window', 'resize', size => {
         this.screenSize = size.target.innerWidth;
+        if (this.screenSize <= 1100) {
+          this.isMobile.emit(true);
+        } else {
+          this.isMobile.emit(false);
+        }
       });
   }
 

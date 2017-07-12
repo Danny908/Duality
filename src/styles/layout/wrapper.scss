@@ -1,13 +1,20 @@
+@import  '../../core/styles/mixins/screen-breakpoints.scss';
+
 .ngx-wrapper {
     display: flex;
     min-height: 100%;
     min-width: 100%;
     flex-direction: column;
+    overflow-x: hidden;
     .ngx-content {
         width: initial;
         overflow: hidden;
         word-break: break-all;
         margin: auto;
         flex: 1;
+        @include custom-screen(1100px) {
+            margin-left: 0 !important;
+            transition: margin-left 0.3s ease-in-out;
+        }
     }
 }

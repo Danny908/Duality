@@ -5,7 +5,7 @@ import { SampleDirective } from './sample.directive';
 import { SamplePipe } from './sample.pipe';
 import { SampleService } from './sample.service';
 
-import { DualOverStyleModule } from './directives/over-style/dual-over-style.module';
+import { NgxOverStyleModule } from './directives/over-style/ngx-over-style.module';
 
 import { NgxSidebarModule } from './components/sidebar/ngx-sidebar.module';
 
@@ -15,8 +15,8 @@ export * from './sample.pipe';
 export * from './sample.service';
 
 export {
-  DualOverStyleDirective,
-  DualOverStyleModule
+  NgxOverStyleDirective,
+  NgxOverStyleModule
 } from './directives/over-style';
 export {
   NgxSidebarComponent,
@@ -26,8 +26,8 @@ export {
 @NgModule({
   imports: [
     CommonModule,
-    DualOverStyleModule,
-    NgxSidebarModule.forRoot()
+    NgxOverStyleModule,
+    NgxSidebarModule
   ],
   declarations: [
     SampleComponent,

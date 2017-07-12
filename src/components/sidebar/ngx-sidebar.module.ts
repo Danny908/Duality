@@ -1,4 +1,4 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 
 import { NgxSidebarComponent } from './ngx-sidebar.component';
 
@@ -6,10 +6,4 @@ import { NgxSidebarComponent } from './ngx-sidebar.component';
   declarations: [NgxSidebarComponent],
   exports: [NgxSidebarComponent]
 })
-export class NgxSidebarModule {
-  public static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: NgxSidebarModule
-    };
-  }
-}
+export class NgxSidebarModule { }

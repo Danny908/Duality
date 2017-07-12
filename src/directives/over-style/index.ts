@@ -1,2 +1,2 @@
-export { DualOverStyleDirective } from './dual-over-style.directive';
-export { DualOverStyleModule } from './dual-over-style.module';
+export { NgxOverStyleDirective } from './ngx-over-style.directive';
+export { NgxOverStyleModule } from './ngx-over-style.module';

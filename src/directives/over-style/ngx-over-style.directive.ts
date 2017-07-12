@@ -3,10 +3,10 @@ import { Directive, ElementRef, OnInit } from '@angular/core';
 import  { Window, Document } from './types';
 
 @Directive({
-    selector: '[dualOverStyle]',
-    exportAs: 'dual-over-style',
+    selector: '[overStyle]',
+    exportAs: 'ngx-over-style',
 })
-export class DualOverStyleDirective implements OnInit {
+export class NgxOverStyleDirective implements OnInit {
     private window: Window = window;
     private document: Document = document;
     private OS: string;

@@ -1,3 +1,5 @@
+@import  '../../core/styles/mixins/screen-breakpoints.scss';
+
 .ngx-header {
     position: fixed;
     width: 100%;
@@ -6,5 +8,9 @@
     z-index: 999;
     &.sub-header {
         position: relative;
+    }
+    @include custom-screen(1100px) {
+        margin-left: 0 !important;
+        transition: margin-left 0.3s ease-in-out;
     }
 }
