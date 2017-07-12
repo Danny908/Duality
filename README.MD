@@ -193,7 +193,7 @@ The header comes with position fixed by default, but without background-color an
   }
 ```
 
-### Header:
+### Footer:
 
 This it's a pre-build sass class, add it into your project and make everything easier (yes it's a copy paste).
 
