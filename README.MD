@@ -139,11 +139,11 @@ The wrapper are a couple of classes to mainting everything in his place (require
 
 First import the style sass file from ngx-duality:
 
-```sass
+```scss
   @import "~ngx-duality/styles/ngx-duality.scss";
 ```
 
-then add the following template into your app.component.html file:
+then add the following template into your `app.component.html` file:
 
 ```html 
   <div class="ngx-wrapper">
@@ -163,10 +163,10 @@ This it's a pre-build sass class, add it into your project and make everything e
 
 Once imported the style sass file from ngx-duality:
 
-```sass
+```scss
   @import "~ngx-duality/styles/ngx-duality.scss";
 ```
-go to app.component.html file and add the following template:
+go to `app.component.html` file and add the following template:
 
 ```html
   <div class="ngx-wrapper">
@@ -183,7 +183,7 @@ go to app.component.html file and add the following template:
 
 The header comes with position fixed by default, but without background-color and height, but don't worry the header class is exposed so you can style it pretty easy.
 
-```sass
+```scss
   .ngx-header {
     background-color: any-color ;
     height: any-height;
@@ -201,10 +201,10 @@ This it's a pre-build sass class, add it into your project and make everything e
 
 Once imported the style sass file from ngx-duality:
 
-```sass
+```scss
   @import "~ngx-duality/styles/ngx-duality.scss";
 ```
-go to app.component.html file and add the following template:
+go to `app.component.html` file and add the following template:
 
 ```html
   <div class="ngx-wrapper">
@@ -224,7 +224,7 @@ go to app.component.html file and add the following template:
 
 The footer comes with position relative by default and without background-color and height, but don't worry the footer class is exposed so you can style it pretty easy.
 
-```sass
+```scss
   .ngx-footer {
     background-color: any-color ;
     height: any-height;
@@ -298,6 +298,22 @@ If you notice the component comes with some attributes, in the next table will b
 |-----------|------|-------------|
 | [toggle] | boolean | Open or hide the modal |
 | (isMobile) | event | Emit true if the sidebar it's on mobile mode or false if it's on desktop mode |
+
+If you use the sidebar with the header and footer you should wrap the header and footer elements:
+```scss
+  .ngx-header {
+    margin-left: 300px;
+  }
+  .ng-content {
+    margin-left: 300px;
+  }
+  .ngx-footer {
+    margin-left: 300px;
+  }
+```
+
+The main style file of the library has a media query son don't worry about the margin when the sidebar enter on mobile mode.
+
 
 ## Live Page
 
