@@ -133,7 +133,7 @@ Live demo soon :tophat:...
 
 ### Wrapper Layout
 
-The wrapper are a couple of classes to mainting everything in his place (required for header and footer).
+The wrapper are a couple of classes to maintain everything in his place (required for header and footer).
 
 **Usage**
 
@@ -325,4 +325,4 @@ MIT © [Daniel Torres](mailto:danny908t@gmail.com)
 
 ## Note
 
-The library it's updated very offen, so don't forget to check new functionality in the fucture.
+The library it's updated very offen, so don't forget to check new functionality in the future.
