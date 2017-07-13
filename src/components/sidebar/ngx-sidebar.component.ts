@@ -14,7 +14,6 @@ export class NgxSidebarComponent implements OnInit {
     private renderer: Renderer2
   ) {
       this.screenSize = this.getScreenSize();
-      this.getScreenType(this.screenSize);
       renderer.listen('window', 'resize', size => {
         this.screenSize = size.target.innerWidth;
         this.getScreenType(this.screenSize);
@@ -24,6 +23,7 @@ export class NgxSidebarComponent implements OnInit {
   ngOnInit(): void { }
 
   getScreenSize(): number {
+    this.getScreenType(window.screen.width);
     return window.screen.width;
   }
   getScreenType(screen_size: number): void {
