@@ -7,7 +7,7 @@
     flex-direction: column;
     overflow-x: hidden;
     .ngx-content {
-        width: initial;
+        min-width: initial;
         overflow: hidden;
         word-break: break-all;
         margin: auto;
