@@ -1,0 +1,63 @@
+@import './replace';
+
+@mixin element($color, $animation: true) {
+    $name: str-replace(inspect($color), '#', '');
+    @if($animation) {
+      @keyframes element-#{$name} {
+          from {
+              background-color: $color;
+              transform: translate(0px, 0px);
+          }
+          to {
+            background-color: $color;
+            transform: translate(5px, -5px);
+            @include color($color);
+
+          }
+      }
+    }
+    @else {
+      transform: translate(5px, -5px);
+      background-color: $color;
+      @include color($color);
+    }
+}
+
+@mixin element-3d($color, $animation: true) {
+  $name: str-replace(inspect($color), '#', '');
+  @include element($color, $animation);
+  @if($animation) {
+     animation: element-#{$name} 1s forwards;
+  }
+  @else {
+    @include element($color, $animation);
+  }
+
+}
+
+@mixin color($color) {
+  @if(lightness($color) < 30) {
+    box-shadow:
+        -1px 1px lighten($color, 5%),
+        -2px 2px lighten($color, 10%),
+        -3px 3px lighten($color, 15%),
+        -4px 4px lighten($color, 20%),
+        -5px 5px lighten($color, 25%),
+        -6px 6px lighten($color, 30%),
+        -7px 7px lighten($color, 35%),
+        -8px 8px 10px rgba(white, 0.7),
+        -14px 12px 20px rgba(white, 0.6);
+  }
+  @else {
+    box-shadow:
+        -1px 1px darken($color, 20%),
+        -2px 2px darken($color, 23%),
+        -3px 3px darken($color, 26%),
+        -4px 4px darken($color, 29%),
+        -5px 5px darken($color, 32%),
+        -6px 6px darken($color, 35%),
+        -7px 7px darken($color, 38%),
+        -8px 8px 10px rgba(black, .7),
+        -14px 12px 20px rgba(black, .6);
+  }
+}
