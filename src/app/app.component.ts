@@ -17,5 +17,6 @@ export class AppComponent implements OnInit {
   handleMobile(mobile: boolean): void {
     this.status.ismobile = mobile;
     this.cdr.detectChanges();
+    console.log(mobile);
   }
 }

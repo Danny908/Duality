@@ -1,6 +1,6 @@
 <div class="ngx-wrapper">
   <header class="ngx-header">
-    <div class="ngx-row">
+    <div class="ngx-row ngx-no-pad">
       <div class="ngx-col-1">
         <i
           *ngIf="status.ismobile"
@@ -8,7 +8,7 @@
           class="fa fa-bars fa-2x"
           aria-hidden="true"></i>
       </div>
-      <div class="ngx-auto">
+      <div class="ngx-auto ngx-sd-12 ngx-no-pad">
         <nav>
           <a class="divider" href="">GET STARTED</a>
           <a href="">COMPONENTS</a>
@@ -20,6 +20,11 @@
   </header>
   <ngx-sidebar [toggle]="status.isopen" (isMobile)="handleMobile($event)">
     <div class="sidebar ngx-col-12 ngx-no-pad">
+      <i
+        *ngIf="status.ismobile"
+        (click)="status.isopen = !status.isopen"
+        class="fa fa-bars fa-2x"
+        aria-hidden="true"></i>
       <div class="logo ngx-col-12 ngx-no-pad">
         <app-logo class="ngx-col-12"></app-logo>
       </div>

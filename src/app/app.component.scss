@@ -1,46 +1,41 @@
+@import '~ngx-duality/core/styles/mixins/screen-breakpoints.scss';
+@import '~assets/palette/palette';
+
 .ngx-header {
+  height: 70px;
+  z-index: 1001;
+  .ngx-auto {
+    justify-content: flex-end;
     height: 70px;
-    z-index: 1001;
-    .ngx-col-1 {
-      i {
-        margin: auto 0;
+    nav {
+      float: right;
+      display: flex;
+      height: 100%;
+      justify-content: space-between;
+      a {
         color: rgba(white, 0.6);
-        cursor: pointer;
+        margin: auto;
+        padding: 20px;
         transition: all 0.3s ease;
-      }
-      .fa-bars:hover{
-        color: white;
-        text-shadow: 1px 2px 1px black, 0px 0px 3px white;
-      }
-    }
-    .ngx-auto {
-      justify-content: flex-end;
-      height: 70px;
-      nav {
-        float: right;
-        display: flex;
-        height: 100%;
-        justify-content: space-between;
-        a {
-          color: rgba(white, 0.6);
-          margin: auto;
-          padding: 20px;
-          transition: all 0.3s ease;
-          &.divider {
-            border-right: 2px solid rgba(white, 0.5);
-          }
-          &:hover {
-            color: white;
-            text-shadow: 1px 2px 1px black, 0px 0px 3px white;
-          }
+        &.divider {
+          border-right: 2px solid rgba(white, 0.5);
+        }
+        &:hover {
+          color: white;
+          text-shadow: 1px 2px 1px black, 0px 0px 3px white;
         }
       }
     }
   }
+}
+
 .sidebar {
   margin-top: 70px;
-  background-color:invert(#283655);
+  background-color:invert($secondary);
   height: 100%;
+   i {
+     display: none;
+   }
 }
 .ngx-content {
   margin-top: 70px;
@@ -52,4 +47,55 @@
 .ngx-footer {
   height: 100px;
   margin-left: 300px;
+}
+
+@include phone {
+  .ngx-header {
+    z-index: 999;
+    .ngx-col-1 {
+      height: 70px;
+    }
+    .ngx-sd-12 {
+      height: 40px;
+      nav {
+        background-color: lighten($secondary, 20%);
+        width: 100%;
+        a {
+          font-size: 13px;
+          padding: 12px 20px 12px 20px;
+          &.divider {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  .sidebar {
+    margin-top: 0;
+    i {
+      display: block;
+      margin: 0;
+      padding-left: 25px;
+      padding-top: 20px;
+      z-index: 1;
+    }
+    .logo {
+      display: block;
+      position: absolute;
+      width: 100%;
+      left: 0;
+    }
+  }
+}
+
+ i {
+  padding-left: 10px;
+  margin: auto 0;
+  color: rgba(white, 0.6);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.fa-bars:hover{
+  color: white;
+  text-shadow: 1px 2px 1px black, 0px 0px 3px white;
 }
