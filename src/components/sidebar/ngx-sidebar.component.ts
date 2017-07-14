@@ -28,7 +28,6 @@ export class NgxSidebarComponent implements OnInit {
     return window.screen.width;
   }
   getScreenType(screen_size: number): void {
-    console.log(screen_size);
     if (screen_size <= 1100) {
       this.isMobile.emit(true);
     } else {
