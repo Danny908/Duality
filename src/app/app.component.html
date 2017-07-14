@@ -1,10 +1,14 @@
-<div class="wrapper">
-  <ngx-header style="position: relative;" [height]="70" [fixed]="true" color="#1a8cff">
-    <div class="nx-row header">
-      <h1 class="title">
-        Duality
-      </h1>
-      <div class="nx-auto">
+<div class="ngx-wrapper">
+  <header class="ngx-header">
+    <div class="ngx-row">
+      <div class="ngx-col-1">
+        <i
+          *ngIf="status.ismobile"
+          (click)="status.isopen = !status.isopen"
+          class="fa fa-bars fa-2x"
+          aria-hidden="true"></i>
+      </div>
+      <div class="ngx-auto">
         <nav>
           <a class="divider" href="">GET STARTED</a>
           <a href="">COMPONENTS</a>
@@ -13,9 +17,19 @@
         </nav>
       </div>
     </div>
-  </ngx-header>
-  <div class="content">
-   <app-main-content></app-main-content>
+  </header>
+  <ngx-sidebar [toggle]="status.isopen" (isMobile)="handleMobile($event)">
+    <div class="sidebar ngx-col-12 ngx-no-pad">
+      <div class="logo ngx-col-12 ngx-no-pad">
+        <app-logo class="ngx-col-12"></app-logo>
+      </div>
+      <div class="sidebar-nav ngx-col-12 ngx-no-pad">
+
+      </div>
+    </div>
+  </ngx-sidebar>
+  <div class="ngx-content ngx-row">
+   <!--<app-main-content class="ngx-col-12"></app-main-content>-->
   </div>
-  <ngx-footer [height]="100" color="#474647"></ngx-footer>
+  <footer class="ngx-footer"></footer>
 </div>

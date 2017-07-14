@@ -1,11 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
-@import '../node_modules/ngx-duality/core/styles/ngx-duality';
+@import '~ngx-duality/styles/ngx-duality';
 @import url('https://fonts.googleapis.com/css?family=Pacifico');
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900');
+@import './assets/palette/ngx-theme-loader';
+@import './assets/palette/palette';
 
-html, body {
-  background-color: rgba(#ff8d1a, 0.05);
-}
+@include theme-loader($primary, $secondary, $background, $text);
+
 @for $i from 1 through 6 {
   h#{$i} {
     font-family: 'Pacifico';
