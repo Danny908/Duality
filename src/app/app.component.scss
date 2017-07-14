@@ -75,8 +75,8 @@
     i {
       display: block;
       margin: 0;
-      padding-left: 25px;
-      padding-top: 20px;
+      margin-left: 25px;
+      margin-top: 20px;
       z-index: 1;
     }
     .logo {
@@ -89,7 +89,7 @@
 }
 
  i {
-  padding-left: 10px;
+  margin-left: 10px;
   margin: auto 0;
   color: rgba(white, 0.6);
   cursor: pointer;
