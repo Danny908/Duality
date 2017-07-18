@@ -16,6 +16,7 @@
     flex-wrap: wrap;
     display: flex;
     align-items: baseline;
+    align-content: flex-start;
   }
   @for $i from 1 through 12 {
     .#{ngx-col}-#{$i} {
@@ -28,6 +29,8 @@
       padding: 0 15px 0 15px;
       flex-wrap: wrap;
       display: flex;
+      align-items: baseline;
+      align-content: flex-start;
     }
     @for $i from 1 through 12 {
       .#{ngx-sd}-#{$i} {
@@ -41,6 +44,8 @@
       padding: 0 15px 0 15px;
       flex-wrap: wrap;
       display: flex;
+      align-items: baseline;
+      align-content: flex-start;
     }
     @for $i from 1 through 12 {
       .#{ngx-md}-#{$i} {
@@ -54,6 +59,8 @@
       padding: 0 15px 0 15px;
       flex-wrap: wrap;
       display: flex;
+      align-items: baseline;
+      align-content: flex-start;
     }
     @for $i from 1 through 12 {
       .#{ngx-ld}-#{$i} {
@@ -67,6 +74,8 @@
       padding: 0 15px 0 15px;
       flex-wrap: wrap;
       display: flex;
+      align-items: baseline;
+      align-content: flex-start;
     }
     @for $i from 1 through 12 {
       .#{ngx-xd}-#{$i} {
