@@ -1,0 +1,27 @@
+@mixin slide-to ($name, $direction) {
+  $from: false;
+  $to: false;
+
+  @if($direction == X) {
+    $from: translateX(-100%);
+    $to: translateX(0%);
+  } @else if ($direction == Y) {
+    $from: translateY(-100%);
+    $to: translateY(0%);
+  }
+  @if($direction == -X) {
+    $from: translateX(100%);
+    $to: translateX(0%);
+  } @else if ($direction == -Y) {
+    $from: translateY(100%);
+    $to: translateY(0%);
+  }
+  @keyframes #{$name} {
+    from {
+      transform: $from;
+    }
+    to {
+      transform: $to;
+    }
+  }
+}
