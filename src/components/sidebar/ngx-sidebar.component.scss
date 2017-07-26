@@ -20,16 +20,15 @@
     width: 300px;
     height: inherit;
     position: absolute;
-    left: inherit;
     top: inherit;
     box-shadow: 3px 0px 5px rgba(black, 0.5);
-    transition: left 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
     &.mobile {
       &.close {
-        left: -306px;
+        transform: translateX(-102%);
       }
       &.open {
-        left: inherit;
+        transform: translateX(0);
       }
     }
   }
