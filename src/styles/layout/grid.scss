@@ -17,7 +17,10 @@
     flex-wrap: wrap;
     display: flex;
     align-items: baseline;
+<<<<<<< HEAD
     align-self: flex-start;
+=======
+>>>>>>> 3df65d692f85cdee732f768be9a55988eb56a133
     align-content: flex-start;
   }
   @for $i from 1 through 12 {
