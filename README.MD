@@ -41,7 +41,7 @@ I'm planning create more modules with the time.
 
 ### OverStyle:
 
-Overstyle is a directive that allow to create multiple styles to different browsers and operating systems.
+Overstyle is a directive that allow you to create multiple styles to different browsers and operating systems.
 
 **Usage:**
 
@@ -302,13 +302,13 @@ If you notice the component comes with some attributes, in the next table will b
 If you use the sidebar with the header and footer you should wrap the header and footer elements:
 ```scss
   .ngx-header {
-    margin-left: 300px;
+    margin: 0 0 0 300px;
   }
   .ng-content {
-    margin-left: 300px;
+    margin: 0 0 0 300px;
   }
   .ngx-footer {
-    margin-left: 300px;
+    margin: 0 0 0 300px;
   }
 ```
 

@@ -6,6 +6,7 @@
   flex-wrap: wrap;
   padding: 0 15px 0 15px;
   min-height: 1px;
+  align-self: flex-start;
 
   .ngx-auto {
     flex: 1;
@@ -16,6 +17,7 @@
     flex-wrap: wrap;
     display: flex;
     align-items: baseline;
+    align-self: flex-start;
     align-content: flex-start;
   }
   @for $i from 1 through 12 {
