@@ -5852,7 +5852,7 @@ var SystemJsNgModuleLoader = (function () {
         if (exportName === undefined) {
             exportName = 'default';
         }
-        return __webpack_require__(70)(module)
+        return __webpack_require__(71)(module)
             .then(function (module) { return module[exportName]; })
             .then(function (type) { return checkNotEmpty(type, module, exportName); })
             .then(function (type) { return _this._compiler.compileModuleAsync(type); });
@@ -5868,7 +5868,7 @@ var SystemJsNgModuleLoader = (function () {
             exportName = 'default';
             factoryClassSuffix = '';
         }
-        return __webpack_require__(70)(this._config.factoryPathPrefix + module + this._config.factoryPathSuffix)
+        return __webpack_require__(71)(this._config.factoryPathPrefix + module + this._config.factoryPathSuffix)
             .then(function (module) { return module[exportName + factoryClassSuffix]; })
             .then(function (factory) { return checkNotEmpty(factory, module, exportName); });
     };
@@ -15011,7 +15011,7 @@ function transition$$1(stateChangeExpr, steps) {
 
 var root_1 = __webpack_require__(15);
 var toSubscriber_1 = __webpack_require__(164);
-var observable_1 = __webpack_require__(63);
+var observable_1 = __webpack_require__(64);
 /**
  * A representation of any set of values over any amount of time. This the most basic building block
  * of RxJS.
@@ -15466,9 +15466,9 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var isFunction_1 = __webpack_require__(66);
+var isFunction_1 = __webpack_require__(67);
 var Subscription_1 = __webpack_require__(28);
-var Observer_1 = __webpack_require__(60);
+var Observer_1 = __webpack_require__(61);
 var rxSubscriber_1 = __webpack_require__(48);
 /**
  * Implements the {@link Observer} interface and extends the
@@ -20312,11 +20312,11 @@ var VERSION = new __WEBPACK_IMPORTED_MODULE_2__angular_core__["F" /* Version */]
 
 "use strict";
 
-var isArray_1 = __webpack_require__(65);
-var isObject_1 = __webpack_require__(67);
-var isFunction_1 = __webpack_require__(66);
+var isArray_1 = __webpack_require__(66);
+var isObject_1 = __webpack_require__(68);
+var isFunction_1 = __webpack_require__(67);
 var tryCatch_1 = __webpack_require__(165);
-var errorObject_1 = __webpack_require__(64);
+var errorObject_1 = __webpack_require__(65);
 var UnsubscriptionError_1 = __webpack_require__(161);
 /**
  * Represents a disposable resource, such as the execution of an Observable. A
@@ -24784,7 +24784,8 @@ exports.$$rxSubscriber = exports.rxSubscriber;
 /* 57 */,
 /* 58 */,
 /* 59 */,
-/* 60 */
+/* 60 */,
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24798,7 +24799,7 @@ exports.empty = {
 //# sourceMappingURL=Observer.js.map
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24834,7 +24835,7 @@ exports.OuterSubscriber = OuterSubscriber;
 //# sourceMappingURL=OuterSubscriber.js.map
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24921,7 +24922,7 @@ exports.EmptyObservable = EmptyObservable;
 //# sourceMappingURL=EmptyObservable.js.map
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24953,7 +24954,7 @@ exports.$$observable = exports.observable;
 //# sourceMappingURL=observable.js.map
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24963,7 +24964,7 @@ exports.errorObject = { e: {} };
 //# sourceMappingURL=errorObject.js.map
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24972,7 +24973,7 @@ exports.isArray = Array.isArray || (function (x) { return x && typeof x.length =
 //# sourceMappingURL=isArray.js.map
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24984,7 +24985,7 @@ exports.isFunction = isFunction;
 //# sourceMappingURL=isFunction.js.map
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24996,7 +24997,7 @@ exports.isObject = isObject;
 //# sourceMappingURL=isObject.js.map
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25008,7 +25009,7 @@ exports.isScheduler = isScheduler;
 //# sourceMappingURL=isScheduler.js.map
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25016,11 +25017,11 @@ exports.isScheduler = isScheduler;
 var root_1 = __webpack_require__(15);
 var isArrayLike_1 = __webpack_require__(162);
 var isPromise_1 = __webpack_require__(163);
-var isObject_1 = __webpack_require__(67);
+var isObject_1 = __webpack_require__(68);
 var Observable_1 = __webpack_require__(5);
 var iterator_1 = __webpack_require__(159);
 var InnerSubscriber_1 = __webpack_require__(144);
-var observable_1 = __webpack_require__(63);
+var observable_1 = __webpack_require__(64);
 function subscribeToResult(outerSubscriber, result, outerValue, outerIndex) {
     var destination = new InnerSubscriber_1.InnerSubscriber(outerSubscriber, outerValue, outerIndex);
     if (destination.closed) {
@@ -25092,11 +25093,11 @@ exports.subscribeToResult = subscribeToResult;
 //# sourceMappingURL=subscribeToResult.js.map
 
 /***/ }),
-/* 70 */,
 /* 71 */,
 /* 72 */,
 /* 73 */,
-/* 74 */
+/* 74 */,
+/* 75 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -52968,7 +52969,7 @@ function _mergeArrays(parts) {
 //# sourceMappingURL=compiler.es5.js.map
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -59071,7 +59072,7 @@ ReactiveFormsModule.ctorParameters = function () { return []; };
 
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -61299,12 +61300,12 @@ var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["F" /* Version */]
 
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_compiler__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_compiler__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__ = __webpack_require__(22);
@@ -61482,7 +61483,6 @@ var platformBrowserDynamic = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__
 
 
 /***/ }),
-/* 78 */,
 /* 79 */,
 /* 80 */,
 /* 81 */,
@@ -61686,7 +61686,7 @@ NgxSidebarComponent.decorators = [
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["f" /* Component */], args: [{
                 selector: 'ngx-sidebar',
                 template: "<div [class.mobile]=\"screenSize <= 1100\" [class.open]=\"toggle\" [class.close]=\"!toggle\" class=\"ngx-sidebar ngx-row ngx-no-pad\"> <div [class.mobile]=\"screenSize <= 1100\" [class.open]=\"toggle\" [class.close]=\"!toggle\" class=\"sidebar-content ngx-col-12 ngx-no-pad\"> <ng-content></ng-content> </div> </div>",
-                styles: [".ngx-sidebar { width: 300px; height: 100%; position: fixed; z-index: 1000; left: 0; top: 0; background-color: transparent; } .ngx-sidebar.mobile { width: 100%; } .ngx-sidebar.mobile.close { background-color: transparent; width: 0%; } .ngx-sidebar.mobile.open { background-color: rgba(0, 0, 0, 0.5); } .ngx-sidebar .sidebar-content { width: 300px; height: inherit; position: absolute; left: inherit; top: inherit; box-shadow: 3px 0px 5px rgba(0, 0, 0, 0.5); transition: left 0.3s ease-in-out; } .ngx-sidebar .sidebar-content.mobile.close { left: -306px; } .ngx-sidebar .sidebar-content.mobile.open { left: inherit; } "]
+                styles: [".ngx-sidebar { width: 300px; height: 100%; position: fixed; z-index: 2; left: 0; top: 0; background-color: transparent; } .ngx-sidebar.mobile { width: 100%; } .ngx-sidebar.mobile.close { background-color: transparent; width: 0%; } .ngx-sidebar.mobile.open { background-color: rgba(0, 0, 0, 0.5); } .ngx-sidebar .sidebar-content { width: 300px; height: inherit; position: absolute; top: inherit; box-shadow: 3px 0px 5px rgba(0, 0, 0, 0.5); transition: transform 0.3s ease-in-out; } .ngx-sidebar .sidebar-content.mobile.close { transform: translateX(-102%); } .ngx-sidebar .sidebar-content.mobile.open { transform: translateX(0); } "]
             },] },
 ];
 /**
@@ -61855,8 +61855,8 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var Observable_1 = __webpack_require__(5);
 var ScalarObservable_1 = __webpack_require__(150);
-var EmptyObservable_1 = __webpack_require__(62);
-var isScheduler_1 = __webpack_require__(68);
+var EmptyObservable_1 = __webpack_require__(63);
+var isScheduler_1 = __webpack_require__(69);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -62157,10 +62157,10 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Observable_1 = __webpack_require__(5);
-var EmptyObservable_1 = __webpack_require__(62);
-var isArray_1 = __webpack_require__(65);
-var subscribeToResult_1 = __webpack_require__(69);
-var OuterSubscriber_1 = __webpack_require__(61);
+var EmptyObservable_1 = __webpack_require__(63);
+var isArray_1 = __webpack_require__(66);
+var subscribeToResult_1 = __webpack_require__(70);
+var OuterSubscriber_1 = __webpack_require__(62);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -62586,7 +62586,7 @@ var MapSubscriber = (function (_super) {
 var Observable_1 = __webpack_require__(5);
 var ArrayObservable_1 = __webpack_require__(146);
 var mergeAll_1 = __webpack_require__(156);
-var isScheduler_1 = __webpack_require__(68);
+var isScheduler_1 = __webpack_require__(69);
 /* tslint:enable:max-line-length */
 /**
  * Creates an output Observable which concurrently emits all values from every
@@ -62739,8 +62739,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var OuterSubscriber_1 = __webpack_require__(61);
-var subscribeToResult_1 = __webpack_require__(69);
+var OuterSubscriber_1 = __webpack_require__(62);
+var subscribeToResult_1 = __webpack_require__(70);
 /**
  * Converts a higher-order Observable into a first-order Observable which
  * concurrently delivers all values that are emitted on the inner Observables.
@@ -63075,7 +63075,7 @@ exports.isPromise = isPromise;
 
 var Subscriber_1 = __webpack_require__(14);
 var rxSubscriber_1 = __webpack_require__(48);
-var Observer_1 = __webpack_require__(60);
+var Observer_1 = __webpack_require__(61);
 function toSubscriber(nextOrObserver, error, complete) {
     if (nextOrObserver) {
         if (nextOrObserver instanceof Subscriber_1.Subscriber) {
@@ -63099,7 +63099,7 @@ exports.toSubscriber = toSubscriber;
 
 "use strict";
 
-var errorObject_1 = __webpack_require__(64);
+var errorObject_1 = __webpack_require__(65);
 var tryCatchTarget;
 function tryCatcher() {
     try {

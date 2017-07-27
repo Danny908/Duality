@@ -7,9 +7,6 @@
   header, .ngx-header, footer, .ngx-footer {
     background-color: $secondary;
   }
-  .ngx-row {
-    background-color: $background;
-  }
   header > .ngx-row, .ngx-header > .ngx-row, footer > .ngx-row, .ngx-footer > .ngx-row {
     background-color: $secondary;
   }

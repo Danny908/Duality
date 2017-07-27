@@ -5,3 +5,9 @@ export interface Sidebar {
   icon: string;
   // sub_icon: Array<string>
 }
+
+export interface MainPage {
+  slogan: string;
+  title: string;
+  description: string;
+}
