@@ -9,6 +9,7 @@
 
   .ngx-auto {
     flex: 1;
+    flex-basis: auto
   }
 
   [class*="ngx-col"] {
@@ -22,6 +23,7 @@
   @for $i from 1 through 12 {
     .#{ngx-col}-#{$i} {
       flex-basis: 8.333333% * $i;
+      width: 8.333333% * $i;
     }
   }
   // PHONES
@@ -36,6 +38,7 @@
     @for $i from 1 through 12 {
       .#{ngx-sd}-#{$i} {
         flex-basis: 8.333333% * $i;
+        width: 8.333333% * $i;
       }
     }
   }
@@ -51,6 +54,7 @@
     @for $i from 1 through 12 {
       .#{ngx-md}-#{$i} {
         flex-basis: 8.333333% * $i;
+        width: 8.333333% * $i;
       }
     }
   }
@@ -66,6 +70,7 @@
     @for $i from 1 through 12 {
       .#{ngx-ld}-#{$i} {
         flex-basis: 8.333333% * $i;
+        width: 8.333333% * $i;
       }
     }
   }
@@ -81,6 +86,7 @@
     @for $i from 1 through 12 {
       .#{ngx-xd}-#{$i} {
         flex-basis: 8.333333% * $i;
+        width: 8.333333% * $i;
       }
     }
   }
