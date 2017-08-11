@@ -1,16 +1,16 @@
 <div class="ngx-wrapper">
   <header class="ngx-header">
     <div class="ngx-row ngx-no-pad">
-      <div class="ngx-col-1">
+      <div class="main ngx-col-1">
         <i
           *ngIf="status.ismobile"
           (click)="status.isopen = !status.isopen"
           class="fa fa-bars fa-2x"
           aria-hidden="true"></i>
       </div>
-      <div class="ngx-auto ngx-sd-12 ngx-no-pad">
+      <div class="menu ngx-auto ngx-no-pad">
         <nav>
-          <a class="divider" href="">GET STARTED</a>
+          <a *ngIf="!status.ismobile" class="divider" href="">GET STARTED</a>
           <a href="">COMPONENTS</a>
           <a href="">DIRECTIVES</a>
           <a href="">STYLES</a>
@@ -19,22 +19,46 @@
     </div>
   </header>
   <ngx-sidebar [toggle]="status.isopen" (isMobile)="handleMobile($event)">
-    <div class="sidebar ngx-col-12 ngx-no-pad">
-      <i
-        *ngIf="status.ismobile"
-        (click)="status.isopen = !status.isopen"
-        class="fa fa-bars fa-2x"
-        aria-hidden="true"></i>
+  <div class="sidebar ngx-col-12">
+    <i
+      *ngIf="status.ismobile"
+      (click)="status.isopen = !status.isopen"
+      class="side-handler fa fa-bars fa-2x"
+      aria-hidden="true"></i>
       <div class="logo ngx-col-12 ngx-no-pad">
         <app-logo class="ngx-col-12"></app-logo>
       </div>
       <div class="sidebar-nav ngx-col-12 ngx-no-pad">
-
+        <ul class="ngx-col-12 ngx-no-pad">
+          <li class="ngx-col-12" [class.open]="menu_handler[i]" *ngFor="let side_bar of sidebar; let i = index;">
+            <p (click)="onHanleSideMenu(i)" [class.selected]="menu_handler[i]" class="menu ngx-col-12">
+              <i [ngClass]="side_bar.icon" class="icon" aria-hidden="true"></i>
+              {{side_bar.menu}}
+            </p>
+            <ul class="sub-menu ngx-col-12" [ngClass]="menu_handler[i] ? 'on-show' : ''">
+              <li class="ngx-col-12" *ngFor="let sub_side of side_bar.sub_menu">
+                <a href="" class="menu sub">
+                  <i class="fa fa-circle" aria-hidden="true"></i>
+                  {{sub_side}}
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
       </div>
     </div>
   </ngx-sidebar>
-  <div class="ngx-content ngx-row">
-   <!--<app-main-content class="ngx-col-12"></app-main-content>-->
+  <div class="ngx-content ngx-row ngx-no-pad">
+   <app-main-content [isMobile]="status.ismobile" class="ngx-col-12 ngx-no-pad"></app-main-content>
   </div>
-  <footer class="ngx-footer"></footer>
+  <footer class="ngx-footer">
+    <div class="footer-content ngx-row ngx-no-pad">
+      <div class="ngx-auto ngx-sd-3">
+        <i title="GitHub" class="fa fa-github-alt" aria-hidden="true"></i>
+      </div>
+      <div class="ngx-col-10 ngx-sd-9">
+        <p><a href="">Daniel Torres</a>, Copyright © 2017</p>
+      </div>
+    </div>
+  </footer>
 </div>

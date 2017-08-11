@@ -1,15 +1,17 @@
-<div class="nx-row">
-  <div class="nx-col-12 main-content">
-    <h1>
-      D
-    </h1>
-    <p class="description intro">
-      uality it's a WIP library for Angular, this library contain components
-      most common used on web pages, also have directive, with the pourpouse to reduce development time.
-      <br><br>
-      The library it's divided by three main sections...
-    </p>
-      <ul class="nx-col-12">
+<div class="ngx-row ngx-no-pad">
+  <div class="ngx-col-12 main-content ngx-no-pad">
+    <div class="banner ngx-col-12 ngx-no-pad">
+      <h1>{{main_page.slogan}}</h1>
+      <button *ngIf="isMobile">GET STARTED</button>
+    </div>
+    <div class="content ngx-col-12">
+      <div class="desc ngx-col-12">
+      <h1 class="ngx-col-10 ngx-sd-12">
+        {{main_page.title}}
+      </h1>
+      <p class="description ngx-col-10 ngx-sd-12" [innerHtml]="main_page.description"></p>
+      </div>
+      <!--<ul class="nx-col-12">
         <li class="nx-col-4">
           <h2>Directives:</h2>
           <h1 class="text-list direc">&#60;/&#62;</h1>
@@ -27,6 +29,7 @@
           <h2>Styles:</h2>
           <h1 class="text-list style">&#123; &#125;</h1>
         </li>
-      </ul>
+      </ul>-->
+    </div>
   </div>
 </div>
