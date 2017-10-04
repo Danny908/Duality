@@ -1,205 +1,328 @@
-# `angular-library-seed` - the starter for Angular libraries
+# Duality
 
-[![Build Status](https://travis-ci.org/trekhleb/angular-library-seed.svg?branch=master)](https://travis-ci.org/trekhleb/angular-library-seed)
-[![codecov](https://codecov.io/gh/trekhleb/angular-library-seed/branch/master/graph/badge.svg)](https://codecov.io/gh/trekhleb/angular-library-seed)
-[![npm version](https://badge.fury.io/js/angular-library-seed.svg)](https://badge.fury.io/js/angular-library-seed)
+WIP Library with pre-build directives for Angular 2
 
-> Seed project for [Angular](https://angular.io/) libraries that are [AOT](https://angular.io/docs/ts/latest/cookbook/aot-compiler.html)/[JIT](https://angular.io/docs/ts/latest/cookbook/aot-compiler.html) compatible and that use external [SCSS](http://sass-lang.com/)-styles and HTML-templates.
+## Table of contents 
+1. [Installation](#installation)
+2. [Available Modules](#available-modules)
+3. [Modules Description & Usage](#modules-description--usage)
+4. [Live Page](#live-page)
+4. [License](#license)
+5. [Note](#note)
 
-This project contains TickTock library example. The library itself is small and the only thing it does is [displaying current time](http://embed.plnkr.co/VbO1hldrCfF6ITG6VvGG/) (Plunker example). But what **most important** is that the project contains **reusable environment** for the libraries that allows to build, test, lint, document, explore and publish them.
+# Installation
 
-> [Read more](https://medium.com/@trekhleb/how-to-create-aot-jit-compatible-angular-4-library-with-external-scss-html-templates-9da6e68dac6e) about architectural **challenges** and **solutions** used in this repository.
-
-# You might find this project helpful if
-- You want to create library for **Angular 4**.
-- You want your library to be ready for further **AOT** or **JIT** compilation.
-- You want your library to be ready for further usage **directly in browsers** (let's say [UMD](https://github.com/umdjs/umd) bundle loaded by [SystemJS](https://github.com/systemjs/systemjs)).
-- You want to write component styles in **external SCSS files**.
-- You want to write component templates in **external HTML files**.
-- You want to have **watch-mode** for library builds (including AOT build).
-
-# Main Features
-- **AOT/JIT** compatible library build via [Angular Compiler](https://www.npmjs.com/package/@angular/compiler-cli) (ngc).
-- **UMD** build via [Webpack](https://webpack.js.org/) that allows you to use your library for browser builds. You may play with it on [Plunker](http://embed.plnkr.co/VbO1hldrCfF6ITG6VvGG/).
-- **Testing** with [Karma](https://karma-runner.github.io/1.0/index.html) and [Jasmine](https://jasmine.github.io/).
-- **Test coverage** report via [Istanbul](https://github.com/gotwarlost/istanbul).
-- **Watch modes** for building and testing procedures that makes developing process easier.
-- **Linting** with [TSLint](https://palantir.github.io/tslint/) and [Codelyzer](https://github.com/mgechev/codelyzer) for static code analysis.
-- **Exploring your build** via [Sourcemap Explorer](https://www.npmjs.com/package/source-map-explorer) that shows you a treemap visualization to help you debug where all the code is coming from. 
-- **Documentation generation** via [Compodoc](https://github.com/compodoc/compodoc). Take a look at [documentation example](https://trekhleb.github.io/angular-library-seed/).
-- **Documentation hosting**  via [GitHub Pages](https://pages.github.com/).
-- **AOT/JIT/UMD demos** via [Webpack](https://webpack.js.org/) and [SystemJS](https://github.com/systemjs/systemjs) that allows you to test library builds.
-- **Continuous integration** with [Travis CI](https://travis-ci.org/).
-- **Code coverage** badge via [Codecov](https://codecov.io) as a reminder to cover code with tests.
-
-# Quick Start
+To install Duality, run:
 
 ```bash
-# Clone the repository
-git clone https://github.com/trekhleb/angular-library-seed.git
-
-# Go to repository folder
-cd angular-library-seed
-
-# Install all dependencies
-yarn install
-
-# Build the library
-yarn build
+$ npm install ngx-duality --save
 ```
 
-# File Structure
+Then add the follow sass file into your main styles file (should be styles.sass), this file it's required for most of components.
 
-```
-angular-library-seed
-  ├─ demo                         * Folder for demo applications (MAY BE DELETED if not required) 
-  |  ├─ esm                       * AOT/JIT demo project
-  |  ├─ umd                       * UMD demo project
-  |  └─ ...                       * More details about this folder may be found in demo folder README file.
-  |
-  ├─ src                          * Library sources home folder (THE PLACE FOR YOUR LIBRARY SOURCES)
-  |  ├─ components                * Example of library components with tests
-  |  ├─ services                  * Example of library services with tests
-  |  ├─ index.ts                  * Library entry point that is used by builders
-  |  └─ tick-tock.module.ts       * Example of library module
-  |
-  ├─ .editorconfig                * Common IDE configuration
-  ├─ .gitignore	                  * List of files that are ignored while publishing to git repo
-  ├─ .npmignore                   * List of files that are ignored while publishing to npm
-  ├─ .travis.yml                  * Travic CI configuration
-  ├─ LICENSE                      * License details
-  ├─ README.md                    * README for you library
-  ├─ gulpfile.js                  * Gulp helper scripts
-  ├─ karma-test-entry.ts          * Entry script for Karma tests
-  ├─ karma.conf.ts                * Karma configuration for our unit tests
-  ├─ package.json                 * NPM dependencies, scripts and package configuration
-  ├─ tsconfig-aot.json            * TypeScript configuration for AOT build
-  ├─ tsconfig.json                * TypeScript configuration for UMD and Test builds
-  ├─ tslint.json                  * TypeScript linting configuration
-  ├─ webpack-test.config.ts       * Webpack configuration for building test version of the library
-  ├─ webpack-umd.config.ts        * Webpack configuration for building UMD bundle
-  └─ yarn.lock                    * Yarn lock file that locks dependency versions
+```sass
+  @import "~ngx-duality/styles/ngx-duality.scss";
 ```
 
-# Getting Started
+# Available Modules
 
-## Dependencies
+I'm planning create more modules with the time.
 
-#### Node/NPM
-Install latest Node and NPM following the [instructions](https://nodejs.org/en/download/). Make sure you have Node version ≥ 7.0 and NPM ≥ 4.
+**List of modules:**
 
-- `brew install node` for Mac.
+1. [OverStyle](#overstyle)
+2. [Grid Layout](#grid)
+3. [Wrapper Layout](#wrapper)
+4. [Header](#header)
+5. [Footer](#footer)
+6. [Sidebar](#sidebar)
 
-#### Yarn
-[Yarn package manager](https://yarnpkg.com/en/) is optional but highly recommended. If you prefer to work with `npm` directly you may ignore this step.
+# Modules Description & Usage
 
-Yarn installs library dependencies faster and also locks theirs versions. It has [more advantages](https://yarnpkg.com/en/) but these two are already pretty attractive. 
+### OverStyle:
 
-Install Yarn by following the [instructions](https://yarnpkg.com/en/docs/install).
+Overstyle is a directive that allow you to create multiple styles to different browsers and operating systems.
 
-- `brew install yarn` for Mac.
+**Usage:**
 
-## Installing
-- `fork` this repository.
-- `clone` your fork to your local environment.
-- `yarn install` to install required dependencies (or `npm i`).
-
-## Replace `TickTock` library with your own library
-This step may be optional at first since you might just want to play with existing library example.
-
-Once you're ready to develop your own library you should do the following.
-- Check and re-configure `package.json` fields like `name`, `version`, `keywords`, `description` etc. You may read about specifics of npm's [package.json handling](https://docs.npmjs.com/files/package.json) to do that.
-- Replace the content of `src` folder with your library sources. Your library must have `index.ts` file as an entry point for further building.
-- Update `demo` sources to make them consume your library in case if you want to keep the demo folder.
-
-## Build the library
-- `yarn build` for building the library once (both ESM and AOT versions).
-- `yarn build:watch` for building the library (both ESM and AOT versions) and watch for file changes.
-
-You may also build UMD bundle and ESM files separately:
-- `yarn build:esm` - for building AOT/JIT compatible versions of files.
-- `yarn build:esm:watch` - the same as previous command but in watch-mode.
-- `yarn build:umd` - for building UMD bundle only.
-- `yarn build:umd:watch` - the same as previous command but in watch-mode.
-
-## Other commands
-
-#### Lint the code
-- `yarn lint` for performing static code analysis.
-
-#### Test the library
-- `yarn test` for running all your `*.spec.ts` tests once. Generated code coverage report may be found in `coverage` folder.
-- `yarn test:watch` for running all you `*.spec.ts` and watch for file changes.
-
-#### Generate documentation
-- `yarn docs` for generating documentation locally.
-- `yarn gh-pages` for generating documentation and uploading it to GitHub Pages. [Documentation example](https://trekhleb.github.io/angular-library-seed/).
-
-#### Explore the bundle
-- `yarn explorer` to find out where all your code in bundle is coming from.
-
-#### Bump library version
-- `npm version patch` to increase library version. [More on bumping](https://docs.npmjs.com/cli/version).
-
-`preversion` script in this case will automatically run project testing and linting in prior in order to check that the library is ready for publishing.
-
-#### Publish library to NPM
-- `npm publish` to publish your library sources on [npmjs.com](https://www.npmjs.com/). Once the library is published it will be [available for usage](https://www.npmjs.com/package/angular-library-seed) in npm packages.
-
-`prepublishOnly` script in this case will automatically run project testing and linting in prior in order to check that the library is ready for publishing.
-
-#### Cleaning
-- `yarn clean:tmp` command will clean up all temporary files like `docs`, `dist`, `coverage` etc.
-- `yarn clean:all` command will clean up all temporary files along with `node_modules` folder. 
-
-# Library development workflow
-
-In order to debug your library in browser you need to have Angular project that will consume your library, build the application and display it. For your convenience all of that should happen automatically in background so once you change library source code you should instantly see the changes in browser.
-
-There are several ways to go here:
-- Use your **real library-consumer project** and link your library to it via `yarn link` command (see below).
-- Use [demo applications](https://github.com/trekhleb/angular-library-seed/tree/master/demo) that are provided for your convenience as a part of this repository.
-- Use [Angular-CLI](https://cli.angular.io/) to generate library-consumer project for you and then use `yarn link` to link your library to it.
-
-### Using demo applications
-
-You may take advantage of watch-modes for both library build and [demo-projects](https://github.com/trekhleb/angular-library-seed/tree/master/demo) builds in order to see changes to your library's source code immediately in your browser.
-
-To do so you need to:
-1. Open two console instances.
-2. Launch library build in watch mode in first console instance by running `yarn build:watch` (assuming that you're in `angular-library-seed` root folder).
-3. Launch demo project build (JIT version) in watch-mode by running `yarn start` in second console instance (assuming that you're in `angular-library-seed/demo` folder).
-
-As a result once you change library source code it will be automatically re-compiled and in turn your JIT demo-project will be automatically re-built and you will be able to see that changes in your browser instantly.
-
-For more details about demo projects, their folder structure and npm commands please take a look at [demo projects README](https://github.com/trekhleb/angular-library-seed/tree/master/demo).
-
-### Using `yarn link`
-
-In you library root folder:
+Once you install Duality:
 
 ```bash
-# Create symbolic link
-yarn link
-
-# Build library in watch mode
-yarn build:watch
+$ npm install ngx-duality
 ```
 
-In you project folder that should consume the library:
+go to the `AppModule` of your project and import `NgxOverStyleModule`:
+
+```typescript
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+
+// Import OverStyle module
+import { NgxOverStyleModule } from 'duality';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+
+    // Specify the module as an import
+    NgxOverStyleModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+Once NgxOverStyleModule is imported, you can use the directive in your Angular application:
+
+```xml
+<!-- Now add the OverStyle directive in the element that you want to enable the multi styles -->
+<h1 overStyle>
+  {{title}}
+</h1>
+```
+Now you can create your styles for differents browsers and OS:
+```sass
+h1.WINDOWS {
+  // WINDOWS STYLES...
+  &.CHROME {
+    // CHROME STYLES...
+  }
+  &.FIREFOX {
+    // FIREFOX STYLES...
+  }
+  .
+  .
+  .
+}
+```
+
+**OverStyle provide the next classes**
+
+**OS classes:**
+* WINDOWS
+* LINUX
+* MAC
+
+**Browser classes:**
+* CHROME
+* FIREFOX
+* OPERA
+* SAFARI
+* EDGE
+* IE
+
+### Grid Layout
+
+Grid layout based on flex-box (You know, the grid of all life based on 12 columns).
+
+**Usage**
+
+Only you need to import the style sass file from ngx-duality to get access to the grid classes:
+
+```sass
+  @import "~ngx-duality/styles/ngx-duality.scss";
+```
+
+Live demo soon :tophat:... 
+
+### Wrapper Layout
+
+The wrapper are a couple of classes to maintain everything in his place (required for header and footer).
+
+**Usage**
+
+First import the style sass file from ngx-duality:
+
+```scss
+  @import "~ngx-duality/styles/ngx-duality.scss";
+```
+
+then add the following template into your `app.component.html` file:
+
+```html 
+  <div class="ngx-wrapper">
+    <div class="ngx-content ngx-row">
+    
+      <!-- All your stuffs here! -->
+      
+    </div>
+</div>
+```
+
+### Header:
+
+This it's a pre-build sass class, add it into your project and make everything easier.
+
+**Usage**
+
+Once imported the style sass file from ngx-duality:
+
+```scss
+  @import "~ngx-duality/styles/ngx-duality.scss";
+```
+go to `app.component.html` file and add the following template:
+
+```html
+  <div class="ngx-wrapper">
+    <header class="ngx-header">
+    
+      <!-- Header content here! -->
+      
+    </header>
+    <div class="ngx-content ngx-row">
+      <!-- All your stuffs here! -->
+    </div>
+</div>
+```
+
+The header comes with position fixed by default, but without background-color and height, but don't worry the header class is exposed so you can style it pretty easy.
+
+```scss
+  .ngx-header {
+    background-color: any-color ;
+    height: any-height;
+    .
+    .
+    .
+  }
+```
+
+### Footer:
+
+This it's a pre-build sass class, add it into your project and make everything easier (yes it's a copy paste).
+
+**Usage**
+
+Once imported the style sass file from ngx-duality:
+
+```scss
+  @import "~ngx-duality/styles/ngx-duality.scss";
+```
+go to `app.component.html` file and add the following template:
+
+```html
+  <div class="ngx-wrapper">
+    <header class="ngx-header">
+      <!-- Header content here! -->
+    </header>
+    <div class="ngx-content ngx-row">
+      <!-- All your stuffs here! -->
+    </div>
+    <footer class="ngx-footer">
+    
+      <!-- Footer content here! -->
+      
+    </footer>
+</div>
+```
+
+The footer comes with position relative by default and without background-color and height, but don't worry the footer class is exposed so you can style it pretty easy.
+
+```scss
+  .ngx-footer {
+    background-color: any-color ;
+    height: any-height;
+    .
+    .
+    .
+  }
+```
+
+### Sidebar:
+
+The sidebar it's a pre-build component, if you wanna use it in your proyect follow the next steps:
+
+**Usage**
+
+Once you install Duality:
 
 ```bash
-# Link you library to the project
-yarn link "angular-library-seed"
-
-# Build your project. In case of Angular-CLI use the following command.
-ng serve
+$ npm install ngx-duality
 ```
 
-Then you need to import your library into your project's source code.
+go to the `AppModule` of your proyect and import `NgxSidebarModule`:
 
-Now, once you update your library source code it will automatically be re-compiled and your project will be re-built so you may see library changes instantly.
+```typescript
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-[More information](https://yarnpkg.com/en/docs/cli/link) about `yarn link` command.
+import { AppComponent } from './app.component';
 
-> At the moment of publishing this project there is a [bug](https://github.com/angular/angular-cli/issues/3854) exists when using `yarn link` in combination with Angular CLI. The issue is caused by having `node_modules` folder inside linked library. There is a [workaround](https://github.com/angular/angular-cli/issues/3854#issuecomment-274344771) has been provided that suggests to add a `paths` property with all Angular dependencies to the `tsconfig.json` file of the Angular CLI project like so: `"paths": { "@angular/*": ["../node_modules/@angular/*"] }`
+// Import Sidebar module
+import { NgxSidebarModule } from 'ngx-duality';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+
+    // Specify the module as an import
+    NgxSidebarModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+Once you import the module go to the `app.component.html` file and add the follow template:
+
+```html
+  <div class="ngx-wrapper">
+   <ngx-sidebar (isMobile)="handleMobile($event)" [toggle]="status.isopen">
+   
+     <!-- Sidebar content here! -->
+     
+  </ngx-sidebar>
+    <header class="ngx-header">
+      <!-- Header content here! -->
+    </header>
+    <div class="ngx-content ngx-row">
+      <!-- All your stuffs here! -->
+    </div>
+    <footer class="ngx-footer">
+      <!-- Footer content here! -->
+    </footer>
+</div>
+```
+If you notice the component comes with some attributes, in the next table will be explained:
+
+| Atributte | Type | Descritpion |
+|-----------|------|-------------|
+| [toggle] | boolean | Open or hide the modal |
+| (isMobile) | event | Emit true if the sidebar it's on mobile mode or false if it's on desktop mode |
+
+If you use the sidebar with the header and footer you should wrap the header and footer elements:
+```scss
+  .ngx-header {
+    margin: 0 0 0 300px;
+  }
+  .ng-content {
+    margin: 0 0 0 300px;
+  }
+  .ngx-footer {
+    margin: 0 0 0 300px;
+  }
+```
+
+The main style file of the library has a media query son don't worry about the margin when the sidebar enter on mobile mode.
+
+
+## Live Page
+
+Live page soon :tophat:... 
+
+## License
+
+MIT © [Daniel Torres](mailto:danny908t@gmail.com)
+
+## Note
+
+The library it's updated very offen, so don't forget to check new functionality in the future.
