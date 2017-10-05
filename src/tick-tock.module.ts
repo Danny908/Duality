@@ -1,19 +1,24 @@
 import { NgModule } from '@angular/core';
-import { TickTockComponent } from './components';
+import { CommonModule } from '@angular/common';
+
 import { TickTockService } from './services';
 
+import { TickTockComponent, NgxHeaderComponent } from './components';
 import { NgxOverStyleDirective } from './directives';
 
 @NgModule({
+  imports: [ CommonModule ],
   providers: [
     TickTockService,
   ],
   declarations: [
     TickTockComponent,
+    NgxHeaderComponent,
     NgxOverStyleDirective
   ],
   exports: [
     TickTockComponent,
+    NgxHeaderComponent,
     NgxOverStyleDirective
   ]
 })
