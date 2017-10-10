@@ -1,4 +1,4 @@
 export { TickTockService } from './services';
-export { TickTockComponent, NgxHeaderComponent } from './components';
+export { TickTockComponent } from './components';
 export { NgxOverStyleDirective } from './directives';
-export { TickTockModule } from './tick-tock.module';
+export { NgxModule } from './ngx-duality.module';

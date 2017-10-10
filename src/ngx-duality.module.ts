@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { TickTockService } from './services';
 
-import { TickTockComponent, NgxHeaderComponent } from './components';
+import { TickTockComponent } from './components';
 import { NgxOverStyleDirective } from './directives';
 
 @NgModule({
@@ -13,14 +13,12 @@ import { NgxOverStyleDirective } from './directives';
   ],
   declarations: [
     TickTockComponent,
-    NgxHeaderComponent,
     NgxOverStyleDirective
   ],
   exports: [
     TickTockComponent,
-    NgxHeaderComponent,
     NgxOverStyleDirective
   ]
 })
-export class TickTockModule {
+export class NgxModule {
 }

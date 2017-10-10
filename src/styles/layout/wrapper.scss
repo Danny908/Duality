@@ -1,0 +1,22 @@
+@import  '../../core/styles/breakpoints.scss';
+
+.ngx-wrapper {
+    position: relative;
+    min-height: 100%;
+    min-width: 100%;
+    overflow-x: hidden;
+    .ngx-content {
+        position: inherit;
+        overflow: hidden;
+        word-break: break-all;
+        z-index: 1;
+        padding: 0 10px 0 10px;
+
+        &.no-pad {
+            padding: 0;
+        }
+        @include custom-resolution(1020px) {
+            margin-left: 0;
+        }
+    }
+}

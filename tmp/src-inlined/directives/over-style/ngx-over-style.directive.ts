@@ -6,10 +6,10 @@ import { Window, Document } from './types';
     selector: '[ngx-over-style]'
 })
 export class NgxOverStyleDirective implements OnInit {
+    public OS: string;
+    public BROWSER: string;
     private _window: Window = window;
     private _document: Document = document;
-    private OS: string;
-    private BROWSER: string;
 
     constructor(private el: ElementRef) {}
     public ngOnInit(): void {

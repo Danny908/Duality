@@ -1,0 +1,95 @@
+@import  '../../core/styles/breakpoints.scss';
+
+.ngx-row {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 100%;
+  .ngx-auto {
+    flex-grow: 1;
+    padding: 15px;
+    flex-wrap: wrap;
+    align-items: baseline;
+    align-content: flex-start;
+    flex-direction: column;
+    &.variable-width {
+      flex-grow: 0;
+    }
+    &.no-pad {
+      padding: 0;
+    }
+  }
+  .ngx-break-column {
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+
+  [class*="ngx-col"],
+  [class*="ngx-xs"],
+  [class*="ngx-s"],
+  [class*="ngx-m"],
+  [class*="ngx-l"],
+  [class*="ngx-xl"] {
+    padding: 15px;
+    flex-wrap: wrap;
+    align-items: baseline;
+    align-content: flex-start;
+    flex-direction: column;
+    flex-basis: 100%;
+    max-width: 100%;
+
+    &.no-pad {
+      padding: 0;
+    }
+  }
+  @for $i from 1 through 12 {
+    .#{ngx-col}-#{$i} {
+      flex-basis: 8.333333% * $i;
+      max-width: 8.333333% * $i;
+    }
+  }
+
+  @include xs {
+    @for $i from 1 through 12 {
+      .#{ngx-xs}-#{$i} {
+        flex-basis: 8.333333% * $i;
+        max-width: 8.333333% * $i;
+      }
+    }
+  }
+
+  @include s {
+    @for $i from 1 through 12 {
+      .#{ngx-s}-#{$i} {
+        flex-basis: 8.333333% * $i;
+        max-width: 8.333333% * $i;
+      }
+    }
+  }
+
+  @include m {
+    @for $i from 1 through 12 {
+      .#{ngx-m}-#{$i} {
+        flex-basis: 8.333333% * $i;
+        max-width: 8.333333% * $i;
+      }
+    }
+  }
+
+  @include l {
+    @for $i from 1 through 12 {
+      .#{ngx-l}-#{$i} {
+        flex-basis: 8.333333% * $i;
+        max-width: 8.333333% * $i;
+      }
+    }
+  }
+
+  @include xl {
+    @for $i from 1 through 12 {
+      .#{ngx-xl}-#{$i} {
+        flex-basis: 8.333333% * $i;
+        max-width: 8.333333% * $i;
+      }
+    }
+  }
+}

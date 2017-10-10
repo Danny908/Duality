@@ -21,7 +21,7 @@
     "services",
     "typescript"
   ],
- "repository": {
+  "repository": {
     "type": "git",
     "url": "https://github.com/Danny908/Duality"
   },
@@ -34,7 +34,7 @@
   },
   "homepage": "",
   "scripts": {
-    "build": "npm run build:esm && npm run build:umd",
+    "build": "npm run build:esm && npm run build:umd && npm run sass && gulp copy:manifest",
     "build:esm": "gulp inline-templates && npm run ngcompile",
     "build:esm:watch": "gulp build:esm:watch",
     "build:umd": "webpack --config webpack-umd.config.ts",
@@ -56,7 +56,8 @@
     "preversion": "npm run ci",
     "test": "karma start",
     "test:watch": "karma start --auto-watch --no-single-run",
-    "tslint": "tslint"
+    "tslint": "tslint",
+    "sass": "gulp sass-external-files"
   },
   "dependencies": {
     "@angular/common": "^4.4.4",
@@ -99,6 +100,7 @@
     "gh-pages": "^1.0.0",
     "gulp": "^3.9.1",
     "gulp-inline-ng2-template": "^4.0.0",
+    "gulp-sass": "^3.1.0",
     "istanbul-instrumenter-loader": "^2.0.0",
     "jasmine-core": "^2.6.1",
     "json-loader": "^0.5.4",

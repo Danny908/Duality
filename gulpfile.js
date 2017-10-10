@@ -1,5 +1,6 @@
 const gulp = require('gulp');
 const sass = require('node-sass');
+const g_sass = require('gulp-sass');
 const inlineTemplates = require('gulp-inline-ng2-template');
 const exec = require('child_process').exec;
 
@@ -47,6 +48,17 @@ gulp.task('build:esm', ['inline-templates'], (callback) => {
  */
 gulp.task('build:esm:watch', ['build:esm'], () => {
   gulp.watch('src/**/*', ['build:esm']);
+});
+
+gulp.task('sass-external-files', () => {
+  gulp.src('./src/styles/ngx-style.scss')
+    .pipe(g_sass().on('error', g_sass.logError))
+    .pipe(gulp.dest('./dist/style'))
+});
+
+gulp.task('copy:manifest', function () {
+  return gulp.src([`src/package.json`])
+    .pipe(gulp.dest('./dist'));
 });
 
 /**
