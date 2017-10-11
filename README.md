@@ -105,7 +105,7 @@ export class AppModule { }
 
 Once NgxOverStyleModule is imported, you can use the directive in your Angular application:
 
-```xml
+```html
 <!-- Now add the OverStyle directive in the element that you want to enable the multi styles -->
 <h1 overStyle>
   {{title}}
@@ -133,6 +133,8 @@ h1.WINDOWS {
 * WINDOWS
 * LINUX
 * MAC
+* ANDROID
+* IPHONE
 
 **Browser classes:**
 * CHROME
@@ -162,7 +164,7 @@ The wrapper are a couple of classes to maintain everything in his place (require
 
 **Usage**
 
-First import the style csss file from ngx-duality:
+First import the style css file from ngx-duality:
 
 ```scss
  @import url('~../node_modules/ngx-duality/style/ngx-style.css');
@@ -178,16 +180,16 @@ then add the following template into your `app.component.html` file:
       
     </div>
 </div>
-<!-- PD: "ngx-row" It's optional (for more information see "Grid" section) -->
+<!-- PD: "ngx-row" It's optional (for more information see "Grid Layout" section) -->
 ```
 
 ### Header:
 
-This it's a pre-build csss class, add it into your project and make everything easier.
+This it's a pre-build css class, add it into your project and make everything easier.
 
 **Usage**
 
-Once imported the style csss file from ngx-duality:
+Once imported the style css file from ngx-duality:
 
 ```scss
  @import url('~../node_modules/ngx-duality/style/ngx-style.css');
@@ -210,25 +212,22 @@ go to `app.component.html` file and add the following template:
 </div>
 ```
 
-The header comes with position fixed by default, but without background-color and height, but don't worry the header class is exposed so you can style it pretty easy.
+The header comes with the next default styles (You can add your styles in your own .css file).
 
 ```scss
   .ngx-header {
-    background-color: any-color ;
-    height: any-height;
-    .
-    .
-    .
-  }
+    height: 70px;
+    overflow: hidden; 
+  }
 ```
 
 ### Footer:
 
-This it's a pre-build csss class, add it into your project and make everything easier (yes it's a copy paste).
+This it's a pre-build css lass, add it into your project and make everything easier (yep it's a copy paste).
 
 **Usage**
 
-Once imported the style csss file from ngx-duality:
+Once imported the style css file from ngx-duality:
 
 ```scss
  @import url('~../node_modules/ngx-duality/style/ngx-style.css');
@@ -238,10 +237,14 @@ go to `app.component.html` file and add the following template:
 ```html
   <div class="ngx-wrapper">
     <header class="ngx-header">
+
       <!-- Header content here! -->
+
     </header>
     <div class="ngx-content ngx-row">
+
       <!-- All your stuffs here! -->
+
     </div>
     <footer class="ngx-footer">
     
@@ -249,18 +252,21 @@ go to `app.component.html` file and add the following template:
       
     </footer>
 </div>
+<!-- PD: "ngx-row" It's optional (for more information see "Grid Layout" section) -->
 ```
 
-The footer comes with position relative by default and without background-color and height, but don't worry the footer class is exposed so you can style it pretty easy.
+The footer comes with the next default styles (You can add your styles in your own .css file).
 
 ```scss
   .ngx-footer {
-    background-color: any-color ;
-    height: any-height;
-    .
-    .
-    .
-  }
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    height: 70px;
+    overflow: hidden; 
+  }
 ```
 
 ### Sidebar:
