@@ -17,11 +17,37 @@ To install Duality, run:
 ```bash
 $ npm install ngx-duality --save
 ```
+Import `NgxModule` to your `AppModule` to get access to all functions of this library, or if you prefer you can import the specific module that you need for your project.
+(PD: See modules description for more details.)
 
-Then add the follow sass file into your main styles file (should be styles.sass), this file it's required for most of components.
+```typescript
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-```sass
-  @import "~ngx-duality/styles/ngx-duality.scss";
+import { AppComponent } from './app.component';
+
+// Import OverStyle module
+import { NgxOverStyleModule } from 'duality';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    // Specify the module as an import
+    NgxModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+Then add the follow css file into your main styles file (should be styles.css), this file it's required for most components.
+
+```scss
+ @import url('~../node_modules/ngx-duality/style/ngx-style.css');
 ```
 
 # Available Modules
@@ -51,7 +77,7 @@ Once you install Duality:
 $ npm install ngx-duality
 ```
 
-go to the `AppModule` of your project and import `NgxOverStyleModule`:
+go to the `AppModule` of your project and import `NgxOverStyleModule` (if you already import `NgxModule` you can skip this step):
 
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
@@ -68,7 +94,6 @@ import { NgxOverStyleModule } from 'duality';
   ],
   imports: [
     BrowserModule,
-
     // Specify the module as an import
     NgxOverStyleModule
   ],
@@ -87,7 +112,7 @@ Once NgxOverStyleModule is imported, you can use the directive in your Angular a
 </h1>
 ```
 Now you can create your styles for differents browsers and OS:
-```sass
+```scss
 h1.WINDOWS {
   // WINDOWS STYLES...
   &.CHROME {
@@ -125,8 +150,8 @@ Grid layout based on flex-box (You know, the grid of all life based on 12 column
 
 Only you need to import the style sass file from ngx-duality to get access to the grid classes:
 
-```sass
-  @import "~ngx-duality/styles/ngx-duality.scss";
+```scss
+  @import url('~../node_modules/ngx-duality/style/ngx-style.css');
 ```
 
 Live demo soon :tophat:... 
@@ -137,10 +162,10 @@ The wrapper are a couple of classes to maintain everything in his place (require
 
 **Usage**
 
-First import the style sass file from ngx-duality:
+First import the style csss file from ngx-duality:
 
 ```scss
-  @import "~ngx-duality/styles/ngx-duality.scss";
+ @import url('~../node_modules/ngx-duality/style/ngx-style.css');
 ```
 
 then add the following template into your `app.component.html` file:
@@ -153,23 +178,27 @@ then add the following template into your `app.component.html` file:
       
     </div>
 </div>
+<!-- PD: "ngx-row" It's optional (for more information see "Grid" section) -->
 ```
 
 ### Header:
 
-This it's a pre-build sass class, add it into your project and make everything easier.
+This it's a pre-build csss class, add it into your project and make everything easier.
 
 **Usage**
 
-Once imported the style sass file from ngx-duality:
+Once imported the style csss file from ngx-duality:
 
 ```scss
-  @import "~ngx-duality/styles/ngx-duality.scss";
+ @import url('~../node_modules/ngx-duality/style/ngx-style.css');
 ```
 go to `app.component.html` file and add the following template:
 
 ```html
   <div class="ngx-wrapper">
+
+    <!-- Page wrapper -->
+
     <header class="ngx-header">
     
       <!-- Header content here! -->
@@ -195,14 +224,14 @@ The header comes with position fixed by default, but without background-color an
 
 ### Footer:
 
-This it's a pre-build sass class, add it into your project and make everything easier (yes it's a copy paste).
+This it's a pre-build csss class, add it into your project and make everything easier (yes it's a copy paste).
 
 **Usage**
 
-Once imported the style sass file from ngx-duality:
+Once imported the style csss file from ngx-duality:
 
 ```scss
-  @import "~ngx-duality/styles/ngx-duality.scss";
+ @import url('~../node_modules/ngx-duality/style/ngx-style.css');
 ```
 go to `app.component.html` file and add the following template:
 

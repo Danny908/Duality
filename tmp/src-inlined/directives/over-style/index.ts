@@ -1,1 +1,1 @@
-export * from './ngx-over-style.directive';
+export * from './ngx-over-style.module';

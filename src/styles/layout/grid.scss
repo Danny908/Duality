@@ -10,7 +10,6 @@
     flex-wrap: wrap;
     align-items: baseline;
     align-content: flex-start;
-    flex-direction: column;
     &.variable-width {
       flex-grow: 0;
     }
@@ -33,7 +32,6 @@
     flex-wrap: wrap;
     align-items: baseline;
     align-content: flex-start;
-    flex-direction: column;
     flex-basis: 100%;
     max-width: 100%;
 

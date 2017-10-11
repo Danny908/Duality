@@ -20,8 +20,14 @@ export class NgxOverStyleDirective implements OnInit {
         if (navigator.userAgent.includes('Windows')) {
             this.OS = 'WINDOWS';
         }
-        if (navigator.userAgent.includes('Linux')) {
+        if (navigator.userAgent.includes('Linux') && !navigator.userAgent.includes('Android')) {
             this.OS = 'LINUX';
+        }
+        if (navigator.userAgent.includes('Linux') && navigator.userAgent.includes('Android')) {
+            this.OS = 'ANDROID';
+        }
+        if (navigator.userAgent.includes('iPhone') || navigator.userAgent.includes('iPad')) {
+            this.OS = 'IPHONE';
         }
         // GET MACHINE BROWSER...
         if (this._window['InstallTrigger']) {
@@ -36,14 +42,17 @@ export class NgxOverStyleDirective implements OnInit {
         if (
             this._window['chrome'] &&
             !this._window['opr'] &&
-            navigator.userAgent.search('Edge') < 0
+            navigator.userAgent.search('Edge') < 0 &&
+            navigator.vendor.includes('Google')
         ) {
             this.BROWSER = 'CHROME';
         }
         if (this._document['documentMode']) {
             this.BROWSER = 'IE';
         }
-        if (navigator.userAgent.search('Chrome') < 0 && navigator.userAgent.search('Safari') > 0) {
+        if (navigator.userAgent.search('Chrome') < 0 &&
+            navigator.userAgent.search('Safari') > 0 &&
+            navigator.vendor.includes('Apple')) {
             this.BROWSER = 'SAFARI';
         }
         // SET CLASSES TO DOM...

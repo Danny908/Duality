@@ -1,11 +1,11 @@
 @import  '../../core/styles/breakpoints.scss';
 
 .ngx-header {
-    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1;
+    height: 70px;
     @include custom-resolution(1020px) {
         margin-left: 0;
     }
