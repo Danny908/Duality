@@ -8,10 +8,10 @@
     z-index: 1;
     height: 70px;
     overflow: hidden;
-    @include custom-resolution(1020px) {
-        margin-left: 0;
+    @include custom-resolution(1100px) {
+        margin-left: 0 !important;
     }
-     @media (orientation:landscape) and (min-device-height:1020px) {
-        margin-left: 0;
+     @media (orientation:landscape) and (min-device-height:1100px) {
+        margin-left: 0 !important;
     }
 }

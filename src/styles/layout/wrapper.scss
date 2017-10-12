@@ -15,8 +15,8 @@
         &.no-pad {
             padding: 0;
         }
-        @include custom-resolution(1020px) {
-            margin-left: 0;
+        @include custom-resolution(1100px) {
+           margin-left: 0 !important;
         }
     }
 }

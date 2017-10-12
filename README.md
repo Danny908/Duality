@@ -212,7 +212,7 @@ go to `app.component.html` file and add the following template:
 </div>
 ```
 
-The header comes with the next default styles (You can add your styles in your own .css file).
+The header comes with the next default styles (You can add/overwrite the styles in your own .css file).
 
 ```scss
   .ngx-header {
@@ -255,7 +255,7 @@ go to `app.component.html` file and add the following template:
 <!-- PD: "ngx-row" It's optional (for more information see "Grid Layout" section) -->
 ```
 
-The footer comes with the next default styles (You can add your styles in your own .css file).
+The footer comes with the next default styles (You can add/overwrite the styles in your own .css file).
 
 ```scss
   .ngx-footer {

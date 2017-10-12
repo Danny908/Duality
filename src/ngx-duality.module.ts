@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { TickTockService } from './services';
 
-import { TickTockComponent } from './components';
+import { TickTockComponent, NgxSideBarModule } from './components';
 import { NgxOverStyleModule } from './directives';
 
 @NgModule({
   imports: [
     CommonModule,
-    NgxOverStyleModule
+    NgxOverStyleModule,
+    NgxSideBarModule
   ],
   providers: [
     TickTockService,
