@@ -11,7 +11,8 @@
     @include custom-resolution(1100px) {
         margin-left: 0 !important;
     }
-     @media (orientation:landscape) and (min-device-height:1100px) {
-        margin-left: 0 !important;
-    }
+    // FIX FOR IPAD PENDING
+    //  @media (orientation:landscape) and (min-device-height:1100px) {
+    //     margin-left: 0 !important;
+    // }
 }

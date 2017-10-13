@@ -1,19 +1,18 @@
-import { Component, OnInit, Input, Output, EventEmitter, Renderer2 } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Renderer2 } from '@angular/core';
 
 import { SideBar } from './types';
 
 @Component({
   selector: 'ngx-sidebar',
-  templateUrl: 'ngx-sidebar.component.html',
-  styleUrls: ['ngx-sidebar.component.scss']
+  templateUrl: 'ngx-sidebar.component.html'
 })
 
-export class NgxSidebarComponent implements OnInit {
-  @Input() public options: SideBar;
+export class NgxSidebarComponent implements OnInit, OnChanges {
+  @Input() public onToggle = false;
+  @Input() public options: any;
   public defaultProps: SideBar = {
-    toogle: false,
     mobile: false,
-    animation: true,
+    animated: true,
     backdrop: 'rgba(0, 0, 0, 0.5)',
     place: 'left',
     width: '300px',
@@ -22,52 +21,31 @@ export class NgxSidebarComponent implements OnInit {
     background: 'white',
     top: 0,
   };
-
-  @Output() public isMobile: EventEmitter<boolean> = new EventEmitter();
   public screenSize: number;
 
   constructor(
     private renderer: Renderer2
   ) {
       this.screenSize = this.getScreenSize();
-      renderer.listen('window', 'resize', size => {
+      renderer.listen('window', 'resize', (size) => {
         this.screenSize = size.target.innerWidth;
         this.getScreenType(this.screenSize);
       });
   }
 
   public ngOnInit(): void {
-    // this.getScreenType(this.screenSize);
+    this.getScreenType(this.screenSize);
     this.options = Object.assign(
       this.defaultProps,
       this.options,
       { [this.getPlace()]: 0 }
     );
+    console.log(this.setContent());
   }
 
-  public setBackDrop() {
-    console.log('after', this.options);
-    const width = (): string => {
-      if (this.options.mobile) {
-        if (!this.options.toogle) {
-          return '0';
-        }
-        return '100%';
-      }
-      return '0';
-    };
-
-    return {
-      width: width(),
-      height: '100%',
-      position: 'fixed',
-      zIndex: 999,
-      top: 0,
-      [this.getPlace()]: 0,
-      backgroundColor: this.options.backdrop
-    };
+  public ngOnChanges(change: any): void {
+    // VOID
   }
-
   public getPlace(): string {
     if (this.options.place) {
       return this.options.place;
@@ -75,14 +53,54 @@ export class NgxSidebarComponent implements OnInit {
     return this.defaultProps.place;
   }
 
+  public setBackDrop(): {} {
+    return {
+      width: this.defaultProps.mobile && this.onToggle ? '100%' : '0',
+      height: '100%',
+      position: 'fixed',
+      zIndex: 999,
+      top: this.options['top'],
+      [this.getPlace()]: 0,
+      overflow: 'hidden',
+      backgroundColor: this.options.backdrop
+    };
+  }
+
+  public setContent(): {} {
+    const excludeParams = ['mobile', 'animated', 'backdrop', 'place', 'top'];
+    const width = (): string => {
+      if (this.defaultProps.mobile && this.onToggle ||
+          !this.defaultProps.mobile) {
+        return this.options.width;
+      } else {
+        return '0px';
+      }
+    };
+
+    const content = Object.assign(
+      {},
+      this.options,
+      { width: width() });
+
+    for (const param of excludeParams) {
+      if (content.hasOwnProperty(param)) {
+        delete content[param];
+      }
+    }
+
+    console.log(this.onToggle , content);
+
+    return content;
+  }
+
   public getScreenSize(): number {
     return window.screen.width;
   }
-  public getScreenType(screen_size: number): void {
-    if (screen_size <= 1100) {
-      this.isMobile.emit(true);
+  public getScreenType(screenSize: number): void {
+    if (screenSize <= 1100) {
+      this.defaultProps.mobile = true;
     } else {
-      this.isMobile.emit(false);
+      this.defaultProps.mobile = false;
     }
   }
 }

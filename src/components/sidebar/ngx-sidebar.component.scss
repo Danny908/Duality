@@ -1,7 +1,0 @@
-@import  '../../core/styles/breakpoints.scss';
-
-.ngx-backdrop {
-  @include custom-resolution(1100px) {
-    width: 100%;
-  }
-}

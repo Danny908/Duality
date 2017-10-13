@@ -1,7 +1,6 @@
 export interface SideBar {
-  toogle: boolean;
   mobile: boolean;
-  animation: boolean;
+  animated: boolean;
   backdrop: string;
   place: string;
   width: string;
