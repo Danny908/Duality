@@ -1,5 +1,5 @@
-<div [ngStyle]="setBackDrop()" class="ngx-backdrop"[class]="options.mobile">
-  <div [ngStyle]="setContent()">
+<div [class.mobile]="screenSize <= 1100" [class.open]="toggle" [class.close]="!toggle" [ngStyle]="setBackDrop()" class="ngx-sidebar">
+  <div [class.mobile]="screenSize <= 1100"  [ngClass]="handleContentClasses()" [ngStyle]="setContent()" class="sidebar-content">
     <ng-content></ng-content>
   </div>
 </div>

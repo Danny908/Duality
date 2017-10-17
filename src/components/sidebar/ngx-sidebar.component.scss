@@ -1,0 +1,55 @@
+.ngx-sidebar {
+  height: 100%;
+  position: fixed;
+  z-index: 99;
+  &.mobile {
+    &.close {
+      width: 0%;
+    }
+    &.open {
+      width: 100%;
+    }
+  }
+  .sidebar-content {
+    height: inherit;
+    position: absolute;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    &.mobile {
+      &.left {
+        &.close {
+          transform: translateX(-100%);
+        }
+        &.open {
+          transform: translateX(0);
+        }
+      }
+      &.right {
+        &.close {
+          transform: translateX(100%);
+        }
+        &.open {
+          transform: translateX(0);
+        }
+      }
+    }
+    // &.not-animated {
+    //     &.left {
+    //       &.close {
+    //         transform: translateX(-100%);
+    //       }
+    //       &.open {
+    //         transform: translateX(0);
+    //       }
+    //     }
+    //     &.right {
+    //       &.close {
+    //         transform: translateX(100%);
+    //       }
+    //       &.open {
+    //         transform: translateX(0);
+    //       }
+    //     }
+    //   }
+  }
+}
