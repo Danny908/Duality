@@ -8,7 +8,6 @@ import {
   Input,
   Renderer2,
   ElementRef,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
@@ -31,8 +30,8 @@ import { SideBar } from './types';
 export class NgxSidebarComponent implements OnInit, OnChanges {
   @Input() public options: any;
   @Output() public isMobile = new EventEmitter<boolean>();
-  public toggle = false;
-  public defaultProps: SideBar = {
+  toggle = false;
+  defaultProps: SideBar = {
     animated: true,
     backdrop: 'rgba(0, 0, 0, 0.5)',
     place: 'left',
@@ -40,14 +39,14 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
     background: 'white',
     top: 0,
   };
-  public screenSize: number;
-  public mobile: boolean;
-  public oldOptions: any;
+  screenSize: number;
+  mobile: boolean;
+  oldOptions: any;
 
   constructor(
-    private renderer: Renderer2,
-    private el: ElementRef,
-    private zone: NgZone
+    renderer: Renderer2,
+    el: ElementRef,
+    zone: NgZone
   ) {
       // LISTEN SCREEN SIZE
       this.screenSize = this.getScreenSize();
@@ -65,7 +64,7 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
       });
   }
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     // INVERT VALUES TO EMIT AT FIRST LOAD
     if (this.screenSize <= 1100) {
       this.mobile = false;
@@ -74,14 +73,11 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
     }
     this.getScreenType(this.screenSize);
     this.defaultProps = Object.assign(this.defaultProps, this.options);
-    console.log('asigned');
     this.oldOptions = this.defaultProps;
   }
 
-  public ngOnChanges(changes: any) {
-
-    // LISTEN FOR CHANGES ON THE PARAMETERS
-    console.log(JSON.stringify(changes.options.currentValue) , JSON.stringify(changes.options.previousValue));
+  ngOnChanges(changes: any) {
+    // LISTEN FOR CHANGES ON INPUT PARAMETERS
     if (changes &&
         JSON.stringify(changes.options.currentValue) !==
         JSON.stringify(changes.options.previousValue)
@@ -91,11 +87,11 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
   }
 
   // GET THE CURRENT SCREEN SIZE
-  public getScreenSize(): number {
+  getScreenSize(): number {
     return window.screen.width;
   }
   // EMITS IF SIDEBAR IT'S ON MOBILE OR DESCKTOP MODE
-  public getScreenType(screenSize: number): void {
+  getScreenType(screenSize: number): void {
     if (screenSize <= 1100 && !this.mobile) {
       this.mobile = true;
       this.isMobile.emit(true);
@@ -106,7 +102,7 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
   }
 
 // HANDLE CLASSES OF SIDEBAR
-  public handleContentClasses(): string[] {
+  handleContentClasses(): string[] {
     const classes = [];
     if (this.defaultProps.animated) {
       if (this.defaultProps.place === 'left') {
@@ -123,14 +119,14 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
     return classes;
   }
   // SET LEFT OR RIGHT POSITION OF SIDEBAR
-  public getPlace(): string {
+  getPlace(): string {
     if (this.defaultProps.place) {
       return this.defaultProps.place;
     }
     return this.defaultProps.place;
   }
   // SET STYLE OF SIDEBAR'S BACKDROP
-  public setBackDrop(): {} {
+  setBackDrop(): {} {
     return {
       top: this.defaultProps['top'],
       [this.getPlace()]: 0,
@@ -138,7 +134,7 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
     };
   }
   // SET STYLES OF SIDEBAR'S CONTAINER
-  public setContent(): {} {
+  setContent(): {} {
     const excludeParams = ['mobile', 'animated', 'backdrop', 'place', 'top'];
     const width = (): string => {
       if (!this.defaultProps.animated) {
@@ -167,8 +163,8 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
 
     return content;
   }
-  // SHOW HIDE SIDEBAR
-  public onToggle(status?: boolean): void {
+  // SHOW-HIDE SIDEBAR
+  onToggle(status?: boolean): void {
     this.toggle = status ? status : !this.toggle;
   }
 }
