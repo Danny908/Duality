@@ -77,7 +77,7 @@ Once you install Duality:
 $ npm install ngx-duality
 ```
 
-go to the `AppModule` of your project and import `NgxOverStyleModule` (if you already import `NgxModule` you can skip this step):
+go to the `AppModule` of your project and import `NgxOverStyleModule` (if you already imported `NgxModule` you can skip this step):
 
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
@@ -106,8 +106,8 @@ export class AppModule { }
 Once NgxOverStyleModule is imported, you can use the directive in your Angular application:
 
 ```html
-<!-- Now add the OverStyle directive in the element that you want to enable the multi styles -->
-<h1 overStyle>
+<!-- Now add the ngxOverStyle directive in the element that you want to enable the multi styles -->
+<h1 ngxOverStyle>
   {{title}}
 </h1>
 ```
@@ -223,11 +223,11 @@ The header comes with the next default styles (You can add/overwrite the styles 
 
 ### Footer:
 
-This it's a pre-build css lass, add it into your project and make everything easier (yep it's a copy paste).
+This it's a pre-build css class, add it into your project and make everything easier (yep it's a copy paste).
 
 **Usage**
 
-Once imported the style css file from ngx-duality:
+Once imported the css file from ngx-duality:
 
 ```scss
  @import url('~../node_modules/ngx-duality/style/ngx-style.css');
@@ -281,7 +281,7 @@ Once you install Duality:
 $ npm install ngx-duality
 ```
 
-go to the `AppModule` of your proyect and import `NgxSidebarModule`:
+go to the `AppModule` of your proyect and import `NgxSidebarModule` (if you already imported `NgxModule` you can skip this step):
 
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
@@ -307,11 +307,11 @@ import { NgxSidebarModule } from 'ngx-duality';
 })
 export class AppModule { }
 ```
-Once you import the module go to the `app.component.html` file and add the follow template:
+Once you import the module go to the `app.component.html` file and add the following template:
 
 ```html
   <div class="ngx-wrapper">
-   <ngx-sidebar (isMobile)="handleMobile($event)" [toggle]="status.isopen">
+   <ngx-sidebar [options]="sidebarOptions" (isMobile)="handleMobile($event)" #toggle>
    
      <!-- Sidebar content here! -->
      
@@ -331,24 +331,86 @@ If you notice the component comes with some attributes, in the next table will b
 
 | Atributte | Type | Descritpion |
 |-----------|------|-------------|
-| [toggle] | boolean | Open or hide the modal |
-| (isMobile) | event | Emit true if the sidebar it's on mobile mode or false if it's on desktop mode |
+| [options] | @Input Object | Add/Overwrite the settings of the sidebar |
+| (isMobile) | @Output EventEmitter | Emit true if the sidebar it's on mobile mode or false if it's on desktop mode (mobile <= 1100px, descktop >= 1100px) |
+| #toggle | Function | Use it to hide/show the sidebar |
 
-If you use the sidebar with the header and footer you should wrap the header and footer elements:
+Attributes usage:
+
+**[options]:**
+[options] allows the next values
+
+| Paramter | Type | Default | Description |
+|----------|------|---------|-------------|
+| animated | boolean| true | Enable slice animation on sidebar |
+| backdrop | string | rgba(0, 0, 0, 0.5) | Set the backdrop color fo the sidebar |
+| place | string | left | Set the position fo the sidebar |
+| width | string | 300px | Set the sidebar width |
+| background | string | whitesmoke | Set the sidebar background |
+| top | string | 0 | Set the 'top' position of the sidebar |  
+
+If you use the sidebar with the header content and footer classes you should wrap it to avoid overlapping:
 ```scss
   .ngx-header {
-    margin: 0 0 0 300px;
+    /* If options.place: left */
+    margin-left: 300px;
   }
   .ng-content {
-    margin: 0 0 0 300px;
+    /* If options.place: left */
+    margin-left: 300px;
   }
   .ngx-footer {
-    margin: 0 0 0 300px;
+    /* If options.place: left */
+    margin-left: 300px;
   }
 ```
+The main style file of the library has a media query so don't worry about the margin when the sidebar enter on mobile mode.
 
-The main style file of the library has a media query son don't worry about the margin when the sidebar enter on mobile mode.
+**#toggle: &&  (isMobile)**
+To enable the toggle functionality go to your `app.component.ts` and add the following template:
 
+```typescript
+// Import ViewChild
+import { Component, OnInit, ViewChild } from '@angular/core';
+// Import NgxSidebarComponent to your component 
+import { NgxSidebarComponent } from 'ngx-duality';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent implements OnInit {
+  // Use ViewChild to match Sidebar Component
+  @ViewChild('toggle') public toggle: NgxSidebarComponent;
+  // User sidebar options... (optional)
+  public sidebarOptions: any = {
+      background: 'orange',
+      top: '70px',
+  };
+  
+  title = 'app';
+
+  ngOnInit(): void {
+  }
+
+  // Triggered when sidebar component emit
+  handleMobile(event: boolean) {
+    // PD: If you wanna change the options on mobile or desktop mode you need to re-instance the 'options' object to triggers trigger the changes on the sidebar component
+    if (event) {
+      this.sidebarOptions = Object.assign({}, this.sidebarOptions, { top: '0' });
+    } else {
+      this.sidebarOptions = Object.assign({}, this.sidebarOptions, { top: '70px' });
+    }
+
+  }
+  // Hide/Show sidebar
+  handleToggle(): void {
+    // Call the 'onToggle()' method from Sidebar component
+    this.toggle.onToggle();
+  }
+}
+```
 
 ## Live Page
 
