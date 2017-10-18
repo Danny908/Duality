@@ -1,6 +1,6 @@
 {
   "name": "ngx-duality",
-  "version": "0.2.33",
+  "version": "0.2.34",
   "description": "Angular library seed",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.js",
@@ -60,7 +60,6 @@
     "sass": "gulp sass-external-files"
   },
   "dependencies": {
-    "@angular/animations": "^4.4.5",
     "@angular/common": "^4.4.5",
     "@angular/compiler": "^4.4.5",
     "@angular/compiler-cli": "^4.4.5",

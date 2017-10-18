@@ -1,6 +1,6 @@
 {
   "name": "ngx-duality",
-  "version": "0.2.33",
+  "version": "0.2.34",
   "main": ".index.umd.js",
   "module": "index.js",
   "typings": "index.d.ts",
@@ -13,7 +13,19 @@
     "email": "danny908t@gmail.com"
   },
   "keywords": [
-    "angular"
+   "angular",
+    "angular4",
+    "aot",
+    "aot-compatible",
+    "aot-compilation",
+    "library",
+    "ng",
+    "ngx",
+    "styles",
+    "directives",
+    "components",
+    "services",
+    "typescript"
   ],
   "license": "MIT",
   "bugs": {
@@ -21,7 +33,6 @@
   },
   "peerDependencies": {
     "@angular/core": "^4.4.5",
-    "@angular/animations": "^4.4.5",
     "rxjs": "^5.3.1",
     "zone.js": "^0.8.18"
   }
