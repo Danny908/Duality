@@ -1,6 +1,6 @@
 {
   "name": "ngx-duality",
-  "version": "0.2.34",
+  "version": "0.2.35",
   "main": ".index.umd.js",
   "module": "index.js",
   "typings": "index.d.ts",

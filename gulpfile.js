@@ -61,6 +61,11 @@ gulp.task('copy:manifest', function () {
     .pipe(gulp.dest('./dist'));
 });
 
+gulp.task('copy:README', function () {
+  return gulp.src([`./README.md`])
+    .pipe(gulp.dest('./dist'));
+});
+
 /**
  * Compile SASS to CSS.
  * @see https://github.com/ludohenin/gulp-inline-ng2-template
