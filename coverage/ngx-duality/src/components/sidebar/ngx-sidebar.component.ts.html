@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ngx-duality/src/components/sidebar/ngx-sidebar.component.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../index.html">All files</a> / <a href="index.html">ngx-duality/src/components/sidebar</a> ngx-sidebar.component.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">73.24% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>52/71</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">31.58% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>12/38</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">71.43% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>10/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">71.21% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>47/66</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">25x</span>
+<span class="cline-any cline-yes">25x</span>
+<span class="cline-any cline-yes">25x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25x</span>
+<span class="cline-any cline-yes">25x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">39x</span>
+<span class="cline-any cline-yes">39x</span>
+<span class="cline-any cline-yes">39x</span>
+<span class="cline-any cline-yes">39x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">79x</span>
+<span class="cline-any cline-yes">79x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">39x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39x</span>
+<span class="cline-any cline-yes">39x</span>
+<span class="cline-any cline-yes">39x</span>
+<span class="cline-any cline-yes">39x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">195x</span>
+<span class="cline-any cline-yes">195x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {
+  Component,
+  OnInit,
+  Output,
+  OnChanges,
+  EventEmitter,
+  Input,
+  Renderer2,
+  ElementRef,
+} from '@angular/core';
+&nbsp;
+import { SideBar } from './types';
+&nbsp;
+@Component({
+  selector: 'ngx-sidebar',
+  templateUrl: 'ngx-sidebar.component.html',
+  styleUrls: ['ngx-sidebar.component.scss']
+})
+&nbsp;
+export class NgxSidebarComponent implements OnInit, OnChanges {
+  @Input() public options: any;
+  @Output() public isMobile = new EventEmitter&lt;boolean&gt;();
+  toggle = false;
+  defaultProps: SideBar = {
+    animated: true,
+    backdrop: 'rgba(0, 0, 0, 0.5)',
+    place: 'left',
+    width: '300px',
+    background: 'white',
+    top: 0,
+  };
+  screenSize: number;
+  mobile: boolean;
+&nbsp;
+  constructor(
+    renderer: Renderer2,
+    el: ElementRef,
+  ) {
+      // LISTEN SCREEN SIZE
+      this.screenSize = this.getScreenSize();
+      renderer.listen('window', 'resize', <span class="fstat-no" title="function not covered" >(</span>size) =&gt; {
+<span class="cstat-no" title="statement not covered" >        this.screenSize = size.target.innerWidth;</span>
+<span class="cstat-no" title="statement not covered" >        this.getScreenType(this.screenSize);</span>
+      });
+      // LISTEN CLICKS ON SIDEBAR COMPONENT
+      el.nativeElement.addEventListener('click', <span class="fstat-no" title="function not covered" >(</span>event: any) =&gt; {
+<span class="cstat-no" title="statement not covered" >        if (event.target['className'].includes('ngx-sidebar')) {</span>
+<span class="cstat-no" title="statement not covered" >          this.onToggle(false);</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          event.stopPropagation();</span>
+        }
+      });
+  }
+&nbsp;
+  ngOnInit(): void {
+    // INVERT VALUES TO EMIT AT FIRST LOAD
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.screenSize &lt;= 1100) {
+<span class="cstat-no" title="statement not covered" >      this.mobile = false;</span>
+    } else  {
+      this.mobile = true;
+    }
+    this.getScreenType(this.screenSize);
+    this.defaultProps = Object.assign(this.defaultProps, this.options);
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  ngOnChanges(</span>changes: any) {
+    // LISTEN FOR CHANGES ON INPUT PARAMETERS
+<span class="cstat-no" title="statement not covered" >    if (changes &amp;&amp;</span>
+        JSON.stringify(changes.options.currentValue) !==
+        JSON.stringify(changes.options.previousValue)
+      ) {
+<span class="cstat-no" title="statement not covered" >      this.defaultProps = Object.assign(this.defaultProps, this.options);</span>
+    }
+  }
+&nbsp;
+  // GET THE CURRENT SCREEN SIZE
+  getScreenSize(): number {
+    return window.screen.width;
+  }
+  // EMITS IF SIDEBAR IT'S ON MOBILE OR DESCKTOP MODE
+  getScreenType(screenSize: number): void {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (screenSize &lt;= 1100 &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >!this.mobile)</span> {
+<span class="cstat-no" title="statement not covered" >      this.mobile = true;</span>
+<span class="cstat-no" title="statement not covered" >      this.isMobile.emit(true);</span>
+    } else <span class="missing-if-branch" title="else path not taken" >E</span>if (screenSize &gt;= 1100 &amp;&amp; this.mobile) {
+      this.mobile = false;
+      this.isMobile.emit(false);
+    }
+  }
+&nbsp;
+// HANDLE CLASSES OF SIDEBAR
+  handleContentClasses(): string[] {
+    const classes = [];
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (this.defaultProps.animated) {
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (this.defaultProps.place === 'left') {
+        classes.push('left');
+      } else {
+<span class="cstat-no" title="statement not covered" >        classes.push('right');</span>
+      }
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (this.toggle) {
+<span class="cstat-no" title="statement not covered" >        classes.push('open');</span>
+      } else {
+        classes.push('close');
+      }
+    }
+    return classes;
+  }
+  // SET LEFT OR RIGHT POSITION OF SIDEBAR
+  getPlace(): string {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (this.defaultProps.place === 'left') {
+      return this.defaultProps.place;
+    }
+<span class="cstat-no" title="statement not covered" >    return 'right';</span>
+  }
+  // SET STYLE OF SIDEBAR'S BACKDROP
+  setBackDrop(): {} {
+    return {
+      top: this.defaultProps['top'],
+      [this.getPlace()]: 0,
+      backgroundColor: this.defaultProps.backdrop
+    };
+  }
+  // SET STYLES OF SIDEBAR'S CONTAINER
+  setContent(): {} {
+    const excludeParams = ['mobile', 'animated', 'backdrop', 'place', 'top'];
+    const width = (): string =&gt; {
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!this.defaultProps.animated) {
+<span class="cstat-no" title="statement not covered" >        if (this.mobile &amp;&amp; this.toggle) {</span>
+<span class="cstat-no" title="statement not covered" >          return this.defaultProps.width;</span>
+        } else <span class="cstat-no" title="statement not covered" >if (this.mobile &amp;&amp; !this.toggle) {</span>
+<span class="cstat-no" title="statement not covered" >          return '0';</span>
+        }
+      }
+      return this.defaultProps.width;
+    };
+&nbsp;
+    const content = Object.assign(
+      {},
+      this.options,
+      { width: width(),
+        [this.getPlace()]: 0
+      }
+    );
+&nbsp;
+    for (const param of excludeParams) {
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (content.hasOwnProperty(param)) {
+<span class="cstat-no" title="statement not covered" >        delete content[param];</span>
+      }
+    }
+&nbsp;
+    return content;
+  }
+  // SHOW-HIDE SIDEBAR
+<span class="fstat-no" title="function not covered" >  onToggle(</span>status?: boolean): void {
+<span class="cstat-no" title="statement not covered" >    this.toggle = status ? status : !this.toggle;</span>
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Oct 18 2017 12:02:46 GMT-0500 (CDT)
+</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>

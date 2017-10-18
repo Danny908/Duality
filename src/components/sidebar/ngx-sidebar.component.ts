@@ -3,13 +3,11 @@ import {
   OnInit,
   Output,
   OnChanges,
-  NgZone,
   EventEmitter,
   Input,
   Renderer2,
   ElementRef,
 } from '@angular/core';
-import { trigger, state, style, animate, transition } from '@angular/animations';
 
 import { SideBar } from './types';
 
@@ -33,12 +31,10 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
   };
   screenSize: number;
   mobile: boolean;
-  oldOptions: any;
 
   constructor(
     renderer: Renderer2,
     el: ElementRef,
-    zone: NgZone
   ) {
       // LISTEN SCREEN SIZE
       this.screenSize = this.getScreenSize();
@@ -65,7 +61,6 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
     }
     this.getScreenType(this.screenSize);
     this.defaultProps = Object.assign(this.defaultProps, this.options);
-    this.oldOptions = this.defaultProps;
   }
 
   ngOnChanges(changes: any) {
@@ -112,10 +107,10 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
   }
   // SET LEFT OR RIGHT POSITION OF SIDEBAR
   getPlace(): string {
-    if (this.defaultProps.place) {
+    if (this.defaultProps.place === 'left') {
       return this.defaultProps.place;
     }
-    return this.defaultProps.place;
+    return 'right';
   }
   // SET STYLE OF SIDEBAR'S BACKDROP
   setBackDrop(): {} {

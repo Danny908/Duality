@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">32.26% </span>
+        <span class="strong">28.57% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>10/31</span>
+        <span class='fraction'>10/35</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/23</span>
+        <span class='fraction'>0/35</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">50% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>2/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">27.59% </span>
+        <span class="strong">24.24% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>8/29</span>
+        <span class='fraction'>8/33</span>
       </div>
     </div>
   </div>
@@ -100,7 +100,16 @@
 55
 56
 57
-58</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -125,6 +134,12 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -140,12 +155,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -179,8 +197,14 @@ export class NgxOverStyleDirective implements OnInit {
 <span class="cstat-no" title="statement not covered" >        if (navigator.userAgent.includes('Windows')) {</span>
 <span class="cstat-no" title="statement not covered" >            this.OS = 'WINDOWS';</span>
         }
-<span class="cstat-no" title="statement not covered" >        if (navigator.userAgent.includes('Linux')) {</span>
+<span class="cstat-no" title="statement not covered" >        if (navigator.userAgent.includes('Linux') &amp;&amp; !navigator.userAgent.includes('Android')) {</span>
 <span class="cstat-no" title="statement not covered" >            this.OS = 'LINUX';</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (navigator.userAgent.includes('Linux') &amp;&amp; navigator.userAgent.includes('Android')) {</span>
+<span class="cstat-no" title="statement not covered" >            this.OS = 'ANDROID';</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (navigator.userAgent.includes('iPhone') || navigator.userAgent.includes('iPad')) {</span>
+<span class="cstat-no" title="statement not covered" >            this.OS = 'IPHONE';</span>
         }
         // GET MACHINE BROWSER...
 <span class="cstat-no" title="statement not covered" >        if (this._window['InstallTrigger']) {</span>
@@ -195,14 +219,17 @@ export class NgxOverStyleDirective implements OnInit {
 <span class="cstat-no" title="statement not covered" >        if (</span>
             this._window['chrome'] &amp;&amp;
             !this._window['opr'] &amp;&amp;
-            navigator.userAgent.search('Edge') &lt; 0
+            navigator.userAgent.search('Edge') &lt; 0 &amp;&amp;
+            navigator.vendor.includes('Google')
         ) {
 <span class="cstat-no" title="statement not covered" >            this.BROWSER = 'CHROME';</span>
         }
 <span class="cstat-no" title="statement not covered" >        if (this._document['documentMode']) {</span>
 <span class="cstat-no" title="statement not covered" >            this.BROWSER = 'IE';</span>
         }
-<span class="cstat-no" title="statement not covered" >        if (navigator.userAgent.search('Chrome') &lt; 0 &amp;&amp; navigator.userAgent.search('Safari') &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >        if (navigator.userAgent.search('Chrome') &lt; 0 &amp;&amp;</span>
+            navigator.userAgent.search('Safari') &gt; 0 &amp;&amp;
+            navigator.vendor.includes('Apple')) {
 <span class="cstat-no" title="statement not covered" >            this.BROWSER = 'SAFARI';</span>
         }
         // SET CLASSES TO DOM...
@@ -220,7 +247,7 @@ export class NgxOverStyleDirective implements OnInit {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Oct 10 2017 17:11:46 GMT-0500 (CDT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Oct 18 2017 12:02:46 GMT-0500 (CDT)
 </div>
 </div>
 <script src="../../../../prettify.js"></script>
