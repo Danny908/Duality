@@ -1,16 +1,13 @@
-@import  '../../core/styles/mixins/screen-breakpoints.scss';
+@import  '../../core/styles/breakpoints.scss';
 
 .ngx-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    transition: margin-left 0.3s ease-in-out;
-    @include custom-screen(1100px) {
-        margin-left: 0 !important;
+    height: 70px;
+    overflow: hidden;
+    @include custom-resolution(1100px) {
+       margin-left: 0 !important;
     }
-    @media (orientation:landscape) and (min-device-height:1100px) {
-        margin-left: 0 !important;
-    }
+    // FIX FOR IPAD PENDING
+    //  @media (orientation:landscape) and (min-device-height:1100px) {
+    //     margin-left: 0 !important;
+    // }
 }

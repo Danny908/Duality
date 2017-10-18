@@ -1,4 +1,4 @@
-@import  '../../core/styles/mixins/screen-breakpoints.scss';
+@import  '../../core/styles/breakpoints.scss';
 
 .ngx-wrapper {
     position: relative;
@@ -9,10 +9,14 @@
         position: inherit;
         overflow: hidden;
         word-break: break-all;
-        transition: margin-left 0.3s ease-in-out;
         z-index: 1;
-        @include custom-screen(1100px) {
-            margin-left: 0 !important;
+        padding: 0 10px 0 10px;
+
+        &.no-pad {
+            padding: 0;
+        }
+        @include custom-resolution(1100px) {
+           margin-left: 0 !important;
         }
     }
 }

@@ -1,89 +1,93 @@
-@import  '../../core/styles/mixins/screen-breakpoints.scss';
+@import  '../../core/styles/breakpoints.scss';
 
 .ngx-row {
   display: flex;
   flex-wrap: wrap;
-  padding: 0 15px 0 15px;
-  min-height: 1px;
+  min-height: 100%;
   .ngx-auto {
-    flex: 1;
-    flex-basis: auto;
-    padding: 0 15px 0 15px;
-  }
-
-  [class*="ngx-col"] {
-    padding: 0 15px 0 15px;
+    flex-grow: 1;
+    padding: 15px;
     flex-wrap: wrap;
     align-items: baseline;
     align-content: flex-start;
+    &.variable-width {
+      flex-grow: 0;
+    }
+    &.no-pad {
+      padding: 0;
+    }
+  }
+  .ngx-break-column {
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+
+  [class*="ngx-col"],
+  [class*="ngx-xs"],
+  [class*="ngx-s"],
+  [class*="ngx-m"],
+  [class*="ngx-l"],
+  [class*="ngx-xl"] {
+    padding: 15px;
+    flex-wrap: wrap;
+    align-items: baseline;
+    align-content: flex-start;
+    flex-basis: 100%;
+    max-width: 100%;
+
+    &.no-pad {
+      padding: 0;
+    }
   }
   @for $i from 1 through 12 {
     .#{ngx-col}-#{$i} {
       flex-basis: 8.333333% * $i;
-      width: 8.333333% * $i;
+      max-width: 8.333333% * $i;
     }
   }
-  // PHONES
-  @include phone {
-    [class*="ngx-sd"] {
-      padding: 0 15px 0 15px;
-      flex-wrap: wrap;
-      align-items: baseline;
-      align-content: flex-start;
-    }
+
+  @include xs {
     @for $i from 1 through 12 {
-      .#{ngx-sd}-#{$i} {
+      .#{ngx-xs}-#{$i} {
         flex-basis: 8.333333% * $i;
-        width: 8.333333% * $i;
+        max-width: 8.333333% * $i;
       }
     }
   }
-  // TABLETS
-  @include tablet {
-    [class*="ngx-md"] {
-      padding: 0 15px 0 15px;
-      flex-wrap: wrap;
-      align-items: baseline;
-      align-content: flex-start;
-    }
+
+  @include s {
     @for $i from 1 through 12 {
-      .#{ngx-md}-#{$i} {
+      .#{ngx-s}-#{$i} {
         flex-basis: 8.333333% * $i;
-        width: 8.333333% * $i;
+        max-width: 8.333333% * $i;
       }
     }
   }
-  // LAPTOPS
-  @include laptop {
-    [class*="ngx-ld"] {
-      padding: 0 15px 0 15px;
-      flex-wrap: wrap;
-      align-items: baseline;
-      align-content: flex-start;
-    }
+
+  @include m {
     @for $i from 1 through 12 {
-      .#{ngx-ld}-#{$i} {
+      .#{ngx-m}-#{$i} {
         flex-basis: 8.333333% * $i;
-        width: 8.333333% * $i;
+        max-width: 8.333333% * $i;
       }
     }
   }
-  // MONITORS
-  @include monitor {
-    [class*="ngx-xd"] {
-      padding: 0 15px 0 15px;
-      flex-wrap: wrap;
-      align-items: baseline;
-      align-content: flex-start;
-    }
+
+  @include l {
     @for $i from 1 through 12 {
-      .#{ngx-xd}-#{$i} {
+      .#{ngx-l}-#{$i} {
         flex-basis: 8.333333% * $i;
-        width: 8.333333% * $i;
+        max-width: 8.333333% * $i;
       }
     }
   }
-}
-.ngx-no-pad {
-  padding: 0 !important;
+
+  @include xl {
+    @for $i from 1 through 12 {
+      .#{ngx-xl}-#{$i} {
+        flex-basis: 8.333333% * $i;
+        max-width: 8.333333% * $i;
+      }
+    }
+  }
 }
