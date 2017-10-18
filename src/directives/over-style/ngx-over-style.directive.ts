@@ -3,7 +3,7 @@ import { Directive, ElementRef, OnInit } from '@angular/core';
 import { Window, Document } from './types';
 
 @Directive({
-    selector: '[ngx-over-style]'
+    selector: '[ngxOverStyle]'
 })
 export class NgxOverStyleDirective implements OnInit {
     public OS: string;
