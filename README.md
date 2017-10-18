@@ -335,9 +335,10 @@ If you notice the component comes with some attributes, in the next table will b
 | (isMobile) | @Output EventEmitter | Emit true if the sidebar it's on mobile mode or false if it's on desktop mode (mobile <= 1100px, descktop >= 1100px) |
 | #toggle | Function | Use it to hide/show the sidebar |
 
-Attributes usage:
+**Attributes usage:**
 
 **[options]:**
+
 [options] allows the next values
 
 | Paramter | Type | Default | Description |
@@ -367,6 +368,7 @@ If you use the sidebar with the header content and footer classes you should wra
 The main style file of the library has a media query so don't worry about the margin when the sidebar enter on mobile mode.
 
 **#toggle: &&  (isMobile)**
+
 To enable the toggle functionality go to your `app.component.ts` and add the following template:
 
 ```typescript
