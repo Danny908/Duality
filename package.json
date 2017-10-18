@@ -1,6 +1,6 @@
 {
   "name": "ngx-duality",
-  "version": "0.2.35",
+  "version": "0.2.36",
   "description": "Angular library seed",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.js",
