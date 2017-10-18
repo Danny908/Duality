@@ -207,7 +207,9 @@ go to `app.component.html` file and add the following template:
       
     </header>
     <div class="ngx-content ngx-row">
+  
       <!-- All your stuffs here! -->
+  
     </div>
 </div>
 ```
