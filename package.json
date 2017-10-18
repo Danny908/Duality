@@ -34,7 +34,7 @@
   },
   "homepage": "",
   "scripts": {
-    "build": "npm run build:esm && npm run build:umd && npm run sass && gulp copy:manifest && copy:README",
+    "build": "npm run build:esm && npm run build:umd && npm run sass && gulp copy:manifest && gulp copy:README",
     "build:esm": "gulp inline-templates && npm run ngcompile",
     "build:esm:watch": "gulp build:esm:watch",
     "build:umd": "webpack --config webpack-umd.config.ts",
