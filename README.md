@@ -367,7 +367,7 @@ If you use the sidebar with the header content and footer classes you should wra
 ```
 The main style file of the library has a media query so don't worry about the margin when the sidebar enter on mobile mode.
 
-**#toggle: &&  (isMobile)**
+**#toggle: & (isMobile)**
 
 To enable the toggle functionality go to your `app.component.ts` and add the following template:
 
