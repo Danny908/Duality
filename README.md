@@ -351,6 +351,7 @@ If you notice the component comes with some attributes, in the next table will b
 | width | string | 300px | Set the sidebar width |
 | background | string | whitesmoke | Set the sidebar background |
 | top | string | 0 | Set the 'top' position of the sidebar |  
+| [css: any] | string | - | This field can allow any css rules |
 
 If you use the sidebar with the header content and footer classes you should wrap it to avoid overlapping:
 ```scss

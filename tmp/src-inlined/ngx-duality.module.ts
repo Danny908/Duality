@@ -20,7 +20,8 @@ import { NgxOverStyleModule } from './directives';
   ],
   exports: [
     TickTockComponent,
+    NgxSideBarModule
   ]
 })
-export class NgxModule {
+export class NgxDualityModule {
 }

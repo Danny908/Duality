@@ -7,6 +7,6 @@ import { NgxSidebarComponent } from './ngx-sidebar.component';
   imports: [ CommonModule ],
   exports: [ NgxSidebarComponent ],
   declarations: [ NgxSidebarComponent ],
-  providers: [],
+  providers: [ NgxSidebarComponent ],
 })
 export class NgxSideBarModule { }

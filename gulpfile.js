@@ -56,6 +56,11 @@ gulp.task('sass-external-files', () => {
     .pipe(gulp.dest('./dist/style'))
 });
 
+gulp.task('copy:core', function () {
+  return gulp.src([`src/core/**/*`])
+    .pipe(gulp.dest('./dist/core'));
+});
+
 gulp.task('copy:manifest', function () {
   return gulp.src([`src/package.json`])
     .pipe(gulp.dest('./dist'));

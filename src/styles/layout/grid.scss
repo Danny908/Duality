@@ -1,4 +1,4 @@
-@import  '../../core/styles/breakpoints.scss';
+@import  '../../core/mixins/breakpoints.scss';
 
 .ngx-row {
   display: flex;
@@ -6,6 +6,7 @@
   min-height: 100%;
   .ngx-auto {
     flex-grow: 1;
+    flex-basis: 0;
     padding: 15px;
     flex-wrap: wrap;
     align-items: baseline;
