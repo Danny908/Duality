@@ -1,15 +1,15 @@
 <div class="ngx-wrapper">
   <header class="ngx-header">
-    <div class="ngx-row ngx-no-pad">
-      <div class="main ngx-col-1">
+    <div class="ngx-row">
+      <div class="toggle-icon ngx-auto variable-width no-pad" *ngIf="status.ismobile">
         <i
-          *ngIf="status.ismobile"
-          (click)="status.isopen = !status.isopen"
+          (click)="handleToggle()"
           class="fa fa-bars fa-2x"
-          aria-hidden="true"></i>
+          aria-hidden="true">
+        </i>
       </div>
-      <div class="menu ngx-auto ngx-no-pad">
-        <nav>
+      <div class="bar-menu ngx-auto no-pad">
+        <nav class="title">
           <a *ngIf="!status.ismobile" class="divider" href="">GET STARTED</a>
           <a href="">COMPONENTS</a>
           <a href="">DIRECTIVES</a>
@@ -18,27 +18,22 @@
       </div>
     </div>
   </header>
-  <ngx-sidebar [toggle]="status.isopen" (isMobile)="handleMobile($event)">
-  <div class="sidebar ngx-col-12">
-    <i
-      *ngIf="status.ismobile"
-      (click)="status.isopen = !status.isopen"
-      class="side-handler fa fa-bars fa-2x"
-      aria-hidden="true"></i>
-      <div class="logo ngx-col-12 ngx-no-pad">
-        <app-logo class="ngx-col-12"></app-logo>
+  <ngx-sidebar [options]="status.options"  (isMobile)="handleMobile($event)" #toggle>
+  <div class="ngx-sidebar ngx-row">
+      <div class="logo ngx-col-12 no-pad">
+        <app-logo ></app-logo>
       </div>
-      <div class="sidebar-nav ngx-col-12 ngx-no-pad">
-        <ul class="ngx-col-12 ngx-no-pad">
-          <li class="ngx-col-12" [class.open]="menu_handler[i]" *ngFor="let side_bar of sidebar; let i = index;">
-            <p (click)="onHanleSideMenu(i)" [class.selected]="menu_handler[i]" class="menu ngx-col-12">
+      <div class="sidebar-nav ngx-col-12">
+        <ul class="list">
+          <li class="items" [class.open]="menu_handler[i]" *ngFor="let side_bar of sidebar; let i = index;">
+            <p (click)="onHanleSideMenu(i)" [class.selected]="menu_handler[i]" class="text name">
               <i [ngClass]="side_bar.icon" class="icon" aria-hidden="true"></i>
               {{side_bar.menu}}
             </p>
-            <ul class="sub-menu ngx-col-12" [ngClass]="menu_handler[i] ? 'on-show' : ''">
-              <li class="ngx-col-12" *ngFor="let sub_side of side_bar.sub_menu">
-                <a href="" class="menu sub">
-                  <i class="fa fa-circle" aria-hidden="true"></i>
+            <ul class="sub-list" [ngClass]="menu_handler[i] ? 'on-show' : ''">
+              <li class="sub-items" *ngFor="let sub_side of side_bar.sub_menu">
+                <a href="" class="light-text sub-name">
+                  <i class="sub-icon fa fa-circle" aria-hidden="true"></i>
                   {{sub_side}}
                 </a>
               </li>
@@ -48,16 +43,16 @@
       </div>
     </div>
   </ngx-sidebar>
-  <div class="ngx-content ngx-row ngx-no-pad">
-   <app-main-content [isMobile]="status.ismobile" class="ngx-col-12 ngx-no-pad"></app-main-content>
+  <div class="ngx-content no-pad">
+   <app-dashboard [mobile]="status.ismobile"></app-dashboard>
   </div>
   <footer class="ngx-footer">
-    <div class="footer-content ngx-row ngx-no-pad">
-      <div class="ngx-auto ngx-sd-3">
-        <i title="GitHub" class="fa fa-github-alt" aria-hidden="true"></i>
+    <div class="footer-content ngx-row">
+       <div class="dev ngx-auto no-pad">
+        <p class="name light-text"><a class="text" href="">Daniel Torres,</a> Copyright © 2017</p>
       </div>
-      <div class="ngx-col-10 ngx-sd-9">
-        <p><a href="">Daniel Torres</a>, Copyright © 2017</p>
+      <div class="ngx-auto git variable-width no-pad">
+        <a href="https://github.com/Danny908/ngx-duality" target="_blank"><i title="GitHub" class="fa fa-github-alt fa-3x" aria-hidden="true"></i></a>
       </div>
     </div>
   </footer>

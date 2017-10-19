@@ -1,229 +1,198 @@
-@import '~ngx-duality/core/styles/mixins/screen-breakpoints.scss';
-@import '~assets/palette/palette';
+@import '~../../node_modules/ngx-duality/core/mixins.scss';
+@import '../assets/palette/palette.sass';
+@import '../assets/animations/fade.scss';
 
 .ngx-header {
-  height: 70px;
-  z-index: 3;
-  .ngx-col-1 {
-    display: flex;
-  }
-  .ngx-auto {
-    justify-content: flex-end;
-    height: 70px;
-  }
-}
-
-.sidebar {
-  margin-top: 70px;
-  background-color:invert($secondary);
-  height: 100%;
-  overflow-y: auto;
-  padding: 0 0 70px 0;
-   i.side-handler {
-     display: none;
-     z-index: 1;
-     position: relative;
-   }
-   .logo {
-     z-index: 0;
-     position: relative;
-     margin-bottom: 25px;
-   }
-   .sidebar-nav {
-     ul {
-       li {
-         border-bottom: 1px solid  darken(invert($secondary), 40%);
-         border-top: 1px solid  darken(invert($secondary), 40%);
-         transition: background-color 0.2s ease-out;
-         display: block;
-         padding: 0;
-         .menu {
-          width: 100%;
-          font-weight: 500;
-          font-size: 16px;
-          padding-left: 20px;
-          min-height: 50px;
-          line-height: 3;
-          display: inline-block;
-          cursor: default;
-          transition: text-shadow 0.3s ease-in;
-          i {
-            padding-right: 10px;
-            color: inherit;
-            transition: text-shadow 0.1s ease-in;
-            &.icon {
-              font-size: 23px;
-              float: left;
-              line-height: 2.3;
-              margin-right: 5px;
-            }
-          }
-          &.sub {
-            font-weight: 300;
-            font-size: 14px;
-            padding-left: 0;
-            min-height: 25px;
-            border-bottom: none;
-            i {
-              font-size: 10px;
-              line-height: 4;
-              float: left;
-            }
-          }
-          &.selected {
-            border-bottom: none;
-            color: lighten($secondary, 70%);
-            text-shadow:
-              1px 1px 1px darken(invert($secondary), 40%),
-              2px 2px 1px darken(invert($secondary), 40%),
-              3px 3px 1px darken(invert($secondary), 40%),
-              3px 4px 1px darken(invert($secondary), 40%),
-              3px 5px 1px darken(invert($secondary), 40%);
-
-            i {
-              text-shadow:
-              -0.5px 1px 1px darken(invert($secondary), 40%),
-              1px 1px 1px darken(invert($secondary), 40%),
-              2px 2px 1px darken(invert($secondary), 40%),
-              3px 3px 1px darken(invert($secondary), 40%),
-              3px 4px 1px darken(invert($secondary), 40%),
-              3px 5px 1px darken(invert($secondary), 40%);
-            }
-            &:hover {
-              background-color: transparent;
-            }
-          }
-          &:hover {
-            background-color: darken(invert($secondary), 20%);
-          }
-         }
-        .sub-menu {
-          overflow: hidden;
-          max-height: 0px;
-          transition: max-height 0.3s cubic-bezier(.86,0,.07,1);
-          li {
-            padding: 0 0 0 15px;
-            border: none;
-            &:hover {
-              background-color: transparent;
-            }
-            a {
-              border-radius: 5px;
-              padding: 0 0 0 10px;
-            }
-          }
-          &.on-show {
-            max-height: 500px;
-            transition: max-height 0.3s cubic-bezier(.86,0,.07,1);
-          }
-        }
-        &:first-child {
-          border: none;
-        }
-        &:last-child {
-          border: none;
-        }
-        &.open {
-          padding-bottom: 15px;
-        }
-       }
-     }
-   }
-}
-.ngx-content {
-  margin: 70px 0 100px 300px;
-  overflow: hidden;
-  background-color: white;
-}
-.ngx-footer {
-  height: 100px;
-  margin-left: 300px;
+  background-color: $primary-color;
   .ngx-row {
-    height: 100%;
-    display: flex;
-    flex-direction: row-reverse;
-    .ngx-auto {
+    .toggle-icon {
+      text-align: center;
       display: flex;
-      i {
-        margin: auto;
-        float: right;
-        color: white;
-        font-size: 35px;
-        &:hover {
-          text-shadow: 1px 1px 1px black, 0px 0px 8px white;
+      position: relative;
+      i.fa {
+        line-height: 2.3;
+        margin-left: 30px;
+        color: $accent-color;
+        transform: scale(1.2);
+        cursor: pointer;
+        z-index: 100;
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 70px;
+        height: 100%;
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+        background-color: $primary-color-dark;
+      }
+    }
+    .bar-menu {
+      nav {
+        text-align: right;
+        height: 100%;
+        a {
+          color: $primary-color-text;
+          text-decoration: none;
+          font-size: 17px;
+          transition: 0.2s background-color ease-in;
+          display: inline-block;
+          padding: 25px;
+          position: relative;
+          &:nth-child(1) {
+            &:hover {
+              background-color: $primary-color-dark;
+            }
+            &:after {
+              content: '';
+              position: absolute;
+              right: 0;
+              top: 7.5%;
+              width: 2px;
+              height: 85%;
+              background-color: $divider-color;
+            }
+          }
+          &:nth-child(2):hover {
+            background-color: $primary-color-dark;
+          }
+          &:nth-child(3):hover {
+            background-color: $primary-color-dark;
+          }
+          &:nth-child(4):hover {
+            background-color: $primary-color-dark;
+          }
         }
       }
     }
-    .ngx-col-10 {
-      display: flex;
-      p {
-        color: lightgrey;
-        font-family: 'Roboto';
-        font-weight: 100;
-        font-size: 15px;
-        margin: auto 0;
+  }
+}
+.ngx-sidebar {
+  .logo {
+    position: relative;
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 5px;
+      width: 100%;
+      height: 1px;
+      background-color: $divider-color;
+    }
+  }
+  .sidebar-nav {
+    position: relative;
+    .list {
+      margin-top: 25px;
+      list-style-type: none;
+      .items {
+        .name {
+          color: $primary-text-color;
+          position: relative;
+          font-size: 20px;
+          margin: 10px 0 10px 15px;
+          .icon {
+            color: $primary-text-color;
+            position: absolute;
+            left: -28px;
+            top: 3px;
+          }
+        }
+        .sub-list {
+        list-style-type: none;
+         .sub-items {
+           margin: 10px 0 10px 0;
+           .sub-name {
+             color: $secondary-text-color;
+             text-decoration: none;
+             position: relative;
+             font-size: 15px;
+             .sub-icon {
+               color: $secondary-text-color;
+               font-size: 5px;
+               position: absolute;
+               left: -10px;
+               top: 7px;
+             }
+             &:hover {
+               cursor: pointer;
+               text-decoration: underline;
+             }
+           }
+         }
+        }
+      }
+    }
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 5px;
+      width: 100%;
+      height: 1px;
+      background-color: $divider-color;
+    }
+  }
+}
+
+.ngx-content {
+  margin-left: 300px;
+  margin-bottom: 70px;
+}
+
+.ngx-footer {
+  background-color: $primary-color-dark;
+  margin-left: 300px;
+  .footer-content {
+    .dev {
+      .name {
+        color: $primary-color-text;
+        font-size: 13px;
+        padding-left: 20px;
+        line-height: 2.3;
         a {
-          color: white;
-          font-family: 'Roboto';
-          font-weight: 200;
+          font-size: 18px;
+          padding-right: 10px;
+          text-decoration: none;
+          color: inherit;
           &:hover {
             text-decoration: underline;
           }
         }
       }
     }
+    .git {
+      a {
+        i {
+          padding: 10px 25px 10px 0;
+          color: $primary-color-text;
+        }
+      }
+    }
   }
 }
-/* * * * * * * * * * * *
-*       MOBILE         *
-* * * * * * * * * * * */
-@include phone {
+@include custom-resolution(1100px) {
   .ngx-header {
-    z-index: 0;
+    .ngx-row {
+      .bar-menu {
+        nav {
+          a {
+            &:nth-child(1):after {
+              content: '';
+                width: 0;
+                height: 0;
+                background-color: transparent;
+            }
+          }
+        }
+      }
+    }
   }
-  .sidebar {
-    margin-top: 0;
-    i.fa-bars {
-      display: block;
-      margin: 0;
-      margin-left: 25px;
-      margin-top: 20px;
-      z-index: 1;
-    }
-    .logo {
-      margin-top: -52px;
-    }
+  .ngx-sidebar {
+    margin-top: 70px;
   }
 }
 
-// GLOBAL STYLES
- nav {
-  float: right;
-  display: flex;
-  height: 100%;
-  justify-content: space-between;
-  a {
-    color: rgba(white, 0.6);
-    margin: auto;
-    padding: 20px;
-    transition: all 0.3s ease;
-    &.divider {
-      border-right: 2px solid rgba(white, 0.5);
-    }
-    &:hover {
-      color: white;
-      text-shadow: 1px 2px 1px black, 0px 0px 3px white;
-    }
-  }
-}
- i.fa {
-  margin-left: 10px;
-  margin: auto 0;
-  color: rgba(white, 0.6);
-  transition: all 0.3s ease;
-}
-.fa-bars:hover{
-  cursor: pointer;
-  color: white;
-  text-shadow: 1px 2px 1px black, 0px 0px 3px white;
-}
+@include fade;

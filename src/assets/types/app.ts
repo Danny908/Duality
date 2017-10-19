@@ -6,8 +6,7 @@ export interface Sidebar {
   // sub_icon: Array<string>
 }
 
-export interface MainPage {
-  slogan: string;
+export interface Dashboard {
   title: string;
   description: string;
 }

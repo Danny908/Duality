@@ -1,16 +1,17 @@
-$logo-colors: #4d648d, #d0e1f9, #ffffff;
+@import '~../../../node_modules/ngx-duality/core/mixins.scss';
+@import '../../assets/palette/palette.sass';
+
+$logo-colors: #6666ff, #b2b2ff, #ffffff;
 
 .logo-container {
   width: 100%;
-  height: 230px;
-  display: flex;
   position: relative;
   padding-top: 20px;
   .logo {
     width: 130px;
     height: 130px;
     margin:  0 auto;
-    background-color: #283655;
+    background-color: #0000b2;
     border-radius: 50%;
     position: relative;
     animation: logo-init linear infinite 2s;
@@ -30,23 +31,30 @@ $logo-colors: #4d648d, #d0e1f9, #ffffff;
     }
   }
   h1 {
-    position: absolute;
     width: 100%;
     text-align: center;
-    font-size: 58px;
-    bottom: 15px;
-    left: 0;
-    font-weight: 300;
-    color: darken(invert(#283655), 50%);
-    text-shadow: 2px 2px 0px invert(#283655);
-    p {
+    font-size: 55px;
+    margin-top: 5px;
+    color: $primary-text-color;
+    text-shadow: 2px 3px 3px rgba(0, 0, 0, 0.4);
+    a {
+      margin-top: 5px;
+      margin-left: 50px;
       text-shadow: none;
-      margin-top: -15px;
+      display: block;
+      font-size: 15px;
+      color: $secondary-text-color;
       &:hover {
         text-decoration: underline;
         cursor: pointer;
       }
     }
+  }
+}
+
+@include custom-resolution(1100px) {
+  .logo-container {
+    padding-top: 0;
   }
 }
 

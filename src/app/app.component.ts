@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { NgxSidebarComponent } from 'ngx-duality';
 
 import { sidebar} from '../assets/mock/app-values';
 
@@ -8,9 +9,16 @@ import { sidebar} from '../assets/mock/app-values';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  @ViewChild('toggle') public toggle: NgxSidebarComponent;
   private status = {
     ismobile: false,
-    isopen: false
+    options: {
+      top: '70px',
+      background: 'whitesmoke'
+    }
+  };
+  private options = {
+    top: '70px'
   };
   private sidebar = sidebar;
   private menu_handler: Array<boolean> = new Array(this.sidebar.length).fill(false);
@@ -20,7 +28,18 @@ export class AppComponent implements OnInit {
 
   handleMobile(mobile: boolean): void {
     this.status.ismobile = mobile;
+    // Run change detection explicityly, refer to the following link for more information:
+    // https://github.com/angular/angular/issues/14748#issuecomment-307291715
     this.cdr.detectChanges();
+
+    if (mobile) {
+      this.status.options = Object.assign({}, this.status.options, {top: '0'});
+    } else {
+      this.status.options = Object.assign({}, this.status.options, {top: '70px'});
+    }
+  }
+  handleToggle(): void {
+    this.toggle.onToggle();
   }
   onHanleSideMenu(index: number): void {
     let i = 0;

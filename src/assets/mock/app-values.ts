@@ -1,4 +1,4 @@
-import { Sidebar, MainPage } from '../types/app';
+import { Sidebar, Dashboard } from '../types/app';
 
 export const sidebar: Array<Sidebar> = [
   {
@@ -22,12 +22,11 @@ export const sidebar: Array<Sidebar> = [
   }
 ];
 
-export const main_page: MainPage = {
-  slogan: 'The Coolest UI Lib for Angular',
-  title: `What's Duality`,
+export const dashboard_page: Dashboard = {
+  title: `What's Duality?`,
   description: `
-    Duality it's a library for Angular, this library contains a bundle of features
-    most common used on web pages.<br>
+    Duality it's a library for Angular 4, this library contains a bundle of features
+    most common used for web developers.
     The purpose of Duality it's reduce development time, making the web content creation easier and faster.`
 };
 

@@ -6,13 +6,13 @@ import { NgxDualityModule } from 'ngx-duality';
 
 import { AppComponent } from './app.component';
 import { LogoComponent } from './logo/logo.component';
-import { MainContentComponent } from './main-content/main-content.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LogoComponent,
-    MainContentComponent
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

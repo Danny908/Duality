@@ -1,37 +1,20 @@
-/* You can add global styles to this file, and also import other style files */
-@import '~ngx-duality/styles/ngx-duality.scss';
-@import url('https://fonts.googleapis.com/css?family=Pacifico');
-@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900');
-@import './assets/palette/ngx-theme-loader';
-@import './assets/palette/palette';
+@import url('~../node_modules/ngx-duality/style/ngx-style.css');
 
-@include theme-loader($primary, $secondary, $background, $text);
-
-@for $i from 1 through 6 {
-  h#{$i} {
-    font-family: 'Pacifico';
-    font-weight: 500;
-    margin: 0;
-  }
+div {
+  border: 1px red solid;
 }
-p, ul{
-  font-family: 'Roboto';
+
+.title {
+  font-family: 'Ubuntu';
+  font-weight: 700;
+}
+
+.text {
+  font-family: 'Ubuntu';
+  font-weight: 400;
+}
+
+.light-text {
+  font-family: 'Ubuntu';
   font-weight: 300;
-  font-size: 16px;
-  margin: 0;
-  letter-spacing: .5px;
-  li {
-    padding: 5px;
-    font-size: 15px;
-  }
 }
- a {
-  font-family: 'Roboto';
-  font-weight: 900;
-  font-size: 15px;
-  margin: 0;
-  text-decoration: none;
- }
- .fa {
-   user-select: none;
- }
