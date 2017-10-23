@@ -7,7 +7,7 @@
     overflow-x: hidden;
     .ngx-content {
         position: inherit;
-        overflow: hidden;
+        overflow-x: inherit;
         word-break: break-all;
         z-index: 1;
         padding: 0 10px 0 10px;

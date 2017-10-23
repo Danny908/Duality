@@ -20,7 +20,8 @@ import { SideBar } from './types';
 export class NgxSidebarComponent implements OnInit, OnChanges {
   @Input() public options: any;
   @Output() public isMobile = new EventEmitter<boolean>();
-  toggle = false;
+  @Output() public isOpen = new EventEmitter<boolean>();
+  toggle = true;
   defaultProps: SideBar = {
     animated: true,
     backdrop: 'rgba(0, 0, 0, 0.5)',
@@ -45,7 +46,8 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
       // LISTEN CLICKS ON SIDEBAR COMPONENT
       el.nativeElement.addEventListener('click', (event: any) => {
         if (event.target['className'].includes('ngx-sidebar')) {
-          this.onToggle(false);
+          this.toggle = false;
+          this.isOpen.emit(this.toggle);
         } else {
           event.stopPropagation();
         }
@@ -75,6 +77,9 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
 
   // GET THE CURRENT SCREEN SIZE
   getScreenSize(): number {
+    if (window.screen.width <= 1100) {
+      this.toggle = false;
+    }
     return window.screen.width;
   }
   // EMITS IF SIDEBAR IT'S ON MOBILE OR DESCKTOP MODE
@@ -117,7 +122,7 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
     return {
       top: this.defaultProps['top'],
       [this.getPlace()]: 0,
-      backgroundColor: this.defaultProps.backdrop
+      background: this.defaultProps.backdrop
     };
   }
   // SET STYLES OF SIDEBAR'S CONTAINER
@@ -125,9 +130,9 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
     const excludeParams = ['mobile', 'animated', 'backdrop', 'place', 'top'];
     const width = (): string => {
       if (!this.defaultProps.animated) {
-        if (this.mobile && this.toggle) {
+        if (this.toggle) {
           return this.defaultProps.width;
-        } else if (this.mobile && !this.toggle) {
+        } else {
           return '0';
         }
       }
@@ -153,5 +158,6 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
   // SHOW-HIDE SIDEBAR
   onToggle(status?: boolean): void {
     this.toggle = status ? status : !this.toggle;
+    this.isOpen.emit(this.toggle);
   }
 }

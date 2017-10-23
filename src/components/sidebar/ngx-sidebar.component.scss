@@ -2,12 +2,24 @@
   height: 100%;
   position: fixed;
   z-index: 99;
+  transition: background 0.4s ease-in-out, width 0.1s linear; 
+  transition-delay: 0s, 0.5s;
   &.mobile {
     &.close {
       width: 0%;
+      transition: none;
     }
     &.open {
       width: 100%;
+      transition: none;
+    }
+    &.anim-close {
+      background: transparent !important;
+      width: 0;
+    }
+    &.anim-open {
+      width: 100%;
+      transition-delay: 0.1s, 0s;
     }
   }
   .sidebar-content {
@@ -15,22 +27,20 @@
     position: absolute;
     overflow: hidden;
     transition: transform 0.3s ease-in-out;
-    &.mobile {
-      &.left {
-        &.close {
-          transform: translateX(-100%);
-        }
-        &.open {
-          transform: translateX(0);
-        }
+    &.left {
+      &.close {
+        transform: translateX(-100%);
       }
-      &.right {
-        &.close {
-          transform: translateX(100%);
-        }
-        &.open {
-          transform: translateX(0);
-        }
+      &.open {
+        transform: translateX(0);
+      }
+    }
+    &.right {
+      &.close {
+        transform: translateX(100%);
+      }
+      &.open {
+        transform: translateX(0);
       }
     }
   }

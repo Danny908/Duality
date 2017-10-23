@@ -335,6 +335,7 @@ If you notice the component comes with some attributes, in the next table will b
 |-----------|------|-------------|
 | [options] | @Input Object | Add/Overwrite the settings of the sidebar |
 | (isMobile) | @Output EventEmitter | Emit true if the sidebar it's on mobile mode or false if it's on desktop mode (mobile <= 1100px, desktop >= 1100px) |
+| (isOpen) | @Output EventEmitter | Emit true if the sidebar it's open or false if it's close |
 | #toggle | Function | Use it to hide/show the sidebar |
 
 **Attributes usage:**
