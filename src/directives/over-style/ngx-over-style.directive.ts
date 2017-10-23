@@ -1,6 +1,6 @@
 import { Directive, ElementRef, OnInit } from '@angular/core';
 
-import { Window, Document } from './types';
+import { Window, Document } from '../../core/types/types';
 
 @Directive({
     selector: '[ngxOverStyle]'

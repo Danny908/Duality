@@ -7,9 +7,11 @@ import {
   Input,
   Renderer2,
   ElementRef,
+  Inject
 } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 
-import { SideBar } from './types';
+import { SideBar, Document } from '../../core/types/types';
 
 @Component({
   selector: 'ngx-sidebar',
@@ -48,6 +50,7 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
   mobile: boolean;
 
   constructor(
+    @Inject(DOCUMENT) private document: Document,
     renderer: Renderer2,
     el: ElementRef,
   ) {
@@ -62,6 +65,7 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
         if (event.target['className'].includes('ngx-sidebar')) {
           this.toggle = false;
           this.isOpen.emit(this.toggle);
+          this.onScroll(this.toggle);
         } else {
           event.stopPropagation();
         }
@@ -105,6 +109,7 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
       this.mobile = false;
       this.isMobile.emit(false);
     }
+    this.onScroll(this.toggle);
   }
 
 // HANDLE CLASSES OF SIDEBAR
@@ -173,5 +178,15 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
   onToggle(status?: boolean): void {
     this.toggle = status ? status : !this.toggle;
     this.isOpen.emit(this.toggle);
+    this.onScroll(this.toggle);
+  }
+
+  // FIX DOCUMENT OVERFLOW
+  onScroll(status: boolean): void {
+    if (status && this.mobile) {
+      this.document.body.style.overflow = 'hidden';
+    } else {
+      this.document.body.removeAttribute('style');
+    }
   }
 }
