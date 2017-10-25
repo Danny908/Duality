@@ -3,6 +3,7 @@
 .ngx-row {
   display: flex;
   flex-wrap: wrap;
+  flex: 1;
   .ngx-auto {
     flex-grow: 1;
     flex-basis: 0;

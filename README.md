@@ -174,13 +174,12 @@ then add the following template into your `app.component.html` file:
 
 ```html 
   <div class="ngx-wrapper">
-    <div class="ngx-content ngx-row">
-    
-      <!-- All your stuffs here! -->
-      
+    <div class="ngx-container">
+      <div class="ngx-content">
+        <!-- All your stuffs here! -->
+      </div>
     </div>
-</div>
-<!-- PD: "ngx-row" It's optional (for more information see "Grid Layout" section) -->
+  </div>
 ```
 
 ### Header:
@@ -198,30 +197,17 @@ go to `app.component.html` file and add the following template:
 
 ```html
   <div class="ngx-wrapper">
-
-    <!-- Page wrapper -->
-
-    <header class="ngx-header">
-    
-      <!-- Header content here! -->
-      
-    </header>
-    <div class="ngx-content ngx-row">
-  
-      <!-- All your stuffs here! -->
-  
+    <div class="ngx-container">
+      <header class="ngx-header">    
+        <!-- Header content here! -->
+      </header>
+      <div class="ngx-content">
+        <!-- All your stuffs here! -->
+      </div>
     </div>
-</div>
+  </div>
 ```
-
-The header comes with the next default styles (You can add/overwrite the styles in your own .css file).
-
-```scss
-  .ngx-header {
-    height: 70px;
-    overflow: hidden; 
-  }
-```
+(PD: You can add/overwrite the styles of the classes, just put it in your own .css file.)
 
 ### Footer:
 
@@ -238,38 +224,20 @@ go to `app.component.html` file and add the following template:
 
 ```html
   <div class="ngx-wrapper">
-    <header class="ngx-header">
-
-      <!-- Header content here! -->
-
-    </header>
-    <div class="ngx-content ngx-row">
-
-      <!-- All your stuffs here! -->
-
+    <div class="ngx-container">
+      <header class="ngx-header">    
+        <!-- Header content here! -->
+      </header>
+      <div class="ngx-content">
+        <!-- All your stuffs here! -->
+      </div>
+      <footer class="ngx-footer">    
+        <!-- Footer content here! -->
+      </footer>
     </div>
-    <footer class="ngx-footer">
-    
-      <!-- Footer content here! -->
-      
-    </footer>
-</div>
-<!-- PD: "ngx-row" It's optional (for more information see "Grid Layout" section) -->
+  </div>
 ```
-
-The footer comes with the next default styles (You can add/overwrite the styles in your own .css file).
-
-```scss
-  .ngx-footer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 1;
-    height: 70px;
-    overflow: hidden; 
-  }
-```
+(PD: You can add/overwrite the styles of the classes, just put it in your own .css file.)
 
 ### Sidebar:
 
@@ -313,21 +281,21 @@ Once you import the module go to the `app.component.html` file and add the follo
 
 ```html
   <div class="ngx-wrapper">
-   <ngx-sidebar [options]="sidebarOptions" (isMobile)="handleMobile($event)" #toggle>
-   
+    <ngx-sidebar [options]="sidebarOptions" (isMobile)="handleMobile($event)" #toggle>
      <!-- Sidebar content here! -->
-     
-  </ngx-sidebar>
-    <header class="ngx-header">
-      <!-- Header content here! -->
-    </header>
-    <div class="ngx-content ngx-row">
-      <!-- All your stuffs here! -->
+    </ngx-sidebar>
+    <div class="ngx-container">
+      <header class="ngx-header">    
+        <!-- Header content here! -->
+      </header>
+      <div class="ngx-content">
+        <!-- All your stuffs here! -->
+      </div>
+      <footer class="ngx-footer">    
+        <!-- Footer content here! -->
+      </footer>
     </div>
-    <footer class="ngx-footer">
-      <!-- Footer content here! -->
-    </footer>
-</div>
+  </div>
 ```
 If you notice the component comes with some attributes, in the next table will be explained:
 
@@ -350,25 +318,11 @@ If you notice the component comes with some attributes, in the next table will b
 | backdrop | string | rgba(0, 0, 0, 0.5) | Set the backdrop color fo the sidebar |
 | place | string | left | Set the position fo the sidebar |
 | width | string | 300px | Set the sidebar width |
-| background | string | whitesmoke | Set the sidebar background |
-| top | string | 0 | Set the 'top' position of the sidebar |  
+| background | string | whitesmoke | Set the sidebar background |  
 | [css: any] | string | - | This field can allow any css rules |
 
-If you use the sidebar with the header content and footer classes you should wrap it to avoid overlapping:
-```scss
-  .ngx-header {
-    /* If options.place: left */
-    margin-left: 300px;
-  }
-  .ng-content {
-    /* If options.place: left */
-    margin-left: 300px;
-  }
-  .ngx-footer {
-    /* If options.place: left */
-    margin-left: 300px;
-  }
-```
+(PD: If you use the sidebar with the ngx-header, ngx-content and ngx-footer classes you should add padding to the before comented classes to avoid overlapping.)
+
 The main style file of the library has a media query so don't worry about the margin when the sidebar enter on mobile mode.
 
 **#toggle: & (isMobile):**
@@ -391,28 +345,31 @@ export class AppComponent implements OnInit {
   @ViewChild('toggle') public toggle: NgxSidebarComponent;
   // User sidebar options... (optional)
   public sidebarOptions: any = {
-      background: 'orange',
-      top: '70px',
+      background: 'orange'
   };
-  
-  title = 'app';
+  public isopen = false;
 
   ngOnInit(): void {
   }
 
-  // Triggered when sidebar component emit
+  // Triggered when sidebar component emit mobile state
   handleMobile(event: boolean) {
-    // PD: If you wanna change the options on mobile or desktop mode you need to re-instance the 'options' object to triggers trigger the changes on the sidebar component
+    // PD: If you wanna change the options on mobile or desktop mode you need to re-instance the 'options' object to triggers the onChanges lifecycle hook on the sidebar component
+    // EXAMPLE...
     if (event) {
-      this.sidebarOptions = Object.assign({}, this.sidebarOptions, { top: '0' });
+      this.sidebarOptions = Object.assign({}, this.sidebarOptions, { background: 'orange' });
     } else {
-      this.sidebarOptions = Object.assign({}, this.sidebarOptions, { top: '70px' });
+      this.sidebarOptions = Object.assign({}, this.sidebarOptions, { background: 'aqua' });
     }
 
   }
+  // Triggered when sidebar component emit open state
+  handleOpen(open: boolean): void {
+    // Some code if sidebar it's onen or close
+  }
   // Hide/Show sidebar
   handleToggle(): void {
-    // Call the 'onToggle()' method from Sidebar component
+    // Call the 'onToggle()' method to hide or show the Sidebar component
     this.toggle.onToggle();
   }
 }

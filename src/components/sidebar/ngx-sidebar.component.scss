@@ -1,47 +1,53 @@
-.ngx-sidebar {
-  height: 100%;
+.ngx-backdrop {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   position: fixed;
-  z-index: 99;
-  transition: background 0.4s ease-in-out, width 0.1s linear; 
+  transition: background 0.4s ease-in-out, z-index 0.1s linear; 
   transition-delay: 0s, 0.5s;
+  display: none;
   &.mobile {
+    display: block;
     &.close {
-      width: 0%;
+      z-index: -1;
       transition: none;
+      display: none;
     }
     &.open {
-      width: 100%;
       transition: none;
     }
     &.anim-close {
+      z-index: -1;
+      display: none;
       background: transparent !important;
-      width: 0;
     }
     &.anim-open {
-      width: 100%;
       transition-delay: 0.1s, 0s;
     }
   }
-  .sidebar-content {
-    height: inherit;
-    position: absolute;
-    overflow: hidden;
-    transition: transform 0.3s ease-in-out;
-    &.left {
-      &.close {
-        transform: translateX(-100%);
-      }
-      &.open {
-        transform: translateX(0);
-      }
+}
+.ngx-sidebar {
+  height: 100%;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  transition: transform 0.3s ease-in-out;
+  z-index: 98;
+  &.left {
+    &.close {
+      transform: translateX(-100%);
     }
-    &.right {
-      &.close {
-        transform: translateX(100%);
-      }
-      &.open {
-        transform: translateX(0);
-      }
+    &.open {
+      transform: translateX(0);
+    }
+  }
+  &.right {
+    &.close {
+      transform: translateX(100%);
+    }
+    &.open {
+      transform: translateX(0);
     }
   }
 }
