@@ -5,18 +5,14 @@
   [class.close]="!toggle && !defaultProps.animated"
   [class.anim-open]="toggle && defaultProps.animated"
   [class.anim-close]="!toggle && defaultProps.animated" 
-  [ngStyle]="setBackDrop()" class="ngx-backdrop">
+  [ngStyle]="setBackDrop()"
+  class="ngx-backdrop">
 </div>
 <!-- SIDEBAR -->
 <div 
   [class.mobile]="screenSize <= 1100"
-  [ngStyle]="setContent()" 
+  [ngStyle]="setContent()"
+  [ngClass]="handleContentClasses()" 
   class="ngx-sidebar">
   <ng-content></ng-content>
 </div>
-<!--
-  [ngClass]="handleContentClasses()"
-(mouseover)="!mobile ? onScroll(true, true) : '' "
-  (mouseout)="!mobile ? onScroll(false) : ''"
-
--->

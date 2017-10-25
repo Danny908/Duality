@@ -310,7 +310,7 @@ If you notice the component comes with some attributes, in the next table will b
 
 **[options]:**
 
-[options] allows the next values
+[options] comes with the next values
 
 | Paramter | Type | Default | Description |
 |----------|------|---------|-------------|
