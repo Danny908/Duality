@@ -13,7 +13,6 @@
     visibility: visible;
     &.close {
       opacity: 0;
-      z-index: -1;
       transition: none;
       visibility: hidden;
     }
@@ -22,8 +21,7 @@
       transition: none;
     }
     &.anim-close {
-      opacity: 0;
-      z-index: -1;
+      opacity: 0;;
       visibility: hidden;
       transition-delay: 0s, 0.4s;
     }

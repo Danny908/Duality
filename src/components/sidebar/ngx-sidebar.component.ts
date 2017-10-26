@@ -7,7 +7,8 @@ import {
   Input,
   Renderer2,
   ElementRef,
-  Inject
+  Inject,
+  ViewChild
 } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 
@@ -20,12 +21,19 @@ import { SideBar, Document } from '../../core/types/types';
 })
 
 export class NgxSidebarComponent implements OnInit, OnChanges {
+  @ViewChild('sidebar') public sidebar: ElementRef;
+  @ViewChild('backdrop') public backdrop: ElementRef;
   @Input() public options: any;
   @Output() public isMobile = new EventEmitter<boolean>();
   @Output() public isOpen = new EventEmitter<boolean>();
   toggle = true;
   screenSize: number;
   mobile: boolean;
+  pointerX: any = {
+    start : 0,
+    end: 0,
+    dragged: false
+  };
   defaultProps: SideBar = {
     animated: true,
     backdrop: 'rgba(0, 0, 0, 0.5)',
@@ -44,15 +52,6 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
       renderer.listen('window', 'resize', (size) => {
         this.screenSize = size.target.innerWidth;
         this.getScreenType(this.screenSize);
-      });
-      // LISTEN CLICKS ON SIDEBAR COMPONENT
-      el.nativeElement.addEventListener('click', (event: any) => {
-        if (event.target['className'].includes('ngx-backdrop')) {
-          this.toggle = false;
-          this.isOpen.emit(this.toggle);
-        } else {
-          event.stopPropagation();
-        }
       });
   }
 
@@ -158,6 +157,62 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
   // SHOW-HIDE SIDEBAR
   onToggle(status?: boolean): void {
     this.toggle = status ? status : !this.toggle;
+    this.isOpen.emit(this.toggle);
+  }
+  // SWIPE ANIMATION
+  onSwipe(event: any): void {
+    // PULL
+    if (event.type === 'mousemove' && event.buttons === 1) {
+      this.pointerX.dragged = true;
+      this.swipeDrag(true, event);
+    }
+    // RELEASE
+    if (event.type === 'mouseup' && this.pointerX.start > 0 && this.pointerX.dragged) {
+      this.swipeDrag(false, event);
+    }
+    if (event.type === 'click') {
+      if (this.pointerX.dragged) {
+        this.pointerX.dragged = false;
+        return;
+      }
+      this.swipeHide();
+    }
+  }
+
+  swipeTouch(): void {
+
+  } 
+
+  swipeDrag(status: boolean, event: any): void {
+    switch (status) {
+      // SWIPE SIDEBAR
+      case true:
+        this.pointerX.start = !this.pointerX.start ? event.x : this.pointerX.start;
+        this.sidebar.nativeElement.style.transition = 'none';
+        this.sidebar.nativeElement.style.transform = this.defaultProps.place === 'left' ?
+          `translateX(-${this.pointerX.start - event.x}px)` : `translateX(${0 + event.x}px)`;
+          console.log('mouse axis x', this.pointerX.start);
+        break;
+      // RELEASE SIDEBAR
+      case false:
+        this.pointerX.start = 0;
+        this.sidebar.nativeElement.style.removeProperty('transition');
+        this.sidebar.nativeElement.style.removeProperty('transform');
+        this.backdrop.nativeElement.style.removeProperty('opacity');
+
+        const sidebarAxis = this.sidebar.nativeElement.getBoundingClientRect().x < 0 ?
+        this.sidebar.nativeElement.getBoundingClientRect().x * -1 :
+        this.sidebar.nativeElement.getBoundingClientRect().x;
+        console.log('x axis', sidebarAxis);
+        if ((sidebarAxis * 100) /  this.sidebar.nativeElement.getBoundingClientRect().width >= 55) {
+          this.swipeHide();
+        }
+        break;
+    }
+  }
+
+  swipeHide(): void {
+    this.toggle = false;
     this.isOpen.emit(this.toggle);
   }
 }

@@ -1,18 +1,31 @@
 <!-- BACKDROP -->
-<div 
+<div
+  #backdrop
   [class.mobile]="screenSize <= 1100" 
   [class.open]="toggle && !defaultProps.animated" 
   [class.close]="!toggle && !defaultProps.animated"
   [class.anim-open]="toggle && defaultProps.animated"
   [class.anim-close]="!toggle && defaultProps.animated" 
   [ngStyle]="setBackDrop()"
+  (click)="onSwipe($event)"
+  (mousemove)="defaultProps.animated ? onSwipe($event): ''"
+  (mouseup)="defaultProps.animated ? onSwipe($event): ''"
+  (touchstart)="defaultProps.animated ? onSwipe($event): ''"
+  (touchmove)="defaultProps.animated ? onSwipe($event): ''"
+  (touchend)="defaultProps.animated ? onSwipe($event): ''"
   class="ngx-backdrop">
 </div>
 <!-- SIDEBAR -->
 <div 
+  #sidebar
   [class.mobile]="screenSize <= 1100"
   [ngStyle]="setContent()"
-  [ngClass]="handleContentClasses()" 
+  [ngClass]="handleContentClasses()"
+  (mousemove)="defaultProps.animated ? onSwipe($event): ''"
+  (mouseup)="defaultProps.animated ? onSwipe($event): ''"
+  (touchstart)="defaultProps.animated ? onSwipe($event): ''"
+  (touchmove)="defaultProps.animated ? onSwipe($event): ''"
+  (touchend)="defaultProps.animated ? onSwipe($event): ''" 
   class="ngx-sidebar">
   <ng-content></ng-content>
 </div>
