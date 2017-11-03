@@ -1,18 +1,18 @@
 import {
   Component,
+  ElementRef,
+  EventEmitter,
+  Inject,
+  Input,
+  OnChanges,
   OnInit,
   Output,
-  OnChanges,
-  EventEmitter,
-  Input,
   Renderer2,
-  ElementRef,
-  Inject,
   ViewChild
 } from '@angular/core';
-import { DOCUMENT } from '@angular/platform-browser';
+import { Document, SideBar } from '../../core/types/types';
 
-import { SideBar, Document } from '../../core/types/types';
+import { DOCUMENT } from '@angular/platform-browser';
 
 @Component({
   selector: 'ngx-sidebar',
@@ -209,23 +209,41 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
         this.pointerX.dragged = false;
         return;
       }
-      this.swipeHide();
+      this.onToggle(false);
     }
   }
 
+  // HANDLE SWIPE TRANSLATE
+  onTranslate(position: string, event: any): number {
+    if (!this.pointerX.start ||
+        position === 'left' && event.x > this.pointerX.start ||
+        position !== 'left' && event.x < this.pointerX.start) {
+          this.pointerX.start = event.x;
+    } else {
+      this.pointerX.start = this.pointerX.start;
+    }
+
+    if (position === 'left') {
+      return -(this.pointerX.start - event.x) <= -1 ? -(this.pointerX.start - event.x) : 0;
+    } else {
+      return (event.x - this.pointerX.start) >= 0 ? event.x - this.pointerX.start : 0;
+    }
+  }
+
+  // TOUCH GESTURES
   swipeTouch(): void {
 
-  } 
+  }
 
+  // MOUSE GESTURES
   swipeDrag(status: boolean, event: any): void {
     switch (status) {
       // SWIPE SIDEBAR
       case true:
-        this.pointerX.start = !this.pointerX.start ? event.x : this.pointerX.start;
         this.sidebar.nativeElement.style.transition = 'none';
-        this.sidebar.nativeElement.style.transform = this.defaultProps.place === 'left' ?
-          `translateX(-${this.pointerX.start - event.x}px)` : `translateX(${0 + event.x}px)`;
-          console.log('mouse axis x', this.pointerX.start);
+        this.sidebar.nativeElement.style.transform =
+          `translateX(${this.onTranslate(this.defaultProps.place, event)}px)`;
+
         break;
       // RELEASE SIDEBAR
       case false:
@@ -237,16 +255,20 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
         const sidebarAxis = this.sidebar.nativeElement.getBoundingClientRect().x < 0 ?
         this.sidebar.nativeElement.getBoundingClientRect().x * -1 :
         this.sidebar.nativeElement.getBoundingClientRect().x;
-        console.log('x axis', sidebarAxis);
-        if ((sidebarAxis * 100) /  this.sidebar.nativeElement.getBoundingClientRect().width >= 55) {
-          this.swipeHide();
+        if (this.defaultProps.place === 'left') {
+          if ((sidebarAxis * 100) /
+            this.sidebar.nativeElement.getBoundingClientRect().width >= 55) {
+              this.onToggle(false);
+          }
+        } else {
+          const desplaced = this.backdrop.nativeElement.getBoundingClientRect().width - sidebarAxis;
+          const sideWidth = this.sidebar.nativeElement.getBoundingClientRect().width;
+          console.log((desplaced * 100) / sideWidth, desplaced);
+          if ((((desplaced * 100) / sideWidth - 100) ) < -55) {
+            this.onToggle(false);
+          }
         }
         break;
     }
-  }
-
-  swipeHide(): void {
-    this.toggle = false;
-    this.isOpen.emit(this.toggle);
   }
 }
