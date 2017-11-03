@@ -195,12 +195,12 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
   }
   // SWIPE ANIMATION
   onSwipe(event: any): void {
-    // PULL
+    // PULL MOUSE
     if (event.type === 'mousemove' && event.buttons === 1) {
       this.pointerX.dragged = true;
       this.swipeDrag(true, event);
     }
-    // RELEASE
+    // RELEASE MOUSE
     if (event.type === 'mouseup' && this.pointerX.start > 0 && this.pointerX.dragged) {
       this.swipeDrag(false, event);
     }
@@ -211,9 +211,12 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
       }
       this.onToggle(false);
     }
+
+    // PULL TOUCH
+    this.swipeTouch(event.type, event);
   }
 
-  // HANDLE SWIPE TRANSLATE
+  // HANDLE SWIPE TRANSLATION
   onTranslate(position: string, event: any): number {
     if (!this.pointerX.start ||
         position === 'left' && event.x > this.pointerX.start ||
@@ -231,12 +234,21 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
   }
 
   // TOUCH GESTURES
-  swipeTouch(): void {
-
+  swipeTouch(status: string, event: TouchEvent): void {
+    switch (status) {
+      case 'touchstart':
+        this.pointerX.start = event.changedTouches[0].clientX;
+        break;
+      case 'touchmove':
+      console.log(this.pointerX.start = event.changedTouches[0].clientX);
+        break;
+      case 'touchend':
+        break;
+    }
   }
 
   // MOUSE GESTURES
-  swipeDrag(status: boolean, event: any): void {
+  swipeDrag(status: boolean, event: MouseEvent): void {
     switch (status) {
       // SWIPE SIDEBAR
       case true:
