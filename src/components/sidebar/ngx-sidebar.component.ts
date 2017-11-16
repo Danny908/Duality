@@ -177,5 +177,4 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
   //   }
   // }
 
-  
 }
