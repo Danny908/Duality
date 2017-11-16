@@ -1,31 +1,41 @@
 <!-- BACKDROP -->
 <div
   #backdrop
-  [class.mobile]="screenSize <= 1100" 
-  [class.open]="toggle && !defaultProps.animated" 
-  [class.close]="!toggle && !defaultProps.animated"
-  [class.anim-open]="toggle && defaultProps.animated"
-  [class.anim-close]="!toggle && defaultProps.animated" 
-  [ngStyle]="setBackDrop()"
+  class="ngx-backdrop"
+  [style.background]="defaultProps.backdrop"
+  [class.mobile]="status.isMobile" 
+  [class.open]="status.isOpen && !defaultProps.animated" 
+  [class.close]="!status.isOpen && !defaultProps.animated"
+  [class.anim-open]="status.isOpen && defaultProps.animated"
+  [class.anim-close]="!status.isOpen && defaultProps.animated"
   (click)="onSwipe($event)"
   (mousemove)="defaultProps.animated ? onSwipe($event): ''"
-  (mouseup)="defaultProps.animated ? onSwipe($event): ''"
-  (touchstart)="defaultProps.animated ? onSwipe($event): ''"
-  (touchmove)="defaultProps.animated ? onSwipe($event): ''"
-  (touchend)="defaultProps.animated ? onSwipe($event): ''"
-  class="ngx-backdrop">
+  (mouseup)="defaultProps.animated ? onSwipe($event): ''">
 </div>
 <!-- SIDEBAR -->
 <div 
   #sidebar
-  [class.mobile]="screenSize <= 1100"
-  [ngStyle]="setContent()"
-  [ngClass]="handleContentClasses()"
+  class="ngx-sidebar"
+  [ngClass]="sidebarAnimatedClasses()"
+  [ngStyle]="sidebarStyles()"
+  [class.mobile]="status.isMobile"
   (mousemove)="defaultProps.animated ? onSwipe($event): ''"
-  (mouseup)="defaultProps.animated ? onSwipe($event): ''"
+  (mouseup)="defaultProps.animated ? onSwipe($event): ''">
+  <ng-content></ng-content>
+</div>
+<!-- 
+  back
+  
+  (touchstart)="defaultProps.animated ? onSwipe($event): ''"
+  (touchmove)="defaultProps.animated ? onSwipe($event): ''"
+  (touchend)="defaultProps.animated ? onSwipe($event): ''"
+ -->
+
+ <!-- 
+   side
+  
+  
   (touchstart)="defaultProps.animated ? onSwipe($event): ''"
   (touchmove)="defaultProps.animated ? onSwipe($event): ''"
   (touchend)="defaultProps.animated ? onSwipe($event): ''" 
-  class="ngx-sidebar">
-  <ng-content></ng-content>
-</div>
+  -->
