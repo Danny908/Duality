@@ -10,7 +10,10 @@
   [class.anim-close]="!status.isOpen && defaultProps.animated"
   (click)="onSwipe($event)"
   (mousemove)="defaultProps.animated ? onSwipe($event): ''"
-  (mouseup)="defaultProps.animated ? onSwipe($event): ''">
+  (mouseup)="defaultProps.animated ? onSwipe($event): ''"
+  (touchstart)="defaultProps.animated ? onSwipe($event): ''"
+  (touchmove)="defaultProps.animated ? onSwipe($event): ''"
+  (touchend)="defaultProps.animated ? onSwipe($event): ''">
 </div>
 <!-- SIDEBAR -->
 <div 
@@ -20,22 +23,9 @@
   [ngStyle]="sidebarStyles()"
   [class.mobile]="status.isMobile"
   (mousemove)="defaultProps.animated ? onSwipe($event): ''"
-  (mouseup)="defaultProps.animated ? onSwipe($event): ''">
+  (mouseup)="defaultProps.animated ? onSwipe($event): ''"
+  (touchstart)="defaultProps.animated ? onSwipe($event): ''"
+  (touchmove)="defaultProps.animated ? onSwipe($event): ''"
+  (touchend)="defaultProps.animated ? onSwipe($event): ''" >
   <ng-content></ng-content>
 </div>
-<!-- 
-  back
-  
-  (touchstart)="defaultProps.animated ? onSwipe($event): ''"
-  (touchmove)="defaultProps.animated ? onSwipe($event): ''"
-  (touchend)="defaultProps.animated ? onSwipe($event): ''"
- -->
-
- <!-- 
-   side
-  
-  
-  (touchstart)="defaultProps.animated ? onSwipe($event): ''"
-  (touchmove)="defaultProps.animated ? onSwipe($event): ''"
-  (touchend)="defaultProps.animated ? onSwipe($event): ''" 
-  -->

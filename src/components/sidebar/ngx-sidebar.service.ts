@@ -43,12 +43,12 @@ export class NgxSidebarService {
       }
       return false;
     }
+    // Touch gestures handler
+    this.swipeTouch(event.type, event);
     return true;
-    // PULL TOUCH
-    // this.swipeTouch(event.type, event);
   }
 
-  // Mouse drag geastures
+  // Mouse drag gestures
   swipeDrag(
     position: string,
     status: boolean,
@@ -91,6 +91,21 @@ export class NgxSidebarService {
     }
     return true;
   }
+
+  // Toch swipe gestures
+  swipeTouch(status: string, event: TouchEvent): void {
+    switch (status) {
+      case 'touchstart':
+        this.swipeStatus.start = event.changedTouches[0].clientX;
+        break;
+      case 'touchmove':
+        console.log(this.swipeStatus.start = event.changedTouches[0].clientX);
+        break;
+      case 'touchend':
+        break;
+    }
+  }
+
 
   // Apply translation when swipe
   doTranslate(position: string, event: any): number {

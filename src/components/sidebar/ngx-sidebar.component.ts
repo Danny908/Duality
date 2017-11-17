@@ -162,19 +162,4 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
       this.onToggle(false);
     }
   }
-
-  // TOUCH GESTURES
-  // swipeTouch(status: string, event: TouchEvent): void {
-  //   switch (status) {
-  //     case 'touchstart':
-  //       this.pointerX.start = event.changedTouches[0].clientX;
-  //       break;
-  //     case 'touchmove':
-  //     console.log(this.pointerX.start = event.changedTouches[0].clientX);
-  //       break;
-  //     case 'touchend':
-  //       break;
-  //   }
-  // }
-
 }

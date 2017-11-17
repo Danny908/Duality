@@ -30,7 +30,10 @@ import { NgxSidebarService } from './ngx-sidebar.service';
       [class.anim-close]="!status.isOpen && defaultProps.animated"
       (click)="onSwipe($event)"
       (mousemove)="defaultProps.animated ? onSwipe($event): ''"
-      (mouseup)="defaultProps.animated ? onSwipe($event): ''">
+      (mouseup)="defaultProps.animated ? onSwipe($event): ''"
+      (touchstart)="defaultProps.animated ? onSwipe($event): ''"
+      (touchmove)="defaultProps.animated ? onSwipe($event): ''"
+      (touchend)="defaultProps.animated ? onSwipe($event): ''">
     </div>
     <!-- SIDEBAR -->
     <div 
@@ -40,25 +43,12 @@ import { NgxSidebarService } from './ngx-sidebar.service';
       [ngStyle]="sidebarStyles()"
       [class.mobile]="status.isMobile"
       (mousemove)="defaultProps.animated ? onSwipe($event): ''"
-      (mouseup)="defaultProps.animated ? onSwipe($event): ''">
+      (mouseup)="defaultProps.animated ? onSwipe($event): ''"
+      (touchstart)="defaultProps.animated ? onSwipe($event): ''"
+      (touchmove)="defaultProps.animated ? onSwipe($event): ''"
+      (touchend)="defaultProps.animated ? onSwipe($event): ''" >
       <ng-content></ng-content>
     </div>
-    <!-- 
-      back
-  
-      (touchstart)="defaultProps.animated ? onSwipe($event): ''"
-      (touchmove)="defaultProps.animated ? onSwipe($event): ''"
-      (touchend)="defaultProps.animated ? onSwipe($event): ''"
-     -->
-
-     <!-- 
-       side
-  
-  
-      (touchstart)="defaultProps.animated ? onSwipe($event): ''"
-      (touchmove)="defaultProps.animated ? onSwipe($event): ''"
-      (touchend)="defaultProps.animated ? onSwipe($event): ''" 
-      -->
   `,
   styles: [`
     .ngx-backdrop{top:0;right:0;bottom:0;left:0;position:fixed;z-index:99;transition:opacity 0.4s ease-in-out, visibility 0.1s linear;transition-delay:0s, 0.5s;display:none}.ngx-backdrop.mobile{display:block;visibility:visible}.ngx-backdrop.mobile.close{opacity:0;transition:none;visibility:hidden}.ngx-backdrop.mobile.open{opacity:1;transition:none}.ngx-backdrop.mobile.anim-close{opacity:0;visibility:hidden;transition-delay:0s, 0.4s}.ngx-backdrop.mobile.anim-open{opacity:1;transition-delay:0.1s, 0s}.ngx-sidebar{height:100%;position:fixed;margin:0;padding:0;overflow-x:hidden;z-index:100;transition:transform 0.3s ease-in-out}.ngx-sidebar.left.close{transform:translateX(-100%)}.ngx-sidebar.left.open{transform:translateX(0)}.ngx-sidebar.right.close{transform:translateX(100%)}.ngx-sidebar.right.open{transform:translateX(0)}
@@ -201,25 +191,9 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
         this.sidebar,
         this.backdrop
       );
-    console.log(toggle);
+
     if (!toggle) {
       this.onToggle(false);
     }
   }
-
-  // TOUCH GESTURES
-  // swipeTouch(status: string, event: TouchEvent): void {
-  //   switch (status) {
-  //     case 'touchstart':
-  //       this.pointerX.start = event.changedTouches[0].clientX;
-  //       break;
-  //     case 'touchmove':
-  //     console.log(this.pointerX.start = event.changedTouches[0].clientX);
-  //       break;
-  //     case 'touchend':
-  //       break;
-  //   }
-  // }
-
-  
 }
