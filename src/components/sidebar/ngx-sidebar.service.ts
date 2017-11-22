@@ -6,6 +6,7 @@ import { Window } from '../../core/types/types';
 export class NgxSidebarService {
   private swipeStatus  = {
     start : 0,
+    moved: 0,
     end: 0,
     dragged: false
   };
@@ -26,6 +27,7 @@ export class NgxSidebarService {
 
   // Swipe event listener
   swipe(position: string, event: any, sidebarRef: ElementRef, backdropRef: ElementRef): boolean {
+    console.log(event.type);
     // Drag mouse
     if (event.type === 'mousemove' && event.buttons === 1) {
       this.swipeStatus.dragged = true;
@@ -44,8 +46,7 @@ export class NgxSidebarService {
       return false;
     }
     // Touch gestures handler
-    this.swipeTouch(event.type, event);
-    return true;
+    return this.swipeTouch(position, event.type, event, sidebarRef, backdropRef);
   }
 
   // Mouse drag gestures
@@ -61,8 +62,7 @@ export class NgxSidebarService {
       case true:
         sidebarRef.nativeElement.style.transition = 'none';
         sidebarRef.nativeElement.style.transform =
-          `translateX(${this.doTranslate(position, event)}px)`;
-
+          `translateX(${this.doTranslate(position, event.x)}px)`;
         break;
       // Release sidebar
       case false:
@@ -82,45 +82,66 @@ export class NgxSidebarService {
         } else {
           const desplaced = backdropRef.nativeElement.getBoundingClientRect().width - sidebarAxis;
           const sideWidth = sidebarRef.nativeElement.getBoundingClientRect().width;
-          console.log((desplaced * 100) / sideWidth, desplaced);
+          if ((((desplaced * 100) / sideWidth - 100) ) < -55) {
+            return false;
+          }
+        }
+        break;
+      default:
+        return true;
+    }
+  }
+
+  // Toch swipe gestures
+  swipeTouch(position: string ,status: string, event: TouchEvent,  sidebarRef: ElementRef, backdropRef: ElementRef): boolean {
+    switch (status) {
+      case 'touchmove':
+        // this.swipeStatus.start = event.changedTouches[0].clientX;
+        sidebarRef.nativeElement.style.transition = 'none';
+        sidebarRef.nativeElement.style.transform =
+          `translateX(${this.doTranslate(position, event.changedTouches[0].clientX)}px)`;
+        break;
+      case 'touchend':
+        this.swipeStatus.start = 0;
+        sidebarRef.nativeElement.style.removeProperty('transition');
+        sidebarRef.nativeElement.style.removeProperty('transform');
+        backdropRef.nativeElement.style.removeProperty('opacity');
+
+        const sidebarAxis = sidebarRef.nativeElement.getBoundingClientRect().x < 0 ?
+        sidebarRef.nativeElement.getBoundingClientRect().x * -1 :
+        sidebarRef.nativeElement.getBoundingClientRect().x;
+
+        console.log(sidebarAxis);
+        if (position === 'left') {
+          if ((sidebarAxis * 100) /
+            sidebarRef.nativeElement.getBoundingClientRect().width >= 55) {
+              return false;
+          }
+        } else {
+          const desplaced = backdropRef.nativeElement.getBoundingClientRect().width - sidebarAxis;
+          const sideWidth = sidebarRef.nativeElement.getBoundingClientRect().width;
           if ((((desplaced * 100) / sideWidth - 100) ) < -55) {
             return false;
           }
         }
         break;
     }
-    return true;
   }
-
-  // Toch swipe gestures
-  swipeTouch(status: string, event: TouchEvent): void {
-    switch (status) {
-      case 'touchstart':
-        this.swipeStatus.start = event.changedTouches[0].clientX;
-        break;
-      case 'touchmove':
-        console.log(this.swipeStatus.start = event.changedTouches[0].clientX);
-        break;
-      case 'touchend':
-        break;
-    }
-  }
-
 
   // Apply translation when swipe
-  doTranslate(position: string, event: any): number {
+  doTranslate(position: string, movement: any): number {
     if (!this.swipeStatus.start ||
-        position === 'left' && event.x > this.swipeStatus.start ||
-        position !== 'left' && event.x < this.swipeStatus.start) {
-          this.swipeStatus.start = event.x;
+        position === 'left' && movement > this.swipeStatus.start ||
+        position !== 'left' && movement < this.swipeStatus.start) {
+          this.swipeStatus.start = movement;
     } else {
       this.swipeStatus.start = this.swipeStatus.start;
     }
 
     if (position === 'left') {
-      return -(this.swipeStatus.start - event.x) <= -1 ? -(this.swipeStatus.start - event.x) : 0;
+      return -(this.swipeStatus.start - movement) <= -1 ? -(this.swipeStatus.start - movement) : 0;
     } else {
-      return (event.x - this.swipeStatus.start) >= 0 ? event.x - this.swipeStatus.start : 0;
+      return (movement - this.swipeStatus.start) >= 0 ? movement - this.swipeStatus.start : 0;
     }
   }
 
