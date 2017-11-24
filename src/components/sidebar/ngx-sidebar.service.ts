@@ -27,26 +27,32 @@ export class NgxSidebarService {
 
   // Swipe event listener
   swipe(position: string, event: any, sidebarRef: ElementRef, backdropRef: ElementRef): boolean {
-    console.log(event.type);
-    // Drag mouse
-    if (event.type === 'mousemove' && event.buttons === 1) {
-      this.swipeStatus.dragged = true;
-      return this.swipeDrag(position, true, event, sidebarRef, backdropRef);
+    switch (event.type) {
+      // Drag mouse
+      case 'mousemove':
+        if (event.buttons === 1) {
+          this.swipeStatus.dragged = true;
+          return this.swipeDrag(position, true, event, sidebarRef, backdropRef);
+        }
+        break;
+      // Release mouse
+      case 'mouseup':
+        if (this.swipeStatus.start > 0 && this.swipeStatus.dragged) {
+          return this.swipeDrag(position, false, event, sidebarRef, backdropRef);
+        }
+        break;
+       // Click sidebar
+      case 'click':
+        if (this.swipeStatus.dragged) {
+          this.swipeStatus.dragged = false;
+          return true;
+        }
+        return false;
+      // default: return true;
     }
-    // Release mouse
-    if (event.type === 'mouseup' && this.swipeStatus.start > 0 && this.swipeStatus.dragged) {
-      return this.swipeDrag(position, false, event, sidebarRef, backdropRef);
-    }
-    // Click sidebar backdrop
-    if (event.type === 'click') {
-      if (this.swipeStatus.dragged) {
-        this.swipeStatus.dragged = false;
-        return true;
-      }
-      return false;
-    }
+    return true;
     // Touch gestures handler
-    return this.swipeTouch(position, event.type, event, sidebarRef, backdropRef);
+    // return this.swipeTouch(position, event.type, event, sidebarRef, backdropRef);
   }
 
   // Mouse drag gestures

@@ -42,6 +42,7 @@ import { NgxSidebarService } from './ngx-sidebar.service';
       [ngClass]="sidebarAnimatedClasses()"
       [ngStyle]="sidebarStyles()"
       [class.mobile]="status.isMobile"
+      (click)="onSwipe($event)"
       (mousemove)="defaultProps.animated ? onSwipe($event): ''"
       (mouseup)="defaultProps.animated ? onSwipe($event): ''"
       (touchstart)="defaultProps.animated ? onSwipe($event): ''"
