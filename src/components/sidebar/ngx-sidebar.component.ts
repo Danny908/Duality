@@ -157,7 +157,7 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
         this.sidebar,
         this.backdrop
       );
-
+    console.log(toggle);
     if (!toggle) {
       this.onToggle(false);
     }

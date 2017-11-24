@@ -42,7 +42,6 @@ import { NgxSidebarService } from './ngx-sidebar.service';
       [ngClass]="sidebarAnimatedClasses()"
       [ngStyle]="sidebarStyles()"
       [class.mobile]="status.isMobile"
-      (click)="onSwipe($event)"
       (mousemove)="defaultProps.animated ? onSwipe($event): ''"
       (mouseup)="defaultProps.animated ? onSwipe($event): ''"
       (touchstart)="defaultProps.animated ? onSwipe($event): ''"
@@ -192,7 +191,7 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
         this.sidebar,
         this.backdrop
       );
-
+    console.log(toggle);
     if (!toggle) {
       this.onToggle(false);
     }
