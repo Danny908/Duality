@@ -20,11 +20,10 @@ export class NgxSidebarService {
     }
     return isMobile;
   }
-   // Get the current screen size
-   screenSize(): number {
+  // Get the current screen size
+  screenSize(): number {
     return window.screen.width;
   }
-
   // Swipe event listener
   swipe(position: string, event: any, sidebarRef: ElementRef, backdropRef: ElementRef): boolean {
     switch (event.type) {
@@ -41,7 +40,7 @@ export class NgxSidebarService {
           return this.doDrop(sidebarRef, backdropRef, position);
         }
         return true;
-       // Click sidebar
+      // Click sidebar
       case 'click':
         if (this.swipeStatus.dragged) {
           this.swipeStatus.dragged = false;
@@ -57,17 +56,6 @@ export class NgxSidebarService {
         return this.doDrop(sidebarRef, backdropRef, position);
       default:
         return true;
-    }
-  }
-
-  // Toch swipe gestures
-  swipeTouch(position: string ,status: string, event: TouchEvent,  sidebarRef: ElementRef, backdropRef: ElementRef): void {
-    switch (status) {
-      case 'touchmove':
-        break;
-      case 'touchend':
-       
-        break;
     }
   }
   // Drag sidebar
@@ -109,12 +97,10 @@ export class NgxSidebarService {
     } else {
       this.swipeStatus.start = this.swipeStatus.start;
     }
-
     if (position === 'left') {
       return -(this.swipeStatus.start - movement) <= -1 ? -(this.swipeStatus.start - movement) : 0;
     } else {
       return (movement - this.swipeStatus.start) >= 0 ? movement - this.swipeStatus.start : 0;
     }
   }
-
 }
