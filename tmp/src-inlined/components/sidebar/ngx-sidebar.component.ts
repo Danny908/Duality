@@ -10,9 +10,8 @@ import {
   Renderer2,
   ViewChild
 } from '@angular/core';
-import { Document, SideBar } from '../../core/types/types';
+import { SideBar, Status } from '../../core/types/types';
 
-import { DOCUMENT } from '@angular/platform-browser';
 import { NgxSidebarService } from './ngx-sidebar.service';
 
 @Component({
@@ -29,11 +28,11 @@ import { NgxSidebarService } from './ngx-sidebar.service';
       [class.anim-open]="status.isOpen && defaultProps.animated"
       [class.anim-close]="!status.isOpen && defaultProps.animated"
       (click)="onSwipe($event)"
-      (mousemove)="defaultProps.animated ? onSwipe($event): ''"
-      (mouseup)="defaultProps.animated ? onSwipe($event): ''"
-      (touchstart)="defaultProps.animated ? onSwipe($event): ''"
-      (touchmove)="defaultProps.animated ? onSwipe($event): ''"
-      (touchend)="defaultProps.animated ? onSwipe($event): ''">
+      (mousemove)="checkSwipe() ? onSwipe($event): ''"
+      (mouseup)="checkSwipe() ? onSwipe($event): ''"
+      (touchstart)="checkSwipe() ? onSwipe($event): ''"
+      (touchmove)="checkSwipe() ? onSwipe($event): ''"
+      (touchend)="checkSwipe() ? onSwipe($event): ''">
     </div>
     <!-- SIDEBAR -->
     <div 
@@ -42,11 +41,11 @@ import { NgxSidebarService } from './ngx-sidebar.service';
       [ngClass]="sidebarAnimatedClasses()"
       [ngStyle]="sidebarStyles()"
       [class.mobile]="status.isMobile"
-      (mousemove)="defaultProps.animated ? onSwipe($event): ''"
-      (mouseup)="defaultProps.animated ? onSwipe($event): ''"
-      (touchstart)="defaultProps.animated ? onSwipe($event): ''"
-      (touchmove)="defaultProps.animated ? onSwipe($event): ''"
-      (touchend)="defaultProps.animated ? onSwipe($event): ''" >
+      (mousemove)="checkSwipe() ? onSwipe($event): ''"
+      (mouseup)="checkSwipe() ? onSwipe($event): ''"
+      (touchstart)="checkSwipe() ? onSwipe($event): ''"
+      (touchmove)="checkSwipe() ? onSwipe($event): ''"
+      (touchend)="checkSwipe() ? onSwipe($event): ''">
       <ng-content></ng-content>
     </div>
   `,
@@ -61,7 +60,7 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
   @Input() public options: {};
   @Output() public isMobile = new EventEmitter<boolean>();
   @Output() public isOpen = new EventEmitter<boolean>();
-  public status: {[key: string]: any} = {
+  public status: Status = {
     isOpen: true,
     isMobile: false,
     screenSize: 0,
@@ -69,15 +68,14 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
   };
   public defaultProps: SideBar = {
     animated: true,
+    draggable: true,
     backdrop: 'rgba(0, 0, 0, 0.5)',
     place: 'left',
     width: '300px',
     background: 'whitesmoke',
   };
 
-
   constructor(
-    @Inject(DOCUMENT) private document: any,
     private ngxSidebarService: NgxSidebarService,
     private renderer: Renderer2,
     private el: ElementRef,
@@ -121,7 +119,7 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
   // Set sidebar styles
   sidebarStyles(): {} {
     // Remove unnecessary styles and non-css properties
-    const excludeParams = ['mobile', 'animated', 'backdrop', 'place', 'top'];
+    const excludeParams = ['animated', 'draggable', 'backdrop', 'place', 'top'];
     const styles = Object.assign(
       {},
       this.options,
@@ -191,9 +189,18 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
         this.sidebar,
         this.backdrop
       );
-    console.log(toggle);
     if (!toggle) {
       this.onToggle(false);
+    }
+  }
+
+  // Enable/Disable swipe
+  checkSwipe(): boolean {
+    console.log(this.defaultProps.animated,this.defaultProps.draggable);
+    if (this.defaultProps.animated && this.defaultProps.draggable) {
+      return true;
+    } else {
+      return false;
     }
   }
 }

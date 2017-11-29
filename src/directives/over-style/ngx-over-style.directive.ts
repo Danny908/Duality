@@ -1,43 +1,42 @@
-import { Directive, ElementRef, OnInit } from '@angular/core';
-
-import { Window, Document } from '../../core/types/types';
+import { Directive, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { Document, Window } from '../../core/types/types';
 
 @Directive({
     selector: '[ngxOverStyle]'
 })
 export class NgxOverStyleDirective implements OnInit {
-    public OS: string;
-    public BROWSER: string;
+    private os: string;
+    private browser: string;
     private _window: Window = window;
     private _document: Document = document;
 
-    constructor(private el: ElementRef) {}
-    public ngOnInit(): void {
-        // GET MACHINE OS...
+    constructor(private el: ElementRef, private renderer: Renderer2) {}
+    ngOnInit() {
+        // Get machine os...
         if (navigator.userAgent.includes('Macintosh')) {
-            this.OS = 'MAC';
+            this.os = 'mac';
         }
         if (navigator.userAgent.includes('Windows')) {
-            this.OS = 'WINDOWS';
+            this.os = 'windows';
         }
         if (navigator.userAgent.includes('Linux') && !navigator.userAgent.includes('Android')) {
-            this.OS = 'LINUX';
+            this.os = 'linux';
         }
         if (navigator.userAgent.includes('Linux') && navigator.userAgent.includes('Android')) {
-            this.OS = 'ANDROID';
+            this.os = 'android';
         }
         if (navigator.userAgent.includes('iPhone') || navigator.userAgent.includes('iPad')) {
-            this.OS = 'IPHONE';
+            this.os = 'iphone';
         }
-        // GET MACHINE BROWSER...
+        // Get machine browser...
         if (this._window['InstallTrigger']) {
-            this.BROWSER = 'FIREFOX';
+            this.browser = 'firefox';
         }
         if (this._window['opr']) {
-            this.BROWSER = 'OPERA';
+            this.browser = 'opera';
         }
         if (navigator.userAgent.search('Edge') > 0) {
-            this.BROWSER = 'EDGE';
+            this.browser = 'edge';
         }
         if (
             this._window['chrome'] &&
@@ -45,22 +44,21 @@ export class NgxOverStyleDirective implements OnInit {
             navigator.userAgent.search('Edge') < 0 &&
             navigator.vendor.includes('Google')
         ) {
-            this.BROWSER = 'CHROME';
+            this.browser = 'chrome';
         }
         if (this._document['documentMode']) {
-            this.BROWSER = 'IE';
+            this.browser = 'ie';
         }
         if (navigator.userAgent.search('Chrome') < 0 &&
             navigator.userAgent.search('Safari') > 0 &&
             navigator.vendor.includes('Apple')) {
-            this.BROWSER = 'SAFARI';
+            this.browser = 'safari';
         }
-        // SET CLASSES TO DOM...
         this.setClasses();
     }
-
-    public setClasses(): void {
-        this.el.nativeElement.classList.add(this.OS);
-        this.el.nativeElement.classList.add(this.BROWSER);
+    // Set classes to DOM...
+    setClasses(): void {
+        this.renderer.addClass(this.el.nativeElement, this.os);
+        this.renderer.addClass(this.el.nativeElement, this.browser);
     }
 }

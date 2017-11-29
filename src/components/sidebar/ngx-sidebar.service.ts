@@ -6,8 +6,6 @@ import { Window } from '../../core/types/types';
 export class NgxSidebarService {
   private swipeStatus  = {
     start : 0,
-    moved: 0,
-    end: 0,
     dragged: false
   };
   constructor(@Inject('Window') private window: Window) {}

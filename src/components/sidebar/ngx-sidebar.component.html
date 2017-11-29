@@ -9,11 +9,11 @@
   [class.anim-open]="status.isOpen && defaultProps.animated"
   [class.anim-close]="!status.isOpen && defaultProps.animated"
   (click)="onSwipe($event)"
-  (mousemove)="defaultProps.animated ? onSwipe($event): ''"
-  (mouseup)="defaultProps.animated ? onSwipe($event): ''"
-  (touchstart)="defaultProps.animated ? onSwipe($event): ''"
-  (touchmove)="defaultProps.animated ? onSwipe($event): ''"
-  (touchend)="defaultProps.animated ? onSwipe($event): ''">
+  (mousemove)="checkSwipe() ? onSwipe($event): ''"
+  (mouseup)="checkSwipe() ? onSwipe($event): ''"
+  (touchstart)="checkSwipe() ? onSwipe($event): ''"
+  (touchmove)="checkSwipe() ? onSwipe($event): ''"
+  (touchend)="checkSwipe() ? onSwipe($event): ''">
 </div>
 <!-- SIDEBAR -->
 <div 
@@ -22,10 +22,10 @@
   [ngClass]="sidebarAnimatedClasses()"
   [ngStyle]="sidebarStyles()"
   [class.mobile]="status.isMobile"
-  (mousemove)="defaultProps.animated ? onSwipe($event): ''"
-  (mouseup)="defaultProps.animated ? onSwipe($event): ''"
-  (touchstart)="defaultProps.animated ? onSwipe($event): ''"
-  (touchmove)="defaultProps.animated ? onSwipe($event): ''"
-  (touchend)="defaultProps.animated ? onSwipe($event): ''" >
+  (mousemove)="checkSwipe() ? onSwipe($event): ''"
+  (mouseup)="checkSwipe() ? onSwipe($event): ''"
+  (touchstart)="checkSwipe() ? onSwipe($event): ''"
+  (touchmove)="checkSwipe() ? onSwipe($event): ''"
+  (touchend)="checkSwipe() ? onSwipe($event): ''">
   <ng-content></ng-content>
 </div>

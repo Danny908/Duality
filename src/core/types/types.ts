@@ -6,7 +6,15 @@ export interface Document {
 }
 export interface SideBar {
   animated: boolean;
+  draggable: boolean;
   backdrop: string;
   place: string;
   [key: string]: any;
+}
+
+export interface Status {
+  isOpen: boolean;
+  isMobile: boolean;
+  screenSize: number;
+  prevMobile: any;
 }

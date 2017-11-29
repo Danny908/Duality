@@ -10,9 +10,8 @@ import {
   Renderer2,
   ViewChild
 } from '@angular/core';
-import { Document, SideBar } from '../../core/types/types';
+import { SideBar, Status } from '../../core/types/types';
 
-import { DOCUMENT } from '@angular/platform-browser';
 import { NgxSidebarService } from './ngx-sidebar.service';
 
 @Component({
@@ -27,7 +26,7 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
   @Input() public options: {};
   @Output() public isMobile = new EventEmitter<boolean>();
   @Output() public isOpen = new EventEmitter<boolean>();
-  public status: {[key: string]: any} = {
+  public status: Status = {
     isOpen: true,
     isMobile: false,
     screenSize: 0,
@@ -35,15 +34,14 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
   };
   public defaultProps: SideBar = {
     animated: true,
+    draggable: true,
     backdrop: 'rgba(0, 0, 0, 0.5)',
     place: 'left',
     width: '300px',
     background: 'whitesmoke',
   };
 
-
   constructor(
-    @Inject(DOCUMENT) private document: any,
     private ngxSidebarService: NgxSidebarService,
     private renderer: Renderer2,
     private el: ElementRef,
@@ -87,7 +85,7 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
   // Set sidebar styles
   sidebarStyles(): {} {
     // Remove unnecessary styles and non-css properties
-    const excludeParams = ['mobile', 'animated', 'backdrop', 'place', 'top'];
+    const excludeParams = ['animated', 'draggable', 'backdrop', 'place', 'top'];
     const styles = Object.assign(
       {},
       this.options,
@@ -159,6 +157,15 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
       );
     if (!toggle) {
       this.onToggle(false);
+    }
+  }
+
+  // Enable/Disable swipe
+  checkSwipe(): boolean {
+    if (this.defaultProps.animated && this.defaultProps.draggable) {
+      return true;
+    } else {
+      return false;
     }
   }
 }
