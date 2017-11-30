@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ngx-duality/src/components/sidebar/ngx-sidebar.service.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../index.html">All files</a> / <a href="index.html">ngx-duality/src/components/sidebar</a> ngx-sidebar.service.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">42.86% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>24/56</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">27.91% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>12/43</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">75% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>6/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">40.74% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>22/54</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { ElementRef, Inject, Injectable } from '@angular/core';
+&nbsp;
+import { Window } from '../../core/types/types';
+&nbsp;
+@Injectable()
+export class NgxSidebarService {
+  private swipeStatus  = {
+    start : 0,
+    dragged: false
+  };
+  constructor(@Inject('Window') private window: Window) {}
+  // Return true if mobile, false if desktop
+  screenType(screenSize: number, isMobile: boolean): boolean {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (screenSize &lt;= 1100 &amp;&amp; !isMobile) {
+<span class="cstat-no" title="statement not covered" >      return true;</span>
+    } else <span class="missing-if-branch" title="else path not taken" >E</span>if (screenSize &gt;= 1100 &amp;&amp; isMobile) {
+      return false;
+    }
+<span class="cstat-no" title="statement not covered" >    return isMobile;</span>
+  }
+  // Get the current screen size
+  screenSize(): number {
+    return window.screen.width;
+  }
+  // Swipe event listener
+  swipe(position: string, event: any, sidebarRef: ElementRef, backdropRef: ElementRef): boolean {
+    switch (event.type) {
+      // Drag element with mouse
+<span class="branch-0 cbranch-no" title="branch not covered" >      case 'mousemove':</span>
+<span class="cstat-no" title="statement not covered" >        if (event.buttons === 1) {</span>
+<span class="cstat-no" title="statement not covered" >          this.swipeStatus.dragged = true;</span>
+<span class="cstat-no" title="statement not covered" >          this.doDrag(sidebarRef, position, event.x);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return true;</span>
+      // Drop element with mouse
+<span class="branch-1 cbranch-no" title="branch not covered" >      case 'mouseup':</span>
+<span class="cstat-no" title="statement not covered" >        if (this.swipeStatus.start &gt; 0 &amp;&amp; this.swipeStatus.dragged) {</span>
+<span class="cstat-no" title="statement not covered" >          return this.doDrop(sidebarRef, backdropRef, position);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return true;</span>
+      // Click sidebar
+      case 'click':
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (this.swipeStatus.dragged) {
+<span class="cstat-no" title="statement not covered" >          this.swipeStatus.dragged = false;</span>
+<span class="cstat-no" title="statement not covered" >          return true;</span>
+        }
+        return false;
+      // Drag element touch
+<span class="branch-3 cbranch-no" title="branch not covered" >      case 'touchmove':</span>
+<span class="cstat-no" title="statement not covered" >        this.doDrag(sidebarRef, position, event.changedTouches[0].clientX);</span>
+<span class="cstat-no" title="statement not covered" >        return true;</span>
+      // Drop element touch
+<span class="branch-4 cbranch-no" title="branch not covered" >      case 'touchend':</span>
+<span class="cstat-no" title="statement not covered" >        return this.doDrop(sidebarRef, backdropRef, position);</span>
+<span class="branch-5 cbranch-no" title="branch not covered" >      default:</span>
+<span class="cstat-no" title="statement not covered" >        return true;</span>
+    }
+  }
+  // Drag sidebar
+<span class="fstat-no" title="function not covered" >  doDrag(</span>sidebarRef: ElementRef, position: string, movement: number): void {
+<span class="cstat-no" title="statement not covered" >    sidebarRef.nativeElement.style.transition = 'none';</span>
+<span class="cstat-no" title="statement not covered" >    sidebarRef.nativeElement.style.transform =</span>
+      `translateX(${this.doTranslate(position, movement)}px)`;
+  }
+  // Drop sidebar
+<span class="fstat-no" title="function not covered" >  doDrop(</span>sidebarRef: ElementRef, backdropRef: ElementRef, position: string): boolean {
+<span class="cstat-no" title="statement not covered" >    this.swipeStatus.start = 0;</span>
+<span class="cstat-no" title="statement not covered" >    sidebarRef.nativeElement.style.removeProperty('transition');</span>
+<span class="cstat-no" title="statement not covered" >    sidebarRef.nativeElement.style.removeProperty('transform');</span>
+<span class="cstat-no" title="statement not covered" >    backdropRef.nativeElement.style.removeProperty('opacity');</span>
+&nbsp;
+    const sidebarAxis = <span class="cstat-no" title="statement not covered" >sidebarRef.nativeElement.getBoundingClientRect().x &lt; 0 ?</span>
+    sidebarRef.nativeElement.getBoundingClientRect().x * -1 :
+    sidebarRef.nativeElement.getBoundingClientRect().x;
+<span class="cstat-no" title="statement not covered" >    if (position === 'left') {</span>
+<span class="cstat-no" title="statement not covered" >      if ((sidebarAxis * 100) /</span>
+        sidebarRef.nativeElement.getBoundingClientRect().width &gt;= 55) {
+<span class="cstat-no" title="statement not covered" >          return false;</span>
+      }
+    } else {
+      const desplaced = <span class="cstat-no" title="statement not covered" >backdropRef.nativeElement.getBoundingClientRect().width - sidebarAxis;</span>
+      const sideWidth = <span class="cstat-no" title="statement not covered" >sidebarRef.nativeElement.getBoundingClientRect().width;</span>
+<span class="cstat-no" title="statement not covered" >      if ((((desplaced * 100) / sideWidth - 100) ) &lt; -55) {</span>
+<span class="cstat-no" title="statement not covered" >        return false;</span>
+      }
+    }
+<span class="cstat-no" title="statement not covered" >    return true;</span>
+  }
+  // Apply translation when swipe
+  doTranslate(position: string, movement: number): number {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (!this.swipeStatus.start ||
+<span class="branch-1 cbranch-no" title="branch not covered" >        position === 'left' </span>&amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >movement &gt; this.swipeStatus.start </span>||
+<span class="branch-3 cbranch-no" title="branch not covered" >        position !== 'left' </span>&amp;&amp; <span class="branch-4 cbranch-no" title="branch not covered" >movement &lt; this.swipeStatus.start)</span> {
+          this.swipeStatus.start = movement;
+    } else {
+<span class="cstat-no" title="statement not covered" >      this.swipeStatus.start = this.swipeStatus.start;</span>
+    }
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (position === 'left') {
+      return -(this.swipeStatus.start - movement) &lt;= -1 ? <span class="branch-0 cbranch-no" title="branch not covered" >-(this.swipeStatus.start - movement) </span>: 0;
+    } else {
+<span class="cstat-no" title="statement not covered" >      return (movement - this.swipeStatus.start) &gt;= 0 ? movement - this.swipeStatus.start : 0;</span>
+    }
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Nov 30 2017 10:48:07 GMT-0600 (CST)
+</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>

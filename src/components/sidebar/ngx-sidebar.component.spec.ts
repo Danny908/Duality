@@ -1,14 +1,18 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 
 import { NgxSidebarComponent } from './ngx-sidebar.component';
+import { NgxSidebarService } from './ngx-sidebar.service';
+import { Status } from '../../core/types/types';
 
 describe('NgxSidebarComponent', () => {
   let component: NgxSidebarComponent;
   let fixture: ComponentFixture<NgxSidebarComponent>;
 
   beforeEach(async(() => {
+    const windowMock: Window = window;
     TestBed.configureTestingModule({
-      declarations: [ NgxSidebarComponent ]
+      declarations: [ NgxSidebarComponent ],
+      providers: [ NgxSidebarService, {provide: 'Window', useFactory: (() =>  windowMock )} ]
     })
     .compileComponents();
   }));
@@ -26,13 +30,13 @@ describe('NgxSidebarComponent', () => {
   it('should have a parent \'div\' working as backdrop for the sidebar', () => {
     fixture = TestBed.createComponent(NgxSidebarComponent);
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.ngx-sidebar').textContent).toBeTruthy();
+    expect(compiled.querySelector('.ngx-backdrop').textContent).toBeTruthy();
   });
 
   it('should have a child \'div\' holding the content for the sidebar', () => {
     fixture = TestBed.createComponent(NgxSidebarComponent);
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.sidebar-content').textContent).toBeTruthy();
+    expect(compiled.querySelector('.ngx-sidebar').textContent).toBeTruthy();
   });
 
   it('should have a \'defaultProps\' object with default options for the sidebar', () => {
@@ -41,63 +45,37 @@ describe('NgxSidebarComponent', () => {
     expect(compiled).toEqual(jasmine.any(Object));
   });
 
-  it('should have a \'screenSize\' variable to storage the screen width', () => {
+  it('should have a \'status\' obecjt to storage the states of the sidebar', () => {
     fixture = TestBed.createComponent(NgxSidebarComponent);
-    const compiled = fixture.componentInstance.screenSize;
-    expect(compiled).toEqual(jasmine.any(Number));
-  });
-
-  it('should have a \'mobile\' variable to storage the sidebar behavior', () => {
-    fixture = TestBed.createComponent(NgxSidebarComponent);
-    const compiled = fixture.componentInstance.mobile;
-    expect(compiled).not.toBeDefined();
-  });
-
-  it('should have a \'toggle\' variable to hide/show the sidebar', () => {
-    fixture = TestBed.createComponent(NgxSidebarComponent);
-    const compiled = fixture.componentInstance.toggle;
-    expect(compiled).toBe(false);
-  });
-
-  it('should have \'getScreenSize()\' function that return the screen width', () => {
-    fixture = TestBed.createComponent(NgxSidebarComponent);
-    fixture.detectChanges();
-    const compiled = fixture.componentInstance.getScreenSize();
-    expect(compiled).toEqual(jasmine.any(Number));
-  });
-
-  it('should have \'handleContentClasses()\' function that return the sidebar classes', () => {
-    fixture = TestBed.createComponent(NgxSidebarComponent);
-    fixture.detectChanges();
-    const compiled = fixture.componentInstance.handleContentClasses();
-    expect(compiled).toEqual(jasmine.any(Array));
-  });
-
-  it('should have \'getPlace()\' function that return the sidebar position', () => {
-    fixture = TestBed.createComponent(NgxSidebarComponent);
-    fixture.detectChanges();
-    const compiled = fixture.componentInstance.getPlace();
-    expect(compiled).toEqual(jasmine.any(String));
-  });
-
-  it('should have \'setBackDrop()\' function that return the backdrop style', () => {
-    fixture = TestBed.createComponent(NgxSidebarComponent);
-    fixture.detectChanges();
-    const compiled = fixture.componentInstance.setBackDrop();
+    const compiled = fixture.componentInstance.status;
     expect(compiled).toEqual(jasmine.any(Object));
   });
 
-  it('should have \'setContent()\' function that return the sidebar content style', () => {
+  it('should have \'sidebarAnimatedClasses()\' function that return the sidebar classes', () => {
     fixture = TestBed.createComponent(NgxSidebarComponent);
     fixture.detectChanges();
-    const compiled = fixture.componentInstance.setContent();
+    const compiled = fixture.componentInstance.sidebarAnimatedClasses();
+    expect(compiled).toEqual(jasmine.any(Array));
+  });
+
+  it('should have \'dynamicStyles()\' function that return the sidebar position and width', () => {
+    fixture = TestBed.createComponent(NgxSidebarComponent);
+    fixture.detectChanges();
+    const compiled = fixture.componentInstance.dynamicStyles();
+    expect(compiled).toEqual(jasmine.any(Object));
+  });
+
+  it('should have \'sidebarStyles()\' function that return the sidebar content style', () => {
+    fixture = TestBed.createComponent(NgxSidebarComponent);
+    fixture.detectChanges();
+    const compiled = fixture.componentInstance.sidebarStyles();
     expect(compiled).toEqual(jasmine.any(Object));
   });
 
   it('\'mobile\' variable should get sidebar mode on init', () => {
     fixture = TestBed.createComponent(NgxSidebarComponent);
     fixture.detectChanges();
-    const compiled = fixture.componentInstance.mobile;
+    const compiled = fixture.componentInstance.status.isMobile;
     expect(compiled).toEqual(jasmine.any(Boolean));
   });
 
