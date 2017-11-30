@@ -44,10 +44,17 @@ import { NgxOverStyleModule } from 'duality';
 export class AppModule { }
 ```
 
-Then add the follow css file into your main styles file (should be styles.css), this file it's required for most components.
+Then add the follow css file into your app, if you'r project it's on angular-cli go to ".angular-cli" file and add the following path in the styles parameter
+
+```json
+ "styles": [
+    "../node_modules/ngx-duality/style/ngx-style.css"
+  ]
+```
+Or if you prefer you can add into your main style file (styles.css)
 
 ```scss
- @import url('~../node_modules/ngx-duality/style/ngx-style.css');
+ @import url('../node_modules/ngx-duality/style/ngx-style.css');
 ```
 
 # Available Modules
