@@ -87,7 +87,7 @@ export class NgxSidebarService {
     return true;
   }
   // Apply translation when swipe
-  doTranslate(position: string, movement: any): number {
+  doTranslate(position: string, movement: number): number {
     if (!this.swipeStatus.start ||
         position === 'left' && movement > this.swipeStatus.start ||
         position !== 'left' && movement < this.swipeStatus.start) {

@@ -196,7 +196,6 @@ export class NgxSidebarComponent implements OnInit, OnChanges {
 
   // Enable/Disable swipe
   checkSwipe(): boolean {
-    console.log(this.defaultProps.animated,this.defaultProps.draggable);
     if (this.defaultProps.animated && this.defaultProps.draggable) {
       return true;
     } else {

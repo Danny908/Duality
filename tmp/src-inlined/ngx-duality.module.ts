@@ -1,10 +1,7 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { TickTockService } from './services';
-
-import { TickTockComponent, NgxSideBarModule } from './components';
+import { NgModule } from '@angular/core';
 import { NgxOverStyleModule } from './directives';
+import { NgxSideBarModule } from './components';
 
 @NgModule({
   imports: [
@@ -13,13 +10,10 @@ import { NgxOverStyleModule } from './directives';
     NgxSideBarModule
   ],
   providers: [
-    TickTockService,
   ],
   declarations: [
-    TickTockComponent,
   ],
   exports: [
-    TickTockComponent,
     NgxSideBarModule
   ]
 })
