@@ -1,5 +1,14 @@
-import webpackTestConfig from './webpack-test.config';
 import { ConfigOptions } from 'karma';
+import webpackTestConfig from './webpack-test.config';
+
+if (process.env.TRAVIS) {
+  this.browsers = ['Chrome_travis_ci'];
+  // configuration.reporters = configuration.reporters.concat(['coverage', 'coveralls']);
+  // configuration.coverageReporter = {
+  //   type : 'lcovonly',
+  //   dir : 'coverage/'
+  // };
+}
 
 export default (config) => {
   config.set({
@@ -57,7 +66,14 @@ export default (config) => {
 
     // Start these browsers.
     // Available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['Chrome', 'ChromeCanary'],
+    
+    customLaunchers: {
+      Chrome_travis_ci: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    },
 
     browserConsoleLogOptions: {
       terminal: true,
