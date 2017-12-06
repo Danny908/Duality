@@ -7,9 +7,10 @@
 </p>
 <br>
 <p align="center">
-<a href="https://badge.fury.io/js/ngx-duality"><img src="https://badge.fury.io/js/ngx-duality.svg" alt="npm version" ></a>
-<a href="https://www.npmjs.com/package/ngx-duality"><img src="https://img.shields.io/npm/dm/ngx-duality.svg" alt="npm downloads" ></a>
-<a href="https://api.travis-ci.org/Danny908/ngx-duality"><img alt="" src="https://api.travis-ci.org/Danny908/ngx-duality.svg?branch=master"></a>
+  <a href="https://badge.fury.io/js/ngx-duality"><img src="https://badge.fury.io/js/ngx-duality.svg" alt="npm version" ></a>
+  <a href="https://www.npmjs.com/package/ngx-duality"><img src="https://img.shields.io/npm/dm/ngx-duality.svg" alt="npm downloads" ></a>
+  <a href="https://api.travis-ci.org/Danny908/ngx-duality"><img alt="" src="https://api.travis-ci.org/Danny908/ngx-duality.svg?branch=master"></a>
+</p>
 
 ## Table of contents 
 1. [Installation](#installation)
@@ -21,7 +22,7 @@
 
 # Installation
 
-To install Duality, run:
+To install ngx-duality, run:
 
 ```bash
 $ npm install ngx-duality --save
