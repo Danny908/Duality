@@ -1,5 +1,11 @@
+# v1.0.3 (2017-12-6)
+
+* **Fixed build and test integration on travis-ci**
+
 # v1.0.2 (2017-12-6)
-* **Added Integration test**
+
+* **Fixed build and test integration**
+* **Added integration test**
 * **Updated README.md**
 
 # v1.0.1 (2017-12-3)
