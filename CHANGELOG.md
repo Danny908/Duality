@@ -1,3 +1,8 @@
+# v1.0.4 (2017-12-6)
+
+* **Removed unused classes**
+* **Options property from sidebar is now optional**
+
 # v1.0.3 (2017-12-6)
 
 * **Fixed build and test integration on travis-ci**
