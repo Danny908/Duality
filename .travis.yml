@@ -8,6 +8,8 @@ script:
   - npm run build:esm
 before_script:
   - npm install -g gulp-cli
+  - npm install -g karma
+  - npm install -g typescript
 cache:
   apt: true
   npm: true

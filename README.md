@@ -3,9 +3,9 @@
 </a>
 
 <p align="center">
-  Improve development speed with the components included on this library for Angualr 4+
+  Improve development speed with the components included on this library for Angular 4+
 </p>
-
+<br>
 <p align="center">
 <a href="https://badge.fury.io/js/ngx-duality"><img src="https://badge.fury.io/js/ngx-duality.svg" alt="npm version" ></a>
 <a href="https://www.npmjs.com/package/ngx-duality"><img src="https://img.shields.io/npm/dm/ngx-duality.svg" alt="npm downloads" ></a>
