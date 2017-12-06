@@ -1,17 +1,8 @@
 import { ConfigOptions } from 'karma';
 import webpackTestConfig from './webpack-test.config';
 
-if (process.env.TRAVIS) {
-  this.browsers = ['Chrome_travis_ci'];
-  // configuration.reporters = configuration.reporters.concat(['coverage', 'coveralls']);
-  // configuration.coverageReporter = {
-  //   type : 'lcovonly',
-  //   dir : 'coverage/'
-  // };
-}
-
-export default (config) => {
-  config.set({
+module.exports = function karma_config(config) {
+  const configuration = {
     // Base path that will be used to resolve all patterns (eg. files, exclude).
     basePath: './',
 
@@ -66,12 +57,17 @@ export default (config) => {
 
     // Start these browsers.
     // Available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome_travis_ci'],
+    browsers: ['Chrome'],
 
     customLaunchers: {
       Chrome_travis_ci: {
-        base: 'Chrome',
-        flags: ['--no-sandbox']
+        base: 'ChromeHeadless',
+        flags: [
+            '--headless',
+            '--disable-gpu',
+            '--no-sandbox',
+            '--remote-debugging-port=9222'
+        ]
       }
     },
 
@@ -82,5 +78,16 @@ export default (config) => {
 
     singleRun: true,
     colors: true
-  } as ConfigOptions);
+  };
+
+  if (process.env.TRAVIS) {
+    configuration.browsers = ['Chrome_travis_ci'];
+    // configuration.reporters = configuration.reporters.concat(['coverage', 'coveralls']);
+    // configuration.coverageReporter = {
+    //   type : 'lcovonly',
+    //   dir : 'coverage/'
+    // };
+  }
+
+  config.set(configuration as ConfigOptions);
 };
