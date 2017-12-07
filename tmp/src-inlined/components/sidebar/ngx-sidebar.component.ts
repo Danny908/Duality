@@ -57,7 +57,7 @@ import { NgxSidebarService } from './ngx-sidebar.service';
 export class NgxSidebarComponent implements OnInit, OnChanges {
   @ViewChild('sidebar') public sidebar: ElementRef;
   @ViewChild('backdrop') public backdrop: ElementRef;
-  @Input() public options: {};
+  @Input() public options = {};
   @Output() public isMobile = new EventEmitter<boolean>();
   @Output() public isOpen = new EventEmitter<boolean>();
   public status: Status = {

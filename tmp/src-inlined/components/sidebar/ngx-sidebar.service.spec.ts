@@ -78,7 +78,7 @@ describe('NgxSidebarService', () => {
       expect(service.doDrop).toBeDefined();
   }));
 
-  it('should have a doTranslate() function that calculate hte movement of the sidebar',
+  it('should have a doTranslate() function that calculate the movement of the sidebar',
     inject([ NgxSidebarService ], (service: NgxSidebarService) => {
       expect(service.doTranslate).toBeDefined();
   }));
