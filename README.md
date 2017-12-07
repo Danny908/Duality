@@ -1,3 +1,11 @@
+[![npm version]()]()
+
+<p align="center">
+<a href="https://badge.fury.io/js/ngx-duality"><img src="https://badge.fury.io/js/ngx-duality.svg" alt="npm version" ></a>
+<a href="https://npmjs.org/ngx-duality"><img src="https://img.shields.io/npm/dm/ngx-duality.svg" alt="npm downloads" ></a>
+<a href="https://travis-ci.org/valor-software/ngx-bootstrap"><img alt="" src="oqwiueryoqwiueryoqwieuryoiuqwyeroiuyowq98ry398wy3ro89y3wr greweruighewrgiuhwergiouhwergoiuhwergoiuhwergoiuhwerguergewiurghwoieurghuigwoeirughuoweiurghoweiurghnvvnhiouvwegoivoeiurgnvwoeiurghvnoweiurghvnoweiru       greiuhgeriuhgreiuhergihouergiouhegr/ngx-bootstrap.svg?branch=development"></a>
+
+<br/>
 # NgxDuality
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.

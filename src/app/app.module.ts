@@ -1,12 +1,12 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { NgxDualityModule } from 'ngx-duality';
+import { NgxDualityModule, NgxOverStyleModule } from 'ngx-duality';
 
 import { AppComponent } from './app.component';
-import { LogoComponent } from './logo/logo.component';
+import { BrowserModule } from '@angular/platform-browser';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { LogoComponent } from './logo/logo.component';
+import { NgModule } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    NgxDualityModule
+    NgxDualityModule,
+    NgxOverStyleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

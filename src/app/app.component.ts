@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { NgxSidebarComponent } from 'ngx-duality';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 
-import { sidebar} from '../assets/mock/app-values';
+import { NgxSidebarComponent } from 'ngx-duality';
+import { sidebar } from '../assets/mock/app-values';
 
 @Component({
   selector: 'app-root',
@@ -12,14 +12,14 @@ export class AppComponent implements OnInit {
   @ViewChild('toggle') public toggle: NgxSidebarComponent;
   private status = {
     ismobile: false,
-    options: {
-      top: '70px',
-      background: 'whitesmoke'
-    }
+    isopen: true,
   };
   private options = {
-    top: '70px'
-  };
+    backgroundColor: 'rgba(0, 0, 0, 0.5)'
+  }
+  // private options = {
+  //   top: '70px'
+  // };
   private sidebar = sidebar;
   private menu_handler: Array<boolean> = new Array(this.sidebar.length).fill(false);
   constructor(private cdr: ChangeDetectorRef) { }
@@ -33,9 +33,20 @@ export class AppComponent implements OnInit {
     this.cdr.detectChanges();
 
     if (mobile) {
-      this.status.options = Object.assign({}, this.status.options, {top: '0'});
+      this.options = Object.assign({}, this.options, {marginTop: '0'});
     } else {
-      this.status.options = Object.assign({}, this.status.options, {top: '70px'});
+      if (!this.status.isopen) {
+        this.handleToggle();
+      }
+      this.options = Object.assign({}, this.options, {marginTop: '70px'});
+    }
+  }
+  handleOpen(open: boolean): void {
+    this.status.isopen = open;
+    if (open) {
+      this.options = Object.assign({}, this.options, {boxShadow: '3px 0px 3px rgba(0, 0, 0, 0.5)'});
+    } else {
+      this.options = Object.assign({}, this.options, {boxShadow: 'none'});
     }
   }
   handleToggle(): void {

@@ -1,4 +1,4 @@
-@import '~../../../node_modules/ngx-duality/core/mixins.scss';
+@import '~../../../node_modules/ngx-duality/core/mixins/mixins.scss';
 @import '../../assets/palette/palette.sass';
 
 $logo-colors: #6666ff, #b2b2ff, #ffffff;
@@ -35,7 +35,7 @@ $logo-colors: #6666ff, #b2b2ff, #ffffff;
     text-align: center;
     font-size: 55px;
     margin-top: 5px;
-    color: $primary-text-color;
+    color: $divider-color;
     text-shadow: 2px 3px 3px rgba(0, 0, 0, 0.4);
     a {
       margin-top: 5px;
@@ -43,7 +43,7 @@ $logo-colors: #6666ff, #b2b2ff, #ffffff;
       text-shadow: none;
       display: block;
       font-size: 15px;
-      color: $secondary-text-color;
+      color: $primary-color-text;
       &:hover {
         text-decoration: underline;
         cursor: pointer;
