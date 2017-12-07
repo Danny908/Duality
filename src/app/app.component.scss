@@ -59,7 +59,10 @@
     }
   }
 }
-.ngx-sidebar {
+.sidebar-wrapper {
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
   .logo {
     position: relative;
     margin-top: 80px;

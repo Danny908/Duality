@@ -16,3 +16,22 @@ div {
   font-family: 'Ubuntu';
   font-weight: 300;
 }
+
+.banner-handler {
+  background-image: url(./assets/img/banners/default.svg);
+  &.ie,.edge {
+      background-image: url(./assets/img/banners/edge.svg);
+    }
+    &.safari {
+      background-image: url(./assets/img/banners/safari.svg);
+    }
+    &.opera {
+      background-image: url(./assets/img/banners/opera.svg);
+    }
+    &.firefox {
+      background-image: url(./assets/img/banners/firefox.svg);
+    }
+    &.chrome {
+      background-image: url(./assets/img/banners/chrome.svg);
+    }
+}

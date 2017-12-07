@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
     isopen: true,
   };
   private options = {
-    backgroundColor: 'rgba(0, 0, 0, 0.5)'
+
   }
   // private options = {
   //   top: '70px'
@@ -33,12 +33,12 @@ export class AppComponent implements OnInit {
     this.cdr.detectChanges();
 
     if (mobile) {
-      this.options = Object.assign({}, this.options, {marginTop: '0'});
+      // this.options = Object.assign({}, this.options, {marginTop: '0'});
     } else {
       if (!this.status.isopen) {
         this.handleToggle();
       }
-      this.options = Object.assign({}, this.options, {marginTop: '70px'});
+      // this.options = Object.assign({}, this.options, {marginTop: '70px'});
     }
   }
   handleOpen(open: boolean): void {

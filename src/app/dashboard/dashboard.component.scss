@@ -4,26 +4,11 @@
 .dashboard {
   .banner {
     height: 400px;
-    background: url(../../assets/img/banners/default.svg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     position: relative;
-    &.ie,.edge {
-      background-image: url(../../assets/img/banners/edge.svg);
-    }
-    &.safari {
-      background-image: url(../../assets/img/banners/safari.svg);
-    }
-    &.opera {
-      background-image: url(../../assets/img/banners/opera.svg);
-    }
-    &.firefox {
-      background-image: url(../../assets/img/banners/firefox.svg);
-    }
-    &.chrome {
-      background-image: url(../../assets/img/banners/chrome.svg);
-    }
+
     .get-started {
       font-size: 15px;
       box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.5);

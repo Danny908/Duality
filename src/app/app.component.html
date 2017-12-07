@@ -1,29 +1,7 @@
-<ngx-sidebar [options]="options"  (isMobile)="handleMobile($event)" (isOpen)="handleOpen($event)" #toggle>
-  <div class="ngx-sidebar">
-    <div class="logo ngx-col-12 no-pad">
-      <app-logo ></app-logo>
+<div ngxOverStyle>
+    fasdfds
     </div>
-    <div class="sidebar-nav">
-      <ul class="list">
-        <li class="items" [class.open]="menu_handler[i]" *ngFor="let side_bar of sidebar; let i = index;">
-          <p (click)="onHanleSideMenu(i)" [class.selected]="menu_handler[i]" class="text name">
-            <i [ngClass]="side_bar.icon" class="icon" aria-hidden="true"></i>
-            {{side_bar.menu}}
-          </p>
-          <ul class="sub-list" [ngClass]="menu_handler[i] ? 'on-show' : ''">
-            <li class="sub-items" *ngFor="let sub_side of side_bar.sub_menu">
-              <a href="" class="light-text sub-name">
-                <i class="sub-icon fa fa-circle" aria-hidden="true"></i>
-                {{sub_side}}
-              </a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
-</ngx-sidebar>
-<div class="ngx-wrapper">
+<div class="ngx-wrapper" ngxOverStyle>
   <header class="ngx-header">
     <div class="ngx-row">
       <div class="toggle-icon ngx-auto variable-width no-pad">
@@ -57,3 +35,28 @@
     </div>
   </footer>
 </div>
+<ngx-sidebar [options]="options"  (isMobile)="handleMobile($event)" (isOpen)="handleOpen($event)" #toggle>
+    <div class="banner-handler sidebar-wrapper" >
+      <div class="logo ngx-col-12 no-pad">
+        <app-logo ></app-logo>
+      </div>
+      <div class="sidebar-nav">
+        <ul class="list">
+          <li class="items" [class.open]="menu_handler[i]" *ngFor="let side_bar of sidebar; let i = index;">
+            <p (click)="onHanleSideMenu(i)" [class.selected]="menu_handler[i]" class="text name">
+              <i [ngClass]="side_bar.icon" class="icon" aria-hidden="true"></i>
+              {{side_bar.menu}}
+            </p>
+            <ul class="sub-list" [ngClass]="menu_handler[i] ? 'on-show' : ''">
+              <li class="sub-items" *ngFor="let sub_side of side_bar.sub_menu">
+                <a href="" class="light-text sub-name">
+                  <i class="sub-icon fa fa-circle" aria-hidden="true"></i>
+                  {{sub_side}}
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </ngx-sidebar>

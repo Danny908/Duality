@@ -12,7 +12,7 @@ import { NgModule } from '@angular/core';
   declarations: [
     AppComponent,
     LogoComponent,
-    DashboardComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
