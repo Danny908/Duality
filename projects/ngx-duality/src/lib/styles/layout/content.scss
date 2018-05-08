@@ -1,0 +1,9 @@
+@import  '../../core/mixins/breakpoints.scss';
+
+.ngx-content {
+    display: flex;
+    flex: 1;
+    flex-basis: 0.00000001px;
+    overflow: auto;
+    margin: 0;
+}

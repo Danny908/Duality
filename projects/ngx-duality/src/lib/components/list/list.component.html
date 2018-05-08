@@ -1,0 +1,14 @@
+<div [ngSwitch]="!!ordered" class="dl-list-wrapper">
+  <ul *ngSwitchCase="false" [style.listStyleType]="value" [style.listStyleType] = "icon ? 'none': 'initial'">
+    <li *ngFor="let items of listItems; let i = index;" [style.width]="colSize+'%'">
+        <i *ngIf="icon" [class]="icon"></i>
+        {{param ? items[param] : items}}
+    </li>
+  </ul>
+  <ol *ngSwitchCase="true" [type]="type" [style.listStyleType] = "icon ? 'none': 'initial'">
+    <li *ngFor="let items of listItems; let i = index;" [style.width]="colSize+'%'">
+      <i *ngIf="icon" [ngClass]="icon"></i>
+      {{param ? items[param] : items}}
+    </li>
+  </ol>
+</div>

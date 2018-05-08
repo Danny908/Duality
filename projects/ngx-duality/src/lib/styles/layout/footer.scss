@@ -1,0 +1,16 @@
+@import  '../../core/mixins/breakpoints.scss';
+
+.ngx-footer {
+    height: 70px;
+    margin: 0;
+    padding: 0;
+    z-index: 99;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    // FIX FOR IPAD PENDING
+    //  @media (orientation:landscape) and (min-device-height:1100px) {
+    //     margin-left: 0 !important;
+    // }
+}

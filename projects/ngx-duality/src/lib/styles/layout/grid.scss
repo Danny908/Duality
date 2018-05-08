@@ -1,0 +1,94 @@
+@import  '../../core/mixins/breakpoints.scss';
+
+.dl-row {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+  .dl-auto {
+    flex-grow: 1;
+    flex-basis: 0;
+    padding: 8px;
+    flex-wrap: wrap;
+    align-items: baseline;
+    align-content: flex-start;
+    &.variable-width {
+      flex-grow: 0;
+    }
+    &.dl-no-pad {
+      padding: 0;
+    }
+  }
+  .dl-break-column {
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+
+  [class*="dl-col"],
+  [class*="dl-xs"],
+  [class*="dl-s"],
+  [class*="dl-m"],
+  [class*="dl-l"],
+  [class*="dl-xl"] {
+    padding: 8px;
+    flex-wrap: wrap;
+    align-items: baseline;
+    align-content: flex-start;
+    flex-basis: 100%;
+    max-width: 100%;
+
+    &.dl-no-pad {
+      padding: 0;
+    }
+  }
+  @for $i from 1 through 12 {
+    .#{dl-col}-#{$i} {
+      flex-basis: 8.333333% * $i;
+      max-width: 8.333333% * $i;
+    }
+  }
+
+  @include xs {
+    @for $i from 1 through 12 {
+      .#{dl-xs}-#{$i} {
+        flex-basis: 8.333333% * $i;
+        max-width: 8.333333% * $i;
+      }
+    }
+  }
+
+  @include s {
+    @for $i from 1 through 12 {
+      .#{dl-s}-#{$i} {
+        flex-basis: 8.333333% * $i;
+        max-width: 8.333333% * $i;
+      }
+    }
+  }
+
+  @include m {
+    @for $i from 1 through 12 {
+      .#{dl-m}-#{$i} {
+        flex-basis: 8.333333% * $i;
+        max-width: 8.333333% * $i;
+      }
+    }
+  }
+
+  @include l {
+    @for $i from 1 through 12 {
+      .#{dl-l}-#{$i} {
+        flex-basis: 8.333333% * $i;
+        max-width: 8.333333% * $i;
+      }
+    }
+  }
+
+  @include xl {
+    @for $i from 1 through 12 {
+      .#{dl-xl}-#{$i} {
+        flex-basis: 8.333333% * $i;
+        max-width: 8.333333% * $i;
+      }
+    }
+  }
+}

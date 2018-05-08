@@ -1,0 +1,17 @@
+<div class="sidebar-wrapper">
+  <div class="picture" dlOverStyle></div>
+  <dl-accordion>
+      <dl-accordion-tab *ngFor="let item of listItems.items; let i = index;" (isOpen)="item.tabActive = $event">
+        <dl-accordion-tab-header>
+          <div class="items" [class.selected]="item.tabActive">
+            <div class="icon-container" [class.selected]="item.tabActive" dlOverStyle>
+              <i class="icon" [ngClass]="item.icon"></i>
+            </div>
+            <p class="title-font">{{item.title}}</p>
+            <i class="arrow fas fa-caret-down"></i>
+          </div>
+        </dl-accordion-tab-header>
+        <dl-list [listItems]="item.subItems" columns="2"></dl-list>
+      </dl-accordion-tab>
+  </dl-accordion>
+</div>

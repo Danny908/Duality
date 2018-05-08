@@ -1,0 +1,15 @@
+@import './layout/wrapper.scss';
+@import './layout/grid.scss';
+@import './layout/header.scss';
+@import './layout/content.scss';
+@import './layout/footer.scss';
+
+html,body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+* {
+    box-sizing: border-box !important;
+}

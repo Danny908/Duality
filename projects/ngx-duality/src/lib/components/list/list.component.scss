@@ -1,0 +1,18 @@
+div.dl-list-wrapper {
+    display: flex;
+    align-items: baseline;
+    ul,ol {
+        padding-left: 0;
+        list-style-position: inside;
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        li {
+            padding: 5px;
+            i {
+                transform: scale(.7);
+                padding-right: 10px;
+            }
+        }
+    }
+}

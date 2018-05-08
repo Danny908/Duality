@@ -1,0 +1,32 @@
+<!-- TODO: MAKE EVENTS PASSIVE WHEN ANGULAR SUPPORT THAT FEATURE -->
+<!-- BACKDROP -->
+<div
+  #backdropRef
+  class="ngx-backdrop"
+  [ngStyle]="{'background' : backdrop}"
+  [class.mobile]="status.isMobile" 
+  [class.open]="status.isOpen && !animated" 
+  [class.close]="!status.isOpen && !animated"
+  [class.anim-open]="status.isOpen && animated"
+  [class.anim-close]="!status.isOpen && animated"
+  (click)="onSwipe($event)"
+  (mousemove)="checkSwipe() ? onSwipe($event): ''"
+  (mouseup)="checkSwipe() ? onSwipe($event): ''"
+  (touchstart)="checkSwipe() ? onSwipe($event): ''"
+  (touchmove)="checkSwipe() ? onSwipe($event): ''"
+  (touchend)="checkSwipe() ? onSwipe($event): ''">
+</div>
+<!-- SIDEBAR -->
+<div 
+  #sidebarRef
+  class="ngx-sidebar"
+  [ngClass]="sidebarAnimatedClasses()"
+  [ngStyle]="sidebarStyles()"
+  [class.mobile]="status.isMobile"
+  (mousemove)="checkSwipe() ? onSwipe($event): ''"
+  (mouseup)="checkSwipe() ? onSwipe($event): ''"
+  (touchstart)="checkSwipe() ? onSwipe($event): ''"
+  (touchmove)="checkSwipe() ? onSwipe($event): ''"
+  (touchend)="checkSwipe() ? onSwipe($event): ''">
+  <ng-content></ng-content>
+</div>

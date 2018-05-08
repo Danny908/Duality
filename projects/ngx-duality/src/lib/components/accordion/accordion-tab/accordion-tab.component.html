@@ -1,0 +1,12 @@
+<div class="dl-accordion-tab" [style.height.px]="height" [class.disabled]="tabDisabled" [class.animated]="animated">
+  <div class="dl-tab-header" [class.default]="header" (click)="tabDisabled ? '' : selectTab();" [style.height.px]="tempHeight" [style.padding.px]="header ? '0px 15px' : '0px'">
+    <p *ngIf="header" class="dl-header"><strong>{{header}}</strong></p>
+    <ng-content *ngIf="!header" select="dl-accordion-tab-header"></ng-content>
+    <p *ngIf="header" class="dl-arrow" [class.selected]="selected" [class.animated]="animated">&#x25B8;</p>
+  </div>
+  <div class="dl-tab-content" #tabContent>
+      <div class="dl-tab-container">
+          <ng-content></ng-content>
+      </div>
+  </div>
+</div>

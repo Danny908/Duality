@@ -1,0 +1,13 @@
+@import  '../../core/mixins/breakpoints.scss';
+
+.ngx-wrapper {
+    position: relative;
+    min-height: 100%;
+    overflow-y: auto;
+    .ngx-container {
+        margin: 0;
+        padding: 0;
+        position: relative;
+        min-height: 100%;
+    }
+}

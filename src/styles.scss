@@ -1,1 +1,90 @@
 /* You can add global styles to this file, and also import other style files */
+// @import './app/lib/styles/ngx-style.scss';
+
+html, body {
+  margin: 0;
+  padding: 0;
+  // background-color: #000,
+}
+.title-font, h1 {
+  font-family: 'Gugi', cursive;
+}
+.read-font, p {
+  font-family: 'Ubuntu', sans-serif;
+}
+.detail-font {
+  font-family: 'Caveat', cursive;
+}
+ul,ol {
+  margin: 0;
+  li {
+    font-family: 'Ubuntu', sans-serif;
+    border-radius: 3px;
+    font-size: 14px;
+    color: white;
+    &:hover {
+      background-color: rgb(55, 55, 55);
+      cursor: default;
+    }
+  }
+}
+// OS THEME COLOR
+div {
+  &.chrome {
+    background-color: #2EBCEC;
+    &.selected {
+      background-color: rgba(46,188,236, 0.6) !important;
+    }
+  }
+  &.firefox {
+    background-color: #FEEE5C;
+    &.selected {
+      background-color: rgba(254, 238, 92, 0.6) !important;
+    }
+  }
+  &.opera {
+    background-color: #FC2037;
+    &.selected {
+      background-color: rgba(252, 32, 55, 0.6) !important;
+    }
+  }
+  &.safari {
+    background-color: #CDCDCD;
+    &.selected {
+      background-color: rgba(205,205,205, 0.6) !important;
+    }
+  }
+  &.ie {
+    background-color: #2EBCEC;
+    &.selected {
+      background-color: rgba(46,188,236, 0.6) !important;
+    }
+  }
+}
+// Overwrite for lib components
+.dl-tab-header {
+  box-shadow: 0 5px 3px rgb(55, 55, 55);  
+}
+.dl-tab-content {
+  background-color: rgb(80, 80, 80) !important;
+}
+dl-accordion-tab  {
+  &:first-child {
+    .dl-accordion-tab {
+      div.items {
+        border-bottom: none;
+      }
+    }
+  }
+  &:last-child {
+    .dl-accordion-tab {
+      div.items {
+        border-top: none;
+      }
+    }    
+  }
+  div.items {
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.6);
+    border-top: 1px dashed rgba(255, 255, 255, 0.6);
+  }
+}

@@ -1,0 +1,26 @@
+<div class="carousel-wrapper">
+  <div class="carousel" [style.height]="frameHeight" [style.width]="frameWidth">
+    <ng-container *ngFor="let c of carousel;let i = index;">
+        <div [hidden]="active !== i" [style.backgroundImage]="c.image" [style.backgroundSize]="imageSize" class="images" #gallery></div>
+        <div class="caption" *ngIf="active === i" [ngStyle]="setCapPosition()">
+            <h1 class="title">{{c.title}}</h1>
+            <p class="desc">{{c.desc}}</p>
+        </div>
+    </ng-container>
+    <div class="carousel-controll left" (click)="carouselControl('back');">
+      &#x25B8;
+    </div>
+    <div class="carousel-controll right" (click)="carouselControl('next');">
+      &#x25B8;
+    </div>
+  </div>
+  <div class="thumbnail-wrapper">
+    <div 
+      class="thumbnail"
+      [class.selected]="i2 === active"
+      *ngFor="let c of carousel;let i2 = index;"
+      [style.backgroundImage]="c.image"
+      (click)="active = i2; doAnimation(i2);">
+    </div>
+  </div>
+</div>
