@@ -133,6 +133,146 @@
           }
         }
       }
+    },
+    "@ngx-duality/form-generator": {
+      "root": "projects/ngx-duality/form-generator",
+      "sourceRoot": "projects/ngx-duality/form-generator/src",
+      "projectType": "library",
+      "prefix": "duality",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-duality/form-generator/tsconfig.lib.json",
+            "project": "projects/ngx-duality/form-generator/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-duality/form-generator/src/test.ts",
+            "tsConfig": "projects/ngx-duality/form-generator/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-duality/form-generator/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-duality/form-generator/tsconfig.lib.json",
+              "projects/ngx-duality/form-generator/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "@ngx-duality/accordion": {
+      "root": "projects/ngx-duality/accordion",
+      "sourceRoot": "projects/ngx-duality/accordion/src",
+      "projectType": "library",
+      "prefix": "duality",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-duality/accordion/tsconfig.lib.json",
+            "project": "projects/ngx-duality/accordion/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-duality/accordion/src/test.ts",
+            "tsConfig": "projects/ngx-duality/accordion/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-duality/accordion/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-duality/accordion/tsconfig.lib.json",
+              "projects/ngx-duality/accordion/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "@ngx-duality/animations": {
+      "root": "projects/ngx-duality/animations",
+      "sourceRoot": "projects/ngx-duality/animations/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-duality/animations/tsconfig.lib.json",
+            "project": "projects/ngx-duality/animations/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-duality/animations/src/test.ts",
+            "tsConfig": "projects/ngx-duality/animations/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-duality/animations/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-duality/animations/tsconfig.lib.json",
+              "projects/ngx-duality/animations/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "@ngx-duality/types": {
+      "root": "projects/ngx-duality/types",
+      "sourceRoot": "projects/ngx-duality/types/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-duality/types/tsconfig.lib.json",
+            "project": "projects/ngx-duality/types/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-duality/types/src/test.ts",
+            "tsConfig": "projects/ngx-duality/types/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-duality/types/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-duality/types/tsconfig.lib.json",
+              "projects/ngx-duality/types/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "ngx-duality"

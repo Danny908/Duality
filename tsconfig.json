@@ -2,6 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    "importHelpers": true,
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -16,6 +17,38 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@ngx-duality/form-generator": [
+        "dist/ngx-duality/form-generator"
+      ],
+      "@ngx-duality/form-generator/*": [
+        "dist/ngx-duality/form-generator/*"
+      ],
+      "@ngx-duality/accordion": [
+        "dist/ngx-duality/accordion"
+      ],
+      "@ngx-duality/accordion/*": [
+        "dist/ngx-duality/accordion/*"
+      ],
+      "animations": [
+        "dist/animations"
+      ],
+      "animations/*": [
+        "dist/animations/*"
+      ],
+      "@ngx-duality/animations": [
+        "dist/ngx-duality/animations"
+      ],
+      "@ngx-duality/animations/*": [
+        "dist/ngx-duality/animations/*"
+      ],
+      "@ngx-duality/types": [
+        "dist/ngx-duality/types"
+      ],
+      "@ngx-duality/types/*": [
+        "dist/ngx-duality/types/*"
+      ]
+    }
   }
 }

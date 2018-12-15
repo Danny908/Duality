@@ -1,0 +1,49 @@
+div.dl-accordion {
+  > div.dl-accordion-header {
+    display: flex;
+    align-items: center;
+    position: relative;
+    will-change: transform;
+    cursor: pointer;
+    > h3 {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid lightgray;
+      flex: 1;
+      user-select: none;
+      margin: 0;
+      padding: 15px;
+      &.disabled {
+        cursor: not-allowed;
+        background-color: lightgray;
+        color: gray;
+      }
+      &:after {
+        content: '\25B6';
+        font-size: 16px;
+        will-change: transform;
+        transition: 150ms ease-in-out;
+      }
+    }
+    &.open > h3:after {
+      transform: rotate(90deg);
+    }
+    &.not-animated > h3:after {
+      transition: none;
+    }
+  }
+  > div.dl-accordion-content { 
+    will-change: height;
+    overflow: hidden;
+    &.not-animated.close {
+      height: 0;
+    }
+    > div {
+      padding: 15px;
+      border: 1px solid lightgray;
+      border-top: none;
+    }
+  }
+}

@@ -1,0 +1,36 @@
+<div class="dl-accordion">
+  <div 
+    class="dl-accordion-header"
+    [ngClass]="[isOpen ? 'open':'close', !animated ? 'not-animated' : '']"
+    [ngSwitch]="!!headerTemplate"
+    (click)="!disabled && toggle()">
+    <ng-container  *ngSwitchCase="true">
+      <ng-container *ngTemplateOutlet="headerTemplate; context: { $implicit: header }">
+      </ng-container>
+    </ng-container>
+    <h3 
+      *ngSwitchDefault
+      [class.disabled]="disabled"
+      [ngClass]="headerClass"
+      [ngStyle]="headerStyle"
+      [class.open]="isOpen ? 'open':''">
+      {{header}}
+    </h3>
+  </div>
+  <div 
+    class="dl-accordion-content"
+    [ngClass]="[isOpen ? 'open':'close', !animated ? 'not-animated' : '']"
+    [ngSwitch]="!!contentTemplate"
+    [@expandState]="{value: animated && animationState, params: {timing: timing}}">
+    <ng-container *ngSwitchCase="true">
+      <ng-container *ngTemplateOutlet="contentTemplate; context: { $implicit: content }">
+      </ng-container>
+    </ng-container>
+    <div 
+      [ngClass]="contentClass"
+      [ngStyle]="contentStyle"
+      *ngSwitchDefault>
+      {{content}}
+    </div>
+  </div>
+</div>
