@@ -1,12 +1,12 @@
-import { Component, Input, Output, ContentChild, EventEmitter, OnInit } from '@angular/core';
-import { Expand } from '@ngx-duality/animations';
+import { Component, Input, Output, ContentChild, EventEmitter } from '@angular/core';
+import { Expand, Rotate } from '@ngx-duality/animations';
 // import { Expand } from './expand';
 
 @Component({
   selector: 'duality-accordion',
   templateUrl: './accordion.component.html',
   styleUrls: ['./accordion.component.scss'],
-  animations: [Expand],
+  animations: [Expand, Rotate],
 })
 export class AccordionComponent {
   @ContentChild('dualityHeaderTemplate') headerTemplate;
@@ -19,27 +19,31 @@ export class AccordionComponent {
   @Input() headerStyle: any;
   @Input() contentClass: any;
   @Input() contentStyle: any;
-  @Input() timing = '200ms ease-in-out';
+  @Input() expandTiming = '200ms ease-in-out';
+  @Input() rotateTiming = '150ms ease-in-out';
   @Input() animated = true;
-  animationState = 'hide';
+  animationState = 'inactive';
+  rotateState = 'inactive';
   isOpen: boolean;
   index: number;
   oneAtTime: boolean;
   toggleGroup: Function;
 
   toggle(group?: boolean): void {
-    this.isOpen = !this.isOpen;
-    this.toggled.emit(this.isOpen);
-    if (this.animated) {
-      this.animationState = this.doAnimation();
-    }
-    if (this.oneAtTime && !group) {
-      this.toggleGroup(this.index);
+    if (!this.disabled) {
+      this.isOpen = !this.isOpen;
+      this.toggled.emit(this.isOpen);
+      if (this.animated) {
+        this.animationState = this.doAnimation();
+      }
+      if (this.oneAtTime && !group) {
+        this.toggleGroup(this.index);
+      }
     }
   }
 
   doAnimation(): string {
-    return this.isOpen ? 'show' : 'hide';
+    return this.isOpen ? 'active' : 'inactive';
   }
 
 }

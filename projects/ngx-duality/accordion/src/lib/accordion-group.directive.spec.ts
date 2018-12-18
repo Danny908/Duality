@@ -52,10 +52,11 @@ describe('AccordionGroupDirective', () => {
   });
 
   it(`should inherit properties to child components`, () => {
-    const { oneAtTime, timing, animated, toggleGroup, accordions } = component.directive;
+    const { oneAtTime, expandTiming, rotateTiming, animated, toggleGroup, accordions } = component.directive;
     const props = {
       oneAtTime,
-      timing,
+      expandTiming,
+      rotateTiming,
       animated,
       toggleGroup
     };

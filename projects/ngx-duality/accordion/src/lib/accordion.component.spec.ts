@@ -64,7 +64,7 @@ describe('AccordionComponent', () => {
   it('should display the header on the screen', () => {
     component.header = 'MyHeader';
     fixture.detectChanges();
-    expect(fixture.debugElement.query(By.css('h3')).nativeElement.textContent.trim()).toBe(component.header);
+    expect(fixture.debugElement.query(By.css('h3')).nativeElement.textContent.trim()).toBe(`${component.header}  ▶`);
   });
 
   it('should hide the original header if there is a custom header template', () => {
@@ -115,13 +115,14 @@ describe('AccordionComponent', () => {
 
   it('should lock the accordion if disabled option is true', async(() => {
     spyOn(component, 'toggle');
-    component.disabled = true;
+    const isOpen = component.isOpen;
     fixture.detectChanges();
     const disabledAccordion = fixture.debugElement.nativeElement.querySelector('div.dl-accordion-header');
     disabledAccordion.click();
     fixture.whenStable().then(() => {
       expect(disabledAccordion).toBeTruthy();
-      expect(component.toggle).not.toHaveBeenCalled();
+      expect(component.toggle).toHaveBeenCalled();
+      expect(component.isOpen).toBe(isOpen);
     });
   }));
 
@@ -151,10 +152,10 @@ describe('AccordionComponent', () => {
   }));
 
   it('should change the animation state if toggle is triggered', () => {
-    expect(component.animationState).toBe('hide');
+    expect(component.animationState).toBe('inactive');
     component.toggle();
     fixture.detectChanges();
-    expect(component.animationState).toBe('show');
+    expect(component.animationState).toBe('active');
   });
 
   it('should allow add custom classes to header', () => {

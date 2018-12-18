@@ -6,20 +6,22 @@ import { AccordionComponent } from './accordion.component';
   exportAs: 'dualityAccordionGroup'
 })
 export class AccordionGroupDirective implements AfterContentInit {
-  @ContentChildren(AccordionComponent) accordions: QueryList<AccordionComponent>; //*
+  @ContentChildren(AccordionComponent) accordions: QueryList<AccordionComponent>;
   @Output() toggled: EventEmitter<boolean[]> = new EventEmitter();
-  @Input() oneAtTime: boolean; //*
-  @Input() timing = '200ms ease-in-out'; //*
-  @Input() animated = true; //*
+  @Input() oneAtTime: boolean;
+  @Input() expandTiming = '200ms ease-in-out';
+  @Input() rotateTiming = '150ms ease-in-out';
+  @Input() animated = true;
   // Manually toggle a tab accordion
-  toggle: Function = this.toggleTab; //*
-  toggleStatus: boolean[]; //*
+  toggle: Function = this.toggleTab;
+  toggleStatus: boolean[];
 
   ngAfterContentInit() {
     this.accordions.forEach((accordion, index) => {
       accordion.index = index;
       accordion.oneAtTime = this.oneAtTime;
-      accordion.timing = this.timing;
+      accordion.expandTiming = this.expandTiming;
+      accordion.rotateTiming = this.rotateTiming;
       accordion.animated = this.animated;
       accordion.toggleGroup = this.toggleGroup.bind(this);
     });

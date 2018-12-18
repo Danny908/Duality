@@ -2,13 +2,13 @@ import { trigger, state, style, animate, transition, AnimationTriggerMetadata } 
 
 export const Expand: AnimationTriggerMetadata =
   trigger('expandState', [
-    state('hide', style({
+    state('inactive', style({
       height: 0,
       overflow: 'hidden'
     })),
-    state('show', style({
+    state('active', style({
       height: '*',
       overflow: 'hidden'
     })),
-    transition('hide <=> show', animate('{{timing}}'), {params: {timing: '250ms ease-in-out'}}),
+    transition('inactive <=> active', animate('{{timing}}'), {params: {timing: '250ms ease-in-out'}}),
   ]);

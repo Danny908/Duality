@@ -273,6 +273,41 @@
           }
         }
       }
+    },
+    "@ngx-duality/sidebar": {
+      "root": "projects/ngx-duality/sidebar",
+      "sourceRoot": "projects/ngx-duality/sidebar/src",
+      "projectType": "library",
+      "prefix": "duality",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-duality/sidebar/tsconfig.lib.json",
+            "project": "projects/ngx-duality/sidebar/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-duality/sidebar/src/test.ts",
+            "tsConfig": "projects/ngx-duality/sidebar/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-duality/sidebar/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-duality/sidebar/tsconfig.lib.json",
+              "projects/ngx-duality/sidebar/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "ngx-duality"

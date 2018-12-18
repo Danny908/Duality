@@ -1,9 +1,9 @@
 import { Directive } from '@angular/core';
 
 @Directive({
-  selector: '[libFormGenerator]'
+  selector: '[dualitySidebar]'
 })
-export class FormGeneratorDirective {
+export class SidebarDirective {
 
   constructor() { }
 
