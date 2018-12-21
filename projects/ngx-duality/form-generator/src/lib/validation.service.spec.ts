@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { FormGeneratorService } from './form-generator.service';
+import { ValidationService } from './validation.service';
 
 describe('FormGeneratorService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: FormGeneratorService = TestBed.get(FormGeneratorService);
+    const service: ValidationService = TestBed.get(ValidationService);
     expect(service).toBeTruthy();
   });
 });

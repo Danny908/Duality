@@ -146,6 +146,7 @@ export const fields: Array<FormField> = [
       label: 'Skills',
       element: 'group',
       controlName: 'skills',
+      type: 'array',
       group:
         skills.map(function(skill): FormField {
           return {

@@ -2,6 +2,7 @@ import { Component, OnInit, Renderer2, ViewChild, ElementRef, AfterViewInit, Tem
 import { FormGroup } from '@angular/forms';
 
 import { FormField } from '@ngx-duality/types';
+import { ValidationService } from '../validation.service';
 
 @Component({
   selector: 'duality-input',
@@ -14,7 +15,8 @@ export class InputComponent implements AfterViewInit {
   group: FormGroup;
 
   constructor(
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private validationService: ValidationService
   ) { }
 
   ngAfterViewInit() {
@@ -29,6 +31,13 @@ export class InputComponent implements AfterViewInit {
     Object.keys(extras).forEach(key => {
       this.renderer.setAttribute(element, key, extras[key]);
     });
+  }
+
+  error(): string {
+    const { controlName, label, errors } = this.field;
+    const control = this.group.get(controlName);
+    const error = this.validationService.validate(label, errors, control);
+    return error;
   }
 
 }

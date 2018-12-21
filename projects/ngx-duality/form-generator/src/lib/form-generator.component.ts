@@ -27,23 +27,37 @@ export class FormGeneratorComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.form = this.createForm(this.fields);
+    this.form = this.createFormGroup(this.fields);
     console.log('%cFORM CREATED', 'color: green; font-weight: bold');
     console.log(this.form);
   }
 
-  createForm(fields: Array<FormField>): FormGroup {
+  createFormGroup(fields: Array<FormField>): FormGroup {
     const form = this.formBuilder.group({});
     fields.forEach(field => {
       if (field.group && field.group.length > 0) {
-        form.addControl(field.controlName, this.createForm(field.group));
+        if (field.type === 'array') {
+          form.addControl(field.controlName, this.createFormArray(field.group));
+        } else {
+          form.addControl(field.controlName, this.createFormGroup(field.group));
+        }
       } else {
-        console.log('control:', field);
         if (field.controlName) {
             form.addControl(field.controlName, this.createControl(field));
         }
       }
     });
+    return form;
+  }
+
+  createFormArray(fields: Array<FormField>): FormArray {
+    const form = this.formBuilder.array([]);
+    fields.forEach(field => {
+      if (field.controlName) {
+        form.push(this.createControl(field));
+      }
+    });
+
     return form;
   }
 
