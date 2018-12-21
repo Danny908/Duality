@@ -1,0 +1,14 @@
+<div >
+  <label>
+    {{ field.label }}
+  </label>
+  <div>
+      <ng-container
+        *ngFor="let f of field.group"
+        dualityFormGenerator
+        [nested]=true
+        [group]="formGroup"
+        [field]="f">
+      </ng-container>
+    </div>
+</div>

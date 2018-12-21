@@ -19,23 +19,11 @@
       "dom"
     ],
     "paths": {
-      "@ngx-duality/form-generator": [
-        "dist/ngx-duality/form-generator"
-      ],
-      "@ngx-duality/form-generator/*": [
-        "dist/ngx-duality/form-generator/*"
-      ],
       "@ngx-duality/accordion": [
         "dist/ngx-duality/accordion"
       ],
       "@ngx-duality/accordion/*": [
         "dist/ngx-duality/accordion/*"
-      ],
-      "animations": [
-        "dist/animations"
-      ],
-      "animations/*": [
-        "dist/animations/*"
       ],
       "@ngx-duality/animations": [
         "dist/ngx-duality/animations"
@@ -43,17 +31,17 @@
       "@ngx-duality/animations/*": [
         "dist/ngx-duality/animations/*"
       ],
+      "@ngx-duality/form-generator": [
+        "dist/ngx-duality/form-generator"
+      ],
+      "@ngx-duality/form-generator/*": [
+        "dist/ngx-duality/form-generator/*"
+      ],
       "@ngx-duality/types": [
         "dist/ngx-duality/types"
       ],
       "@ngx-duality/types/*": [
         "dist/ngx-duality/types/*"
-      ],
-      "@ngx-duality/sidebar": [
-        "dist/ngx-duality/sidebar"
-      ],
-      "@ngx-duality/sidebar/*": [
-        "dist/ngx-duality/sidebar/*"
       ]
     }
   }

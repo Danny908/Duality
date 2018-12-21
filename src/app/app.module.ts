@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AccordionModule } from '@ngx-duality/accordion';
-// import { FormGeneratorModule } from '@ngx-duality/form-generator';
+import { FormGeneratorModule } from '@ngx-duality/form-generator';
 import { Expand } from '@ngx-duality/animations';
 
 import { AppComponent } from './app.component';
@@ -18,7 +18,7 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     AccordionModule,
-    // FormGeneratorModule
+    FormGeneratorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

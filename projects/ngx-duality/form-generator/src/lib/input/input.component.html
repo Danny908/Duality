@@ -1,0 +1,50 @@
+<ng-container
+  *ngIf="!!field.controlName; else uncontrolled">
+  <div 
+    [formGroup]="group"
+    [ngSwitch]="field.type">
+    <ng-container
+      *ngSwitchCase="'radio'">
+      <label>{{field.label}}</label>
+      <div
+        *ngFor="let option of field.options">
+        <label>
+          <input
+            #el
+            type="radio"
+            [formControlName]="field.controlName"
+            [value]="option.value">
+          {{option.text}}
+        </label>
+      </div>
+    </ng-container>
+    <ng-container
+      *ngSwitchCase="'checkbox'">
+      <label>
+        <input
+          #el
+          type="checkbox"
+          [formControlName]="field.controlName">
+        {{field.label}}
+      </label>
+    </ng-container>
+    <ng-container
+      *ngSwitchDefault>
+      <label>
+       {{field.label}}
+        <input
+          #el
+          [attr.type]="field.type"
+          [formControlName]="field.controlName">
+      </label>
+    </ng-container>
+  </div>
+</ng-container>
+
+<ng-template #uncontrolled>
+    <div>
+      <input
+        #input
+        [attr.type]="field.type">
+    </div>
+  </ng-template>
