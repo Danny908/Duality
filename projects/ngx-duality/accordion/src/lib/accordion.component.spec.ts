@@ -133,21 +133,21 @@ describe('AccordionComponent', () => {
   });
 
   it('should trigger the animation if animated is true', async(() => {
-    spyOn(component, 'doAnimation');
+    spyOn(component, 'updateAnimation');
     const accordion = fixture.debugElement.nativeElement.querySelector('div.dl-accordion-header');
     accordion.click();
     fixture.whenStable().then(() => {
-      expect(component.doAnimation).toHaveBeenCalled();
+      expect(component.updateAnimation).toHaveBeenCalled();
     });
   }));
 
   it('should not trigger the animation if animated is false', async(() => {
-    spyOn(component, 'doAnimation');
+    spyOn(component, 'updateAnimation');
     const accordion = fixture.debugElement.nativeElement.querySelector('div.dl-accordion-header');
     component.animated = false;
     accordion.click();
     fixture.whenStable().then(() => {
-      expect(component.doAnimation).not.toHaveBeenCalled();
+      expect(component.updateAnimation).not.toHaveBeenCalled();
     });
   }));
 

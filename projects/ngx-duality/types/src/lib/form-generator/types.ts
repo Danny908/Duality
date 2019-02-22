@@ -2,7 +2,7 @@ import { ValidatorFn, AsyncValidatorFn } from '@angular/forms';
 
 export interface FormField {
     label: string;
-    element: string;
+    tag?: string;
     controlName?: string;
     value?: string | number;
     param?: string;

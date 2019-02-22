@@ -42,6 +42,18 @@
       ],
       "@ngx-duality/types/*": [
         "dist/ngx-duality/types/*"
+      ],
+      "@ngx-duality/sidebar": [
+        "dist/ngx-duality/sidebar"
+      ],
+      "@ngx-duality/sidebar/*": [
+        "dist/ngx-duality/sidebar/*"
+      ],
+      "@ngx-duality/browser-detect": [
+        "dist/ngx-duality/browser-detect"
+      ],
+      "@ngx-duality/browser-detect/*": [
+        "dist/ngx-duality/browser-detect/*"
       ]
     }
   }

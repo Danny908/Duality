@@ -1,14 +1,15 @@
-<div >
+<div>
   <label>
     {{ field.label }}
   </label>
   <div>
       <ng-container
-        *ngFor="let f of field.group"
+        *ngFor="let key of keys; let i = index"
         dualityFormGenerator
-        [nested]=true
-        [group]="formGroup"
-        [field]="f">
+        [group]="group"
+        [field]="field.options[key]"
+        [options]="true"
+        [controlName]="field.type === 'radio' ? controlName : i">
       </ng-container>
     </div>
 </div>

@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
+import { BrowserDetectService } from '@ngx-duality/browser-detect';
+import { Expand } from '@ngx-duality/animations';
 
-import { fields, data } from '../assets/mock/form-generator';
+import { fields, data, newFields } from '../assets/mock/form-generator';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +13,15 @@ export class AppComponent {
   @ViewChild('accordionGroup') accordionGroup;
   title = 'ngx-duality';
   index = 0;
-  fields = fields;
+  fields = newFields;
   data = data;
+  sidebarstatus: any;
 
-  constructor() { }
+  constructor(
+    private browserDetect: BrowserDetectService
+  ) {
+    console.log(this.browserDetect.detect());
+  }
 
   tabs() {
     console.log(this.index);
@@ -30,4 +37,8 @@ export class AppComponent {
     }
   }
   checkAll(isOpen: boolean[]) {}
+
+  sidebarStatus(status: any) {
+    this.sidebarstatus = status;
+  }
 }

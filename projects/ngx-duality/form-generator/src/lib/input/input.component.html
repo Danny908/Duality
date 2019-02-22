@@ -1,4 +1,4 @@
-<ng-container
+<!-- <ng-container
   *ngIf="!!field.controlName; else uncontrolled">
   <div 
     [formGroup]="group"
@@ -12,9 +12,9 @@
           <input
             #el
             type="radio"
-            [formControlName]="field.controlName"
+            [formControl]="controlName"
             [value]="option.value">
-          {{option.text}}
+          {{option.text}}werwerewr
         </label>
       </div>
     </ng-container>
@@ -24,18 +24,18 @@
         <input
           #el
           type="checkbox"
-          [formControlName]="field.controlName">
-        {{field.label}}
+          [formControl]="controlName">
+        {{field.label}}werwer
       </label>
     </ng-container>
     <ng-container
       *ngSwitchDefault>
       <label>
-       {{field.label}}
+       {{controlName}}hgfdashgjdfhjgfsd
         <input
           #el
           [attr.type]="field.type"
-          [formControlName]="field.controlName">
+          [formControl]="controlName">
       </label>
     </ng-container>
     <p>{{error()}}</p>
@@ -49,3 +49,20 @@
         [attr.type]="field.type">
     </div>
   </ng-template>
+  <p>{{controlName}}</p> -->
+  <div
+    #input
+    [formGroup]="group"
+    [ngSwitch]="field.type">
+    <ng-container
+      *ngSwitchDefault>
+      <label>
+      {{!options ? field.label : ''}}
+        <input
+          [attr.type]="field.type"
+          [name]="options && controlName"
+          [formControlName]="controlName">
+        {{options ? field.label : ''}}
+      </label>
+    </ng-container>
+  </div>

@@ -34,7 +34,7 @@ export class AccordionComponent {
       this.isOpen = !this.isOpen;
       this.toggled.emit(this.isOpen);
       if (this.animated) {
-        this.animationState = this.doAnimation();
+        this.updateAnimation();
       }
       if (this.oneAtTime && !group) {
         this.toggleGroup(this.index);
@@ -42,8 +42,8 @@ export class AccordionComponent {
     }
   }
 
-  doAnimation(): string {
-    return this.isOpen ? 'active' : 'inactive';
+  updateAnimation(): void {
+    this.animationState =  this.isOpen ? 'active' : 'inactive';
   }
 
 }

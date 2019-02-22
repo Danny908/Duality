@@ -1,0 +1,30 @@
+div.dl-sidebar-backdrop {
+    position: absolute;
+    &.mobile {
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 98;
+      &.not-animated {
+        opacity: 0;
+        z-index: -1;
+        &.open {
+          opacity: 1;
+          z-index: 98;
+        }
+      }
+    }
+}
+div.dl-sidebar {
+  overflow-x: hidden;
+  will-change: transform;
+  position: absolute;
+  z-index: 99;
+  &.not-animated {
+    transform: translateX(-100%);
+    &.open {
+      transform: translateX(0);
+    }
+  }
+}

@@ -5,7 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AccordionModule } from '@ngx-duality/accordion';
 import { FormGeneratorModule } from '@ngx-duality/form-generator';
-import { Expand } from '@ngx-duality/animations';
+import { SidebarModule } from '@ngx-duality/sidebar';
+// import { Expand } from '@ngx-duality/animations';
 
 import { AppComponent } from './app.component';
 
@@ -18,7 +19,8 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     AccordionModule,
-    FormGeneratorModule
+    FormGeneratorModule,
+    SidebarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

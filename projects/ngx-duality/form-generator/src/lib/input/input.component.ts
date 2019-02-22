@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef, AfterViewInit, TemplateRef } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormArray, FormControl } from '@angular/forms';
 
 import { FormField } from '@ngx-duality/types';
 import { ValidationService } from '../validation.service';
@@ -10,9 +10,11 @@ import { ValidationService } from '../validation.service';
   styleUrls: ['./input.component.scss']
 })
 export class InputComponent implements AfterViewInit {
-  @ViewChild('el') el: ElementRef;
-  field: FormField;
+  @ViewChild('input') el: ElementRef;
+  controlName: string;
+  field: FormField | any;
   group: FormGroup;
+  options: boolean;
 
   constructor(
     private renderer: Renderer2,
@@ -20,24 +22,39 @@ export class InputComponent implements AfterViewInit {
   ) { }
 
   ngAfterViewInit() {
-    const { extras } = this.field;
-    if (this.el && extras) {
-      const { nativeElement: element } = this.el;
-      this.applyAttributes(extras, element);
+    const input = this.el.nativeElement.querySelector('input');
+    const { attrs, value, type } = this.field;
+
+    if (attrs) {
+      // this.setAttributes(attrs, input);
     }
+    if (this.options) {
+      this.renderer.setAttribute(input, 'value', value);
+      if (type === 'radio' && this.group.get(this.controlName).value === value) {
+        this.renderer.setAttribute(input, 'checked', 'true');
+      }
+    }
+    console.log(this.el.nativeElement.querySelector('input'));
   }
 
-  applyAttributes(extras: Object, element: TemplateRef<any>) {
-    Object.keys(extras).forEach(key => {
-      this.renderer.setAttribute(element, key, extras[key]);
+  setAttributes(attrs: Object, input: TemplateRef<any>) {
+    Object.keys(attrs).forEach(key => {
+      this.renderer.setAttribute(input, key, attrs[key]);
     });
   }
 
-  error(): string {
-    const { controlName, label, errors } = this.field;
-    const control = this.group.get(controlName);
-    const error = this.validationService.validate(label, errors, control);
-    return error;
-  }
+  // setControl(field: string): string {
+  //   if (this.group.controls && this.group.controls.length) {
+  //     const controls: [] = this.group.controls;
+  //     return controls.findIndex(ctrl:FormControl => ctrl.)
+  //   }
+  // }
+
+  // error(): string {
+  //   const { controlName, label, errors } = this.field;
+  //   const control = this.group.get(controlName);
+  //   const error = this.validationService.validate(label, errors, control);
+  //   return error;
+  // }
 
 }

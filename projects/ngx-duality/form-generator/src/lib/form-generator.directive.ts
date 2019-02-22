@@ -13,7 +13,8 @@ import { TextAreaComponent } from './text-area/text-area.component';
 export class FormGeneratorDirective implements OnInit {
   @Input() field: FormField;
   @Input() group: FormGroup;
-  @Input() nested: boolean;
+  @Input() controlName: string;
+  @Input() options: boolean;
   component: ComponentRef<any>;
   components = {
     input: InputComponent,
@@ -27,11 +28,14 @@ export class FormGeneratorDirective implements OnInit {
   ) { }
 
   ngOnInit() {
-    const component = this.components[this.field.element];
+    const { tag } = this.field;
+    const component = this.components[tag ? tag : 'input'];
     const factory = this.resolver.resolveComponentFactory<any>(component);
     this.component = this.container.createComponent(factory);
     this.component.instance.group = this.group;
     this.component.instance.field = this.field;
+    this.component.instance.controlName = this.controlName;
+    this.component.instance.options = this.options;
   }
 
 }

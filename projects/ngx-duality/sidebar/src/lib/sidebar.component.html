@@ -1,0 +1,14 @@
+<div 
+  class="dl-sidebar-backdrop"
+  [ngClass]="[mobile ? 'mobile':'', open ? 'open':'', !animated ? 'not-animated':'']"
+  [style.background]="backdropColor"
+  [@fade]="animated && fadeAnimation"
+  (click)="toggle()"></div>
+<div 
+  class="dl-sidebar"
+  [ngStyle]="position"
+  [ngClass]="[!animated ? 'not-animated':'', open ? 'open':'']"
+  [@translate]="{value: animated && translateAnimation, params: {timing: timing, x: animation.x, y: animation.y}}">
+  <ng-content>
+  </ng-content>
+</div>

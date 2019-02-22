@@ -202,6 +202,79 @@ export const fields: Array<FormField> = [
       }
     }
 ];
-
+export interface NewFormField {
+  label?: string;
+  tag?: string;
+  value?: any;
+  valueParam?: string;
+  type?: string;
+  // multiple?: boolean;
+  options?: {[key: string]: NewFormField };
+  validators?: Array<any>;
+  asyncValidators?: Array<any>;
+  errors?: {[key: string]: any};
+  attrs?: {[key: string]: any};
+}
+export const newFields: {[key: string]: NewFormField } = {
+  name: {
+    label: 'Name:',
+    value: 'Daniel',
+    attrs: {
+      disabled: true
+    }
+  },
+  lastname: {
+    label: 'Lastname:',
+    value: 'Torres',
+    attrs: {
+      disabled: true
+    }
+  },
+  age: {
+    label: 'Age',
+    value: 25,
+    type: 'number'
+  },
+  gender: {
+    label: 'Gender:',
+    tag: 'group',
+    type: 'radio',
+    options: {
+      male: {
+        label: 'Male',
+        value: 'male',
+        type: 'radio',
+      },
+      female: {
+        label: 'Female',
+        value: 'female',
+        type: 'radio',
+      }
+    }
+  },
+  favouriteColor: {
+    label: 'Favourite Colors:',
+    tag: 'group',
+    type: 'checkbox',
+    value: ['blue', 'red'],
+    options: {
+      blue: {
+        label: 'Blue',
+        value: 'blue',
+        type: 'checkbox'
+      },
+      red: {
+        label: 'Red',
+        value: 'red',
+        type: 'checkbox'
+      },
+      yellow: {
+        label: 'Yellow',
+        value: 'yellow',
+        type: 'checkbox'
+      }
+    }
+  }
+};
 
 

@@ -17,7 +17,7 @@
       {{header}}
       <span 
         class="dl-accordion-arrow"
-        [@rotateState]="{value: animated && animationState, params: {timing: rotateTiming, rotation: '90'}}">
+        [@rotate]="{value: animated && animationState, params: {timing: rotateTiming, rotation: '90'}}">
         &#9654;
       </span>
     </h3>
@@ -26,7 +26,7 @@
     class="dl-accordion-content"
     [ngClass]="[isOpen ? 'open':'close', !animated ? 'not-animated' : '']"
     [ngSwitch]="!!contentTemplate"
-    [@expandState]="{value: animated && animationState, params: {timing: expandTiming}}">
+    [@expandHeight]="{value: animated && animationState, params: {timing: expandTiming}}">
     <ng-container *ngSwitchCase="true">
       <ng-container *ngTemplateOutlet="contentTemplate; context: { $implicit: content }">
       </ng-container>

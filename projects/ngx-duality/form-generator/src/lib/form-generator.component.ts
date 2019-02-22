@@ -1,7 +1,20 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterContentInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms';
-import { FormField } from '@ngx-duality/types';
+// import { FormField } from '@ngx-duality/types';
 
+export interface FormField {
+  label?: string;
+  element?: string;
+  type?: string;
+  value?: any;
+  valueParam?: string;
+  multiple?: boolean;
+  options?: {[key: string]: FormField};
+  validators?: Array<any>;
+  asyncValidators?: Array<any>;
+  errors?: {[key: string]: any};
+  attrs?: {[key: string]: any};
+}
 @Component({
   selector: 'duality-form-generator',
   template: `
@@ -9,75 +22,99 @@ import { FormField } from '@ngx-duality/types';
       [formGroup]="form"
       (ngSubmit)="submit()">
       <ng-container
-        *ngFor="let field of fields"
+        *ngFor="let key of keys"
         dualityFormGenerator
         [group]="form"
-        [field]="field">
+        [field]="fields[key]"
+        [controlName]="key">
       </ng-container>
+      <button
+        *ngIf="submitBtn"
+        type="submit">
+          Submit
+      </button>
+      <button
+        *ngIf="resetBtn"
+        type="submit">
+          Reset
+      </button>
     </form>
   `,
   styles: []
 })
 export class FormGeneratorComponent implements OnInit {
-  @Input() fields: Array<FormField>;
+  @Input() fields: {[key: string]: FormField};
   @Input() data: {[key: string]: any};
+  @Input() submitBtn = true;
+  @Input() resetBtn: boolean;
   form: FormGroup;
+  keys: Array<string> = [];
   constructor(
     private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
     this.form = this.createFormGroup(this.fields);
+    this.keys = Object.keys(this.fields);
     console.log('%cFORM CREATED', 'color: green; font-weight: bold');
     console.log(this.form);
   }
 
-  createFormGroup(fields: Array<FormField>): FormGroup {
+  createFormGroup(fields: {[key: string]: FormField}): FormGroup {
     const form = this.formBuilder.group({});
-    fields.forEach(field => {
-      if (field.group && field.group.length > 0) {
-        if (field.type === 'array') {
-          form.addControl(field.controlName, this.createFormArray(field.group));
-        } else {
-          form.addControl(field.controlName, this.createFormGroup(field.group));
-        }
+    for (const field in fields) {
+      if (fields[field].type === 'checkbox') {
+        form.addControl(field, this.createFormArray(fields[field]));
       } else {
-        if (field.controlName) {
-            form.addControl(field.controlName, this.createControl(field));
-        }
+        form.addControl(field, this.newControl(fields[field]));
       }
-    });
-    return form;
-  }
-
-  createFormArray(fields: Array<FormField>): FormArray {
-    const form = this.formBuilder.array([]);
-    fields.forEach(field => {
-      if (field.controlName) {
-        form.push(this.createControl(field));
-      }
-    });
-
-    return form;
-  }
-
-  createControl(field: FormField): FormControl {
-    const { param, value, validators } = field;
-    if (value) {
-      return new FormControl(value, validators);
     }
-    return new FormControl(this.setFormState(param), validators);
+    // fields.forEach(field => {
+    //   if (field.group && field.group.length > 0) {
+    //     if (field.type === 'array') {
+    //       form.addControl(field.controlName, this.createFormArray(field.group));
+    //     } else {
+    //       form.addControl(field.controlName, this.createFormGroup(field.group));
+    //     }
+    //   } else {
+    //     if (field.controlName) {
+    //         form.addControl(field.controlName, this.createControl(field));
+    //     }
+    //   }
+    // });
+    return form;
   }
 
-  setFormState(param: string): any {
-    if (param && this.data) {
-      if (param.includes('.')) {
-        const subParams = param.split('.');
-        let state = this.data;
-        subParams.forEach(sp => state = state[sp]);
+  createFormArray(field: FormField): FormArray {
+    const { options, value } = field;
+    const form = this.formBuilder.array([]);
+    for (const option in options) {
+      if (options.hasOwnProperty(option)) {
+        form.push(this.newControl(options[option]));
+      }
+    }
+    return form;
+  }
+
+  newControl(field: FormField): FormControl {
+    const { valueParam, value, validators, asyncValidators } = field;
+    // if (value) {
+    //   return new FormControl(value);
+    // }
+    // return new FormControl(this.setFormState(valueParam), validators, asyncValidators);
+    return new FormControl(value);
+
+  }
+
+  setFormState(valueParam: string): string {
+    let state: string;
+    if (valueParam && this.data) {
+      if (valueParam.includes('.')) {
+        valueParam.split('.').forEach(sp => state = this.data[sp]);
         return state;
       }
-      return this.data[param];
+      state = this.data[valueParam];
+      return state;
     }
     return null;
   }

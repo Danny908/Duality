@@ -1,3 +1,23 @@
+div.main-container {
+  overflow-y: auto;
+  height: 100%;
+  > button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 50px;
+    width: 100%;
+    z-index: 99;
+  }
+  div.content {
+    padding-top: 50px;
+    will-change: margin-left;
+    transition: 200ms ease-in-out;
+    &.open {
+      margin-left: 300px;
+    }
+  }
+}
 h2 {
   margin: 15px;
 }
@@ -5,5 +25,14 @@ div.wrapper {
   padding: 25px;
   button {
     margin-bottom: 20px;
+  }
+}div.sidebar-content {
+  width: 300px;
+  padding-top: 50px;
+  min-height: inherit;
+  height: 100%;
+  background-color: gray;
+  > h1 {
+    margin: 0;
   }
 }
