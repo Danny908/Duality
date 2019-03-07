@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, AfterContentInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms';
+import { FormGroup, FormControl, FormArray } from '@angular/forms';
 // import { FormField } from '@ngx-duality/types';
 
 export interface FormField {
@@ -49,9 +49,7 @@ export class FormGeneratorComponent implements OnInit {
   @Input() resetBtn: boolean;
   form: FormGroup;
   keys: Array<string> = [];
-  constructor(
-    private formBuilder: FormBuilder
-  ) { }
+  constructor() { }
 
   ngOnInit() {
     this.form = this.createFormGroup(this.fields);
@@ -61,7 +59,7 @@ export class FormGeneratorComponent implements OnInit {
   }
 
   createFormGroup(fields: {[key: string]: FormField}): FormGroup {
-    const form = this.formBuilder.group({});
+    const form = new FormGroup({});
     for (const field in fields) {
       if (fields[field].type === 'checkbox') {
         form.addControl(field, this.createFormArray(fields[field]));
@@ -86,24 +84,24 @@ export class FormGeneratorComponent implements OnInit {
   }
 
   createFormArray(field: FormField): FormArray {
-    const { options, value } = field;
-    const form = this.formBuilder.array([]);
+    const { options, validators, asyncValidators} = field;
+    const form = new FormArray([], validators, asyncValidators);
     for (const option in options) {
       if (options.hasOwnProperty(option)) {
-        form.push(this.newControl(options[option]));
+        console.log(field.value, 'includes', options[option].value, field.value.includes(options[option].value));
+        form.push(this.newControl(options[option], field.value.includes(options[option].value)));
       }
     }
     return form;
   }
 
-  newControl(field: FormField): FormControl {
+  newControl(field: FormField, optionsVal?: boolean): FormControl {
     const { valueParam, value, validators, asyncValidators } = field;
-    // if (value) {
-    //   return new FormControl(value);
-    // }
-    // return new FormControl(this.setFormState(valueParam), validators, asyncValidators);
-    return new FormControl(value);
+    const val = value ? value : this.setFormState(valueParam);
 
+    return optionsVal !== undefined ?
+      new FormControl(optionsVal) :
+      new FormControl(val, validators, asyncValidators);
   }
 
   setFormState(valueParam: string): string {

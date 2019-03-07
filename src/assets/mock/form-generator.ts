@@ -230,6 +230,16 @@ export const newFields: {[key: string]: NewFormField } = {
       disabled: true
     }
   },
+  password: {
+    label: 'Password',
+    value: 'root123',
+    type: 'password'
+  },
+  email: {
+    label: 'Email',
+    value: 'danny908t@gmail.com',
+    type: 'email',
+  },
   age: {
     label: 'Age',
     value: 25,
@@ -239,6 +249,7 @@ export const newFields: {[key: string]: NewFormField } = {
     label: 'Gender:',
     tag: 'group',
     type: 'radio',
+    value: 'male',
     options: {
       male: {
         label: 'Male',
@@ -274,6 +285,49 @@ export const newFields: {[key: string]: NewFormField } = {
         type: 'checkbox'
       }
     }
+  },
+  color: {
+    label: 'Color',
+    value: '#0f2450',
+    type: 'color'
+  },
+  date: {
+    label: 'Date',
+    value: '2019-04-06',
+    type: 'date'
+  },
+  picture: {
+    label: 'Picture',
+    type: 'file'
+  },
+  range: {
+    label: 'Range',
+    value: '30',
+    type: 'range'
+  },
+  search: {
+    label: 'Search',
+    type: 'search'
+  },
+  select: {
+    label: 'Select',
+    value: 'hola',
+    type: 'select',
+    options: {
+      hola: {
+        label: 'Hola',
+        value: 'hola'
+      },
+      mundo: {
+        label: 'Mundo',
+        value: 'mundo'
+      }
+    }
+  },
+  notes: {
+    label: 'Notes',
+    value: 'Some Notes',
+    type: 'textarea'
   }
 };
 

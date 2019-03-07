@@ -4,8 +4,6 @@ import { FormField } from '@ngx-duality/types';
 
 import { InputComponent } from './input/input.component';
 import { GroupComponent } from './group/group.component';
-import { SelectComponent } from './select/select.component';
-import { TextAreaComponent } from './text-area/text-area.component';
 
 @Directive({
   selector: '[dualityFormGenerator]'
@@ -18,8 +16,6 @@ export class FormGeneratorDirective implements OnInit {
   component: ComponentRef<any>;
   components = {
     input: InputComponent,
-    select: SelectComponent,
-    textArea: TextAreaComponent,
     group: GroupComponent
   };
   constructor(

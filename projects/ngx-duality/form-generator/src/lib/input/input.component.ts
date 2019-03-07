@@ -15,6 +15,7 @@ export class InputComponent implements AfterViewInit {
   field: FormField | any;
   group: FormGroup;
   options: boolean;
+  keys: Array<string>;
 
   constructor(
     private renderer: Renderer2,
@@ -22,19 +23,21 @@ export class InputComponent implements AfterViewInit {
   ) { }
 
   ngAfterViewInit() {
-    const input = this.el.nativeElement.querySelector('input');
-    const { attrs, value, type } = this.field;
+    // const input = this.el.nativeElement.querySelector('input');
+    const { attrs, value, type, options } = this.field;
+    this.keys = type === 'select' && Object.keys(options);
 
     if (attrs) {
       // this.setAttributes(attrs, input);
     }
     if (this.options) {
-      this.renderer.setAttribute(input, 'value', value);
+      // this.renderer.setAttribute(input, 'value', value);
       if (type === 'radio' && this.group.get(this.controlName).value === value) {
-        this.renderer.setAttribute(input, 'checked', 'true');
+        
       }
+      // this.renderer.setAttribute(input, 'checked', 'true');
     }
-    console.log(this.el.nativeElement.querySelector('input'));
+    // console.log(this.el.nativeElement.querySelector('input'));
   }
 
   setAttributes(attrs: Object, input: TemplateRef<any>) {
