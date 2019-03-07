@@ -84,12 +84,12 @@ export class FormGeneratorComponent implements OnInit {
   }
 
   createFormArray(field: FormField): FormArray {
-    const { options, validators, asyncValidators} = field;
+    const { options, validators, asyncValidators, value, valueParam } = field;
     const form = new FormArray([], validators, asyncValidators);
     for (const option in options) {
       if (options.hasOwnProperty(option)) {
-        console.log(field.value, 'includes', options[option].value, field.value.includes(options[option].value));
-        form.push(this.newControl(options[option], field.value.includes(options[option].value)));
+        const val = value ? value : this.setFormState(valueParam);
+        form.push(this.newControl(options[option], val.includes(options[option].value)));
       }
     }
     return form;

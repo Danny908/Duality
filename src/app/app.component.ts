@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { BrowserDetectService } from '@ngx-duality/browser-detect';
 import { Expand } from '@ngx-duality/animations';
 
-import { fields, data, newFields } from '../assets/mock/form-generator';
+import { data, newFields } from '../assets/mock/form-generator';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +20,7 @@ export class AppComponent {
   constructor(
     private browserDetect: BrowserDetectService
   ) {
-    console.log(this.browserDetect.detect());
+    console.log(this.data);
   }
 
   tabs() {

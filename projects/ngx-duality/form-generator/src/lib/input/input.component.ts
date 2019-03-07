@@ -23,17 +23,18 @@ export class InputComponent implements AfterViewInit {
   ) { }
 
   ngAfterViewInit() {
-    // const input = this.el.nativeElement.querySelector('input');
+    const input = this.el.nativeElement.querySelector('input');
     const { attrs, value, type, options } = this.field;
     this.keys = type === 'select' && Object.keys(options);
-
+    if (type === 'radio') {
+      this.renderer.setAttribute(input, 'name', this.controlName);
+    }
     if (attrs) {
-      // this.setAttributes(attrs, input);
+      this.setAttributes(attrs, input);
     }
     if (this.options) {
       // this.renderer.setAttribute(input, 'value', value);
       if (type === 'radio' && this.group.get(this.controlName).value === value) {
-        
       }
       // this.renderer.setAttribute(input, 'checked', 'true');
     }
