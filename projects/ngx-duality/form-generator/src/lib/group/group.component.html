@@ -1,4 +1,4 @@
-<div>
+<div [formGroup]="group">
   <label>
     {{ field.label }}
   </label>
@@ -6,7 +6,7 @@
       <ng-container
         *ngFor="let key of keys; let i = index"
         dualityFormGenerator
-        [group]="group"
+        [group]="field.type === 'checkbox' ? group : subGroup"
         [field]="field.options[key]"
         [options]="true"
         [controlName]="field.type === 'radio' ? controlName : i">

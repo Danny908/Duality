@@ -10,7 +10,7 @@ import { ValidationService } from '../validation.service';
   styleUrls: ['./input.component.scss']
 })
 export class InputComponent implements AfterViewInit {
-  @ViewChild('input') el: ElementRef;
+  @ViewChild('input') input: ElementRef;
   controlName: string;
   field: FormField | any;
   group: FormGroup;
@@ -23,7 +23,7 @@ export class InputComponent implements AfterViewInit {
   ) { }
 
   ngAfterViewInit() {
-    const input = this.el.nativeElement.querySelector('input');
+    const input = this.input.nativeElement;
     const { attrs, value, type, options } = this.field;
     this.keys = type === 'select' && Object.keys(options);
     if (type === 'radio') {
@@ -42,6 +42,7 @@ export class InputComponent implements AfterViewInit {
   }
 
   setAttributes(attrs: Object, input: TemplateRef<any>) {
+    console.log(this.renderer, input);
     Object.keys(attrs).forEach(key => {
       this.renderer.setAttribute(input, key, attrs[key]);
     });

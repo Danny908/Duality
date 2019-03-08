@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, AbstractControl } from '@angular/forms';
+import { FormGroup, AbstractControl, FormArray } from '@angular/forms';
 
 import { FormField } from '@ngx-duality/types';
 
@@ -11,6 +11,7 @@ import { FormField } from '@ngx-duality/types';
 export class GroupComponent implements OnInit {
   field: FormField;
   group: FormGroup | AbstractControl;
+  subGroup: AbstractControl;
   formGroup: any;
   controlName: string;
   keys: Array<string>;
@@ -19,8 +20,7 @@ export class GroupComponent implements OnInit {
   ngOnInit() {
     const { options } = this.field;
     this.keys = Object.keys(options);
-    if (this.field.type === 'checkbox') {
-      this.group = this.group.get(this.controlName);
-    }
+    this.subGroup = this.group;
+    this.group = this.group.get(this.controlName);
   }
 }

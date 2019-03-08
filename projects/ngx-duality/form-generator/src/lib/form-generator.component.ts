@@ -84,7 +84,8 @@ export class FormGeneratorComponent implements OnInit {
   }
 
   createFormArray(field: FormField): FormArray {
-    const { options, validators, asyncValidators, value, valueParam } = field;
+    const { options, validators = [], asyncValidators = [], value, valueParam } = field;
+    console.log('Checkbox Parent', field);
     const form = new FormArray([], validators, asyncValidators);
     for (const option in options) {
       if (options.hasOwnProperty(option)) {
@@ -96,11 +97,10 @@ export class FormGeneratorComponent implements OnInit {
   }
 
   newControl(field: FormField, optionsVal?: boolean): FormControl {
-    const { valueParam, value, validators, asyncValidators } = field;
+    const { valueParam, value, validators = [], asyncValidators = [] } = field;
     const val = value ? value : this.setFormState(valueParam);
-
     return optionsVal !== undefined ?
-      new FormControl(optionsVal) :
+      new FormControl(optionsVal, validators, asyncValidators) :
       new FormControl(val, validators, asyncValidators);
   }
 

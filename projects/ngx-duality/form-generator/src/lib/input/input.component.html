@@ -1,12 +1,13 @@
 <div
-  #input
   [formGroup]="group"
   [ngSwitch]="field.type">
   <label
     *ngSwitchCase="'select'">
     {{field.label}}
     <select 
-      [formControlName]="controlName">
+      #input
+      [formControlName]="controlName"
+      [multiple]="field.attrs?.multiple">
       <option 
         *ngFor="let key of keys"
         [value]="field.options[key].value">
@@ -18,12 +19,14 @@
     *ngSwitchCase="'textarea'">
     {{field.label}}
     <textarea 
+      #input
       [formControlName]="controlName">
     </textarea>
   </label>
   <label
     *ngSwitchCase="'checkbox'">
     <input
+      #input 
       type="checkbox"
       [formControlName]="controlName">
     {{options ? field.label : ''}}
@@ -31,6 +34,7 @@
   <label
     *ngSwitchCase="'radio'">
     <input
+      #input
       type="radio"
       [value]="field.value"
       [formControlName]="controlName">
@@ -40,6 +44,7 @@
     *ngSwitchDefault>
   {{field.label}}
     <input
+      #input
       [type]="field.type"
       [formControlName]="controlName">
   </label>

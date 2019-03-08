@@ -193,7 +193,6 @@ export interface NewFormField {
   value?: any;
   valueParam?: string;
   type?: string;
-  // multiple?: boolean;
   options?: {[key: string]: NewFormField };
   validators?: Array<any>;
   asyncValidators?: Array<any>;
@@ -218,23 +217,19 @@ export const data: {[key: string]: any} = {
 export const newFields: {[key: string]: NewFormField } = {
   name: {
     label: 'Name:',
-    valueParam: 'name',
-    attrs: {
-      readOnly: true
-    }
+    validators: [ Validators.required ],
   },
   lastname: {
     label: 'Lastname:',
     valueParam: 'lastname',
-    attrs: {
-      disabled: true
-    }
+    validators: [ Validators.minLength(1), Validators.maxLength(10), Validators.required ]
   },
   gender: {
     label: 'Gender:',
     tag: 'group',
     type: 'radio',
-    valueParam: 'gender',
+    // valueParam: 'gender',
+    validators: [ Validators.required ],
     options: {
       male: {
         label: 'Male',
@@ -260,7 +255,8 @@ export const newFields: {[key: string]: NewFormField } = {
       blue: {
         label: 'JS',
         value: 'js',
-        type: 'checkbox'
+        type: 'checkbox',
+        validators: [ Validators.requiredTrue ]
       },
       red: {
         label: 'TS',
@@ -270,10 +266,7 @@ export const newFields: {[key: string]: NewFormField } = {
       yellow: {
         label: 'SCSS',
         value: 'scss',
-        type: 'checkbox',
-        attrs: {
-          disabled: true,
-        }
+        type: 'checkbox'
       }
     }
   },
@@ -285,12 +278,16 @@ export const newFields: {[key: string]: NewFormField } = {
   score: {
     label: 'Score',
     valueParam: 'score',
-    type: 'range'
+    type: 'range',
+    validators: [ Validators.min(10), Validators.max(90) ]
   },
   country: {
     label: 'Country',
     valueParam: 'country',
     type: 'select',
+    attrs: {
+      multiple: true
+    },
     options: {
       mexico: {
         label: 'Mexico',
@@ -302,10 +299,14 @@ export const newFields: {[key: string]: NewFormField } = {
       }
     }
   },
-  resune: {
+  resume: {
     label: 'Resume:',
     valueParam: 'resume',
-    type: 'textarea'
+    type: 'textarea',
+    attrs: {
+      rows: 4,
+      cols: 50,
+    }
   }
 };
 
