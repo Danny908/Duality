@@ -1,5 +1,5 @@
 import { FormField } from '@ngx-duality/types';
-import { Validators } from '@angular/forms';
+import { Validators, AbstractControl } from '@angular/forms';
 
 
 const skills = [
@@ -196,7 +196,7 @@ export interface NewFormField {
   options?: {[key: string]: NewFormField };
   validators?: Array<any>;
   asyncValidators?: Array<any>;
-  errors?: {[key: string]: any};
+  customErrors?: {[key: string]: any};
   attrs?: {[key: string]: any};
 }
 export const data: {[key: string]: any} = {
@@ -224,11 +224,22 @@ export const newFields: {[key: string]: NewFormField } = {
     valueParam: 'lastname',
     validators: [ Validators.minLength(1), Validators.maxLength(10), Validators.required ]
   },
+  password: {
+    label: 'Password',
+    validators: [checkPassRemotely]
+  },
+  repeatPassword: {
+    label: 'Repeat Password',
+    validators: [samePass],
+    customErrors: {
+      passnotmatch: `Passwords does not match`
+    }
+  },
   gender: {
     label: 'Gender:',
     tag: 'group',
     type: 'radio',
-    // valueParam: 'gender',
+    valueParam: 'gender',
     validators: [ Validators.required ],
     options: {
       male: {
@@ -309,5 +320,21 @@ export const newFields: {[key: string]: NewFormField } = {
     }
   }
 };
+
+function checkPassRemotely(control: AbstractControl): null {
+  const repeatPass = control.root.get('repeatPassword');
+  if (repeatPass) {
+    repeatPass.updateValueAndValidity();
+  }
+  return null;
+}
+
+function samePass(control: AbstractControl): { passnotmatch: boolean } | null {
+  const password = control.root.get('password');
+  if (password && control && (control.value !== password.value)) {
+    return { passnotmatch: true };
+  }
+  return null;
+}
 
 

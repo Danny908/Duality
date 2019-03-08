@@ -55,11 +55,11 @@ export class InputComponent implements AfterViewInit {
   //   }
   // }
 
-  // error(): string {
-  //   const { controlName, label, errors } = this.field;
-  //   const control = this.group.get(controlName);
-  //   const error = this.validationService.validate(label, errors, control);
-  //   return error;
-  // }
+  error(): string {
+    const { label, customErrors } = this.field;
+    const control = this.group.get(this.controlName);
+    const error = this.validationService.validate(label, customErrors, control);
+    return error;
+  }
 
 }
