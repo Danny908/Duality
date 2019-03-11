@@ -8,6 +8,7 @@ export class ValidationService {
   constructor() { }
 
   validate(label: string, customErrors: Object, control: AbstractControl): string {
+    console.log(control);
     const { invalid, touched, dirty, errors } = control;
     if (invalid && touched && dirty) {
       return this.error(errors, label, customErrors);
