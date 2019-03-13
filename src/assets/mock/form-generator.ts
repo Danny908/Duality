@@ -1,5 +1,5 @@
 import { FormField } from '@ngx-duality/types';
-import { Validators, AbstractControl } from '@angular/forms';
+import { Validators, AbstractControl, ValidatorFn, FormArray } from '@angular/forms';
 
 
 const skills = [
@@ -30,163 +30,6 @@ const styles = {
   }
 };
 
-// export const fields: Array<FormField> = [
-//     {
-//         label: 'Name',
-//         controlName: 'name',
-//         element: 'input',
-//         param: 'name',
-//         extras: {
-//             placeholder: 'Add your name',
-//         }
-//     },
-//     {
-//         label: 'Last Name',
-//         controlName: 'lastname',
-//         element: 'input',
-//         param: 'lastname',
-//         extras: {
-//             placeholder: 'Add your last name',
-//             disabled: true
-//         }
-//     },
-//     {
-//       label: 'Gender',
-//       element: 'input',
-//       param: 'gender',
-//       controlName: 'gender',
-//       type: 'radio',
-//       options: [
-//         {
-//           text: 'Male',
-//           value: 'male'
-//         },
-//         {
-//           text: 'Female',
-//           value: 'female'
-//         }
-//       ]
-//     },
-//     {
-//       label: 'Password',
-//       element: 'input',
-//       type: 'password',
-//       controlName: 'password'
-//     },
-//     {
-//       label: 'Upload',
-//       element: 'input',
-//       type: 'file',
-//       controlName: 'upload'
-//     },
-//     {
-//       label: 'BirthDay',
-//       element: 'input',
-//       type: 'date',
-//       controlName: 'birthday',
-//       param: 'birthday'
-//     },
-//     {
-//       label: 'Month',
-//       element: 'input',
-//       type: 'month',
-//       controlName: 'month'
-//     },
-//     {
-//       label: 'Number',
-//       element: 'input',
-//       type: 'number',
-//       controlName: 'number',
-//       validators: [ Validators.min(0), Validators.max(10) ],
-//       extras: {
-//         min: 0,
-//         max: 10
-//       }
-//     },
-//     {
-//       label: 'Range',
-//       element: 'input',
-//       type: 'range',
-//       controlName: 'points',
-//       param: 'points',
-//       validators: [ Validators.min(0), Validators.max(10) ],
-//       extras: {
-//         min: 0,
-//         max: 10
-//       }
-//     },
-//     {
-//       label: 'Time',
-//       element: 'input',
-//       controlName: 'time',
-//       type: 'time'
-//     },
-//     {
-//       label: 'Week',
-//       element: 'input',
-//       controlName: 'week',
-//       type: 'week',
-//     },
-//     {
-//       label: 'Skills',
-//       element: 'group',
-//       controlName: 'skills',
-//       type: 'array',
-//       group:
-//         skills.map(function(skill): FormField {
-//           return {
-//             label:   skill.text,
-//             element: 'input',
-//             type: 'checkbox',
-//             controlName: skill.value,
-//             value: data.skills.find(sk => sk === skill.value) && skill.value
-//           };
-//         })
-//     },
-//     {
-//       label: 'Foods',
-//       element: 'select',
-//       controlName: 'foods',
-//       param: 'food',
-//       multiple: true,
-//       extras: {
-//         autofocus: true
-//       },
-//       options: [
-//         {value: '', text: ''},
-//         {value: 'sushi', text: 'Shushi'},
-//         {value: 'tacos', text: 'Tacos'},
-//         {value: 'chips', text: 'Chips'},
-//         {value: 'cookies', text: 'Cookies'},
-//         {value: 'chocolate', text: 'Chocolate'}
-
-//       ]
-//     },
-//     {
-//       label: 'Resume',
-//       element: 'textArea',
-//       controlName: 'resume',
-//       param: 'resume'
-//     },
-//     {
-//       label: 'Reset',
-//       element: 'input',
-//       type: 'reset',
-//       extras: {
-//         value: 'Reset',
-//         novalidate: true
-//       }
-//     },
-//     {
-//       label: '',
-//       element: 'input',
-//       type: 'submit',
-//       extras: {
-//         value: 'Submit',
-//         novalidate: true
-//       }
-//     }
-// ];
 export interface NewFormField {
   label?: string;
   tag?: string;
@@ -222,7 +65,7 @@ export const newFields: {[key: string]: NewFormField } = {
   lastname: {
     label: 'Lastname:',
     valueParam: 'lastname',
-    validators: [ Validators.minLength(1), Validators.maxLength(10), Validators.required ]
+    validators: [ Validators.minLength(4), Validators.maxLength(10), Validators.required ]
   },
   password: {
     label: 'Password',
@@ -239,7 +82,6 @@ export const newFields: {[key: string]: NewFormField } = {
     label: 'Gender:',
     tag: 'group',
     type: 'radio',
-    valueParam: 'gender',
     validators: [ Validators.required ],
     options: {
       male: {
@@ -262,12 +104,15 @@ export const newFields: {[key: string]: NewFormField } = {
     tag: 'group',
     type: 'checkbox',
     valueParam: 'skills',
+    validators: [ minOptionsRequired() ],
+    customErrors: {
+      minoptionsrequired: `At least one option is required`
+    },
     options: {
       blue: {
         label: 'JS',
         value: 'js',
         type: 'checkbox',
-        validators: [ Validators.requiredTrue ]
       },
       red: {
         label: 'TS',
@@ -294,10 +139,13 @@ export const newFields: {[key: string]: NewFormField } = {
   },
   country: {
     label: 'Country',
-    valueParam: 'country',
+    validators: [ minOptionsRequired(2) ],
     type: 'select',
     attrs: {
       multiple: true
+    },
+    customErrors: {
+      minoptionsrequired: `At least two options are required`
     },
     options: {
       mexico: {
@@ -314,6 +162,7 @@ export const newFields: {[key: string]: NewFormField } = {
     label: 'Resume:',
     valueParam: 'resume',
     type: 'textarea',
+    validators: [ Validators.required ],
     attrs: {
       rows: 4,
       cols: 50,
@@ -337,4 +186,15 @@ function samePass(control: AbstractControl): { passnotmatch: boolean } | null {
   return null;
 }
 
-
+function minOptionsRequired(min = 1): ValidatorFn {
+    return(control: AbstractControl) => {
+      if (control && control.value) {
+        let options = 0;
+        control.value.forEach(v => {
+          if (v) { options++; }
+        });
+        return options < min && {minoptionsrequired: true };
+      }
+    return null;
+  };
+}

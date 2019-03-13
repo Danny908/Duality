@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, AbstractControl, FormArray } from '@angular/forms';
 
 import { FormField } from '@ngx-duality/types';
+import { ValidationService } from '../validation.service';
 
 @Component({
   selector: 'duality-group',
@@ -9,18 +10,27 @@ import { FormField } from '@ngx-duality/types';
   styleUrls: ['./group.component.scss']
 })
 export class GroupComponent implements OnInit {
-  field: FormField;
+  field: FormField | any;
   group: FormGroup | AbstractControl;
   subGroup: AbstractControl;
   formGroup: any;
   controlName: string;
   keys: Array<string>;
-  constructor() { }
+  constructor(
+    private validationService: ValidationService
+  ) { }
 
   ngOnInit() {
     const { options } = this.field;
     this.keys = Object.keys(options);
     this.subGroup = this.group;
     this.group = this.group.get(this.controlName);
+  }
+
+  error(): string {
+    const { label, customErrors } = this.field;
+    const control = this.group;
+    const error = this.validationService.validate(label, customErrors, control);
+    return error;
   }
 }

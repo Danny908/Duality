@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, AfterContentInit } from '@angular/core';
-import { FormGroup, FormControl, FormArray } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, AbstractControl } from '@angular/forms';
 // import { FormField } from '@ngx-duality/types';
 
 export interface FormField {
@@ -118,6 +118,13 @@ export class FormGeneratorComponent implements OnInit {
   }
 
   submit() {
+    Object.keys(this.form.controls).forEach((k) => {
+      const control = this.form.get(k);
+      if (control.invalid) {
+        control.markAsTouched();
+        control.markAsDirty();
+      }
+    });
     console.log('%cSUBMIT', 'color: green; font-weight: bold');
     console.log(this.form.value);
   }
