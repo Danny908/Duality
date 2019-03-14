@@ -6,13 +6,14 @@
     {{field.label}}
     <select 
       #input
-      [formControlName]="controlName"
-      [multiple]="field.attrs?.multiple">
-      <option 
-        *ngFor="let key of keys"
-        [value]="field.options[key].value">
-          {{field.options[key].label}}
-      </option>
+      [formControlName]="controlName">
+      <ng-container 
+        *ngFor="let option of field.options">
+        <option 
+          [value]="checkPropType(option, 'value')">
+            {{checkPropType(option, 'label')}}
+        </option>
+      </ng-container>
     </select>
   </label>
   <label 
@@ -23,23 +24,40 @@
       [formControlName]="controlName">
     </textarea>
   </label>
-  <label
-    *ngSwitchCase="'checkbox'">
-    <input
-      #input 
-      type="checkbox"
-      [formControlName]="controlName">
-    {{options ? field.label : ''}}
-  </label>
-  <label
+  <div
+    *ngSwitchCase="'checkbox'"
+    [formArrayName]="controlName">
+    <label>
+      {{field.label}}
+    </label>
+    <div
+      *ngFor="let option of field.options; let i = index">
+      <label>
+        <input
+          #input 
+          type="checkbox"
+          [formControlName]="i">
+        {{checkPropType(option, 'label')}}
+      </label>
+    </div>
+  </div>
+  <div
     *ngSwitchCase="'radio'">
-    <input
-      #input
-      type="radio"
-      [value]="field.value"
-      [formControlName]="controlName">
-    {{options ? field.label : ''}}
-  </label>
+    <label>
+      {{field.label}}
+    </label>
+    <div
+      *ngFor="let option of field.options">
+      <label>
+        <input
+          #input
+          type="radio"
+          [value]="option.value"
+          [formControlName]="controlName">
+        {{checkPropType(option, 'label')}}
+      </label>
+    </div>
+  </div>
   <label
     *ngSwitchDefault>
   {{field.label}}

@@ -21,10 +21,10 @@ export class GroupComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const { options } = this.field;
-    this.keys = Object.keys(options);
-    this.subGroup = this.group;
-    this.group = this.group.get(this.controlName);
+    // console.log(this.field, this.group);
+    const { group } = this.field;
+    this.keys = Object.keys(group);
+    this.subGroup = this.group.get(this.controlName);
   }
 
   error(): string {

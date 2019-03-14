@@ -4,12 +4,11 @@
   </label>
   <div>
       <ng-container
-        *ngFor="let key of keys; let i = index"
+        *ngFor="let key of keys;"
         dualityFormGenerator
-        [group]="field.type === 'checkbox' ? group : subGroup"
-        [field]="field.options[key]"
-        [options]="true"
-        [controlName]="field.type === 'radio' ? controlName : i">
+        [group]="subGroup"
+        [field]="field.group[key]"
+        [controlName]="key">
       </ng-container>
       <p class="error">{{error()}}</p>
     </div>

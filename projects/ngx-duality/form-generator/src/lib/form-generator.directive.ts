@@ -9,29 +9,29 @@ import { GroupComponent } from './group/group.component';
   selector: '[dualityFormGenerator]'
 })
 export class FormGeneratorDirective implements OnInit {
-  @Input() field: FormField;
+  @Input() field: any;
   @Input() group: FormGroup;
   @Input() controlName: string;
-  @Input() options: boolean;
   component: ComponentRef<any>;
   components = {
     input: InputComponent,
     group: GroupComponent
   };
+  defaultComponent = 'input';
   constructor(
     private resolver: ComponentFactoryResolver,
     private container: ViewContainerRef
   ) { }
 
   ngOnInit() {
-    const { tag } = this.field;
-    const component = this.components[tag ? tag : 'input'];
+    const { isGroup } = this.field;
+    this.defaultComponent = isGroup ? 'group' : this.defaultComponent;
+    const component = this.components[this.defaultComponent];
     const factory = this.resolver.resolveComponentFactory<any>(component);
     this.component = this.container.createComponent(factory);
     this.component.instance.group = this.group;
     this.component.instance.field = this.field;
     this.component.instance.controlName = this.controlName;
-    this.component.instance.options = this.options;
   }
 
 }

@@ -32,11 +32,14 @@ const styles = {
 
 export interface NewFormField {
   label?: string;
-  tag?: string;
   value?: any;
   valueParam?: string;
   type?: string;
-  options?: {[key: string]: NewFormField };
+  isGroup?: boolean;
+  group?: {[key: string]: NewFormField };
+  options?:
+    Array<{value: string|number, label: string|number}> |
+    Array<string|number>;
   validators?: Array<any>;
   asyncValidators?: Array<any>;
   customErrors?: {[key: string]: any};
@@ -60,114 +63,128 @@ export const data: {[key: string]: any} = {
 export const newFields: {[key: string]: NewFormField } = {
   name: {
     label: 'Name:',
-    validators: [ Validators.required ],
+    // validators: [ Validators.required ],
   },
   lastname: {
     label: 'Lastname:',
-    valueParam: 'lastname',
-    validators: [ Validators.minLength(4), Validators.maxLength(10), Validators.required ]
+    // valueParam: 'lastname',
+    // validators: [ Validators.minLength(4), Validators.maxLength(10), Validators.required ]
   },
-  password: {
-    label: 'Password',
-    validators: [checkPassRemotely]
-  },
-  repeatPassword: {
-    label: 'Repeat Password',
-    validators: [samePass],
-    customErrors: {
-      passnotmatch: `Passwords does not match`
-    }
-  },
+  // password: {
+  //   label: 'Password',
+  //   validators: [checkPassRemotely]
+  // },
+  // repeatPassword: {
+  //   label: 'Repeat Password',
+  //   validators: [samePass],
+  //   customErrors: {
+  //     passnotmatch: `Passwords does not match`
+  //   }
+  // },
   gender: {
     label: 'Gender:',
-    tag: 'group',
     type: 'radio',
-    validators: [ Validators.required ],
-    options: {
-      male: {
-        label: 'Male',
+    // validators: [ Validators.required ],
+    options: [
+      {
         value: 'male',
-        type: 'radio',
-        attrs: {
-          autofocus: true,
-        }
+        label: 'Male'
       },
-      female: {
-        label: 'Female',
+      {
         value: 'female',
-        type: 'radio',
+        label: 'Female'
+      }
+    ]
+  },
+  birthday: {
+    isGroup: true,
+    label: 'Birthday:',
+    group: {
+      day: {
+        label: 'Day',
+        type: 'select',
+        options: ['01', '02', '03', '04', '05', '...']
+      },
+      month: {
+        label: 'Month',
+        type: 'select',
+        options: ['Jun', 'Feb', 'Mar', 'Apr', '...']
+      },
+      year: {
+        label: 'Year',
+        type: 'select',
+        options: ['93', '94', '95', '96', '97', '...']
+      },
+      extra: {
+        label: 'extra',
+        isGroup: true,
+        group: {
+          extras: {
+            label: 'Extras:'
+          }
+        }
       }
     }
   },
   skills: {
     label: 'Skills:',
-    tag: 'group',
     type: 'checkbox',
-    valueParam: 'skills',
-    validators: [ minOptionsRequired() ],
-    customErrors: {
-      minoptionsrequired: `At least one option is required`
-    },
-    options: {
-      blue: {
+    // validators: [ minOptionsRequired() ],
+    // customErrors: {
+    //   minoptionsrequired: `At least one option is required`
+    // },
+    options: [
+      {
         label: 'JS',
         value: 'js',
-        type: 'checkbox',
       },
-      red: {
+      {
         label: 'TS',
         value: 'ts',
-        type: 'checkbox'
       },
-      yellow: {
+      {
         label: 'SCSS',
         value: 'scss',
-        type: 'checkbox'
       }
-    }
+    ]
   },
-  birthday: {
-    label: 'Birthday',
-    valueParam: 'birthday',
-    type: 'date'
-  },
-  score: {
-    label: 'Score',
-    valueParam: 'score',
-    type: 'range',
-    validators: [ Validators.min(10), Validators.max(90) ]
-  },
-  country: {
-    label: 'Country',
-    validators: [ minOptionsRequired(2) ],
-    type: 'select',
-    attrs: {
-      multiple: true
-    },
-    customErrors: {
-      minoptionsrequired: `At least two options are required`
-    },
-    options: {
-      mexico: {
-        label: 'Mexico',
-        value: 'mexico'
-      },
-      us: {
-        label: 'US',
-        value: 'us'
-      }
-    }
-  },
-  resume: {
-    label: 'Resume:',
-    valueParam: 'resume',
-    type: 'textarea',
-    validators: [ Validators.required ],
-    attrs: {
-      rows: 4,
-      cols: 50,
-    }
-  }
+  // score: {
+  //   label: 'Score',
+  //   valueParam: 'score',
+  //   type: 'range',
+  //   validators: [ Validators.min(10), Validators.max(90) ]
+  // },
+  // country: {
+  //   label: 'Country',
+  //   validators: [ minOptionsRequired(2) ],
+  //   type: 'select',
+  //   attrs: {
+  //     multiple: true
+  //   },
+  //   customErrors: {
+  //     minoptionsrequired: `At least two options are required`
+  //   },
+  //   options: {
+  //     mexico: {
+  //       label: 'Mexico',
+  //       value: 'mexico'
+  //     },
+  //     us: {
+  //       label: 'US',
+  //       value: 'us'
+  //     }
+  //   }
+  // },
+  // resume: {
+  //   label: 'Resume:',
+  //   valueParam: 'resume',
+  //   type: 'textarea',
+  //   validators: [ Validators.required ],
+  //   attrs: {
+  //     rows: 4,
+  //     cols: 50,
+  //   }
+  // }
 };
 
 function checkPassRemotely(control: AbstractControl): null {

@@ -15,7 +15,6 @@ export class InputComponent implements AfterViewInit {
   field: FormField | any;
   group: FormGroup;
   options: boolean;
-  keys: Array<string>;
 
   constructor(
     private renderer: Renderer2,
@@ -23,22 +22,13 @@ export class InputComponent implements AfterViewInit {
   ) { }
 
   ngAfterViewInit() {
-    const input = this.input.nativeElement;
-    const { attrs, value, type, options } = this.field;
-    this.keys = type === 'select' && Object.keys(options);
-    if (type === 'radio') {
-      this.renderer.setAttribute(input, 'name', this.controlName);
-    }
-    if (attrs) {
-      this.setAttributes(attrs, input);
-    }
-    if (this.options) {
-      // this.renderer.setAttribute(input, 'value', value);
-      if (type === 'radio' && this.group.get(this.controlName).value === value) {
-      }
-      // this.renderer.setAttribute(input, 'checked', 'true');
-    }
-    // console.log(this.el.nativeElement.querySelector('input'));
+    console.log(this.field, this.group, this.controlName);
+    // const input = this.input.nativeElement;
+    // const { attrs, value, type, options } = this.field;
+    // this.keys = type === 'select' && Object.keys(options);
+    // if (attrs) {
+    //   this.setAttributes(attrs, input);
+    // }
   }
 
   setAttributes(attrs: Object, input: TemplateRef<any>) {
@@ -48,12 +38,9 @@ export class InputComponent implements AfterViewInit {
     });
   }
 
-  // setControl(field: string): string {
-  //   if (this.group.controls && this.group.controls.length) {
-  //     const controls: [] = this.group.controls;
-  //     return controls.findIndex(ctrl:FormControl => ctrl.)
-  //   }
-  // }
+  checkPropType(value: any, tag: string): string | number {
+    return typeof value === 'string' ? value : value[tag];
+  }
 
   error(): string {
     const { label, customErrors } = this.field;
