@@ -19,12 +19,9 @@ export class AppComponent {
 
   constructor(
     private browserDetect: BrowserDetectService
-  ) {
-    console.log(this.data);
-  }
+  ) { }
 
   tabs() {
-    console.log(this.index);
     this.accordionGroup.toggle(this.index);
     this.index++;
     if (this.index > 4) {

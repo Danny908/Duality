@@ -32,7 +32,6 @@ export class InputComponent implements AfterViewInit {
   }
 
   setAttributes(attrs: Object, input: TemplateRef<any>) {
-    console.log(this.renderer, input);
     Object.keys(attrs).forEach(key => {
       this.renderer.setAttribute(input, key, attrs[key]);
     });
@@ -46,7 +45,6 @@ export class InputComponent implements AfterViewInit {
     const { label, customErrors } = this.field;
     let error: string;
     if (!this.isGroup) {
-      console.log('in', label);
       const control = this.group.get(this.controlName);
       error = this.validationService.validate(label, customErrors, control);
     }

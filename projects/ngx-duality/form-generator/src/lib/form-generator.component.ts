@@ -60,7 +60,6 @@ export class FormGeneratorComponent implements OnInit {
 
   createFormGroup(fields: {[key: string]: any}): FormGroup {
     const form = new FormGroup({});
-    console.log('FIELDS:', fields);
     Object.keys(fields).forEach(key => {
       if (fields[key].isGroup) {
         form.addControl(key, this.createFormGroup(fields[key].group));
@@ -77,7 +76,6 @@ export class FormGeneratorComponent implements OnInit {
 
   createFormArray(field: any): FormArray {
     const { options, validators = [], asyncValidators = [], value, valueParam, } = field;
-    // console.log('Checkbox Parent', field);
     const form = new FormArray([], validators, asyncValidators);
     for (const option of options) {
       const val = value ? value : this.setControlValue(valueParam);
@@ -88,7 +86,11 @@ export class FormGeneratorComponent implements OnInit {
 
   newControl(field: any, optionsVal?: boolean): FormControl {
     const { valueParam, value, validators = [], asyncValidators = [] } = field;
-    const val = value ? value : this.setControlValue(valueParam);
+    let val = value ? value : this.setControlValue(valueParam);
+    // Set default valu on select
+    if (field.type === 'select' && !val) {
+      val = typeof field.options[0] === 'string' ? field.options[0] : field.options[0].value;
+    }
     return optionsVal !== undefined ?
       new FormControl(optionsVal, validators, asyncValidators) :
       new FormControl(val, validators, asyncValidators);

@@ -38,8 +38,7 @@ export interface NewFormField {
   isGroup?: boolean;
   group?: {[key: string]: NewFormField };
   options?:
-    Array<{value: string|number, label: string|number}> |
-    Array<string|number>;
+    Array<{value: string|number, label: string|number, isDefault?: boolean}|string|number >;
   validators?: Array<any>;
   asyncValidators?: Array<any>;
   customErrors?: {[key: string]: any};
@@ -64,18 +63,21 @@ export const newFields: {[key: string]: NewFormField } = {
   name: {
     label: 'Name:',
     validators: [ Validators.required ],
+    value: 'Danny'
   },
   lastname: {
     label: 'Lastname:',
-    valueParam: 'lastname',
-    // validators: [ Validators.minLength(4), Validators.maxLength(10), Validators.required ]
+    value: 'Torres',
+    validators: [ Validators.minLength(4), Validators.maxLength(10), Validators.required ]
   },
   password: {
     label: 'Password',
+    type: 'password',
     validators: [checkPassRemotely]
   },
   repeatPassword: {
     label: 'Repeat Password',
+    type: 'password',
     validators: [samePass],
     customErrors: {
       passnotmatch: `Passwords does not match`
@@ -84,7 +86,8 @@ export const newFields: {[key: string]: NewFormField } = {
   gender: {
     label: 'Gender:',
     type: 'radio',
-    // validators: [ Validators.required ],
+    value: 'male',
+    validators: [ Validators.required ],
     options: [
       {
         value: 'male',
@@ -103,27 +106,40 @@ export const newFields: {[key: string]: NewFormField } = {
       day: {
         label: 'Day',
         type: 'select',
+        value: '',
         validators: [ Validators.required ],
-        options: ['01', '02', '03', '04', '05', '...']
+        options: [{value: null, label: 'Select a Day!', isDefault: true}, '01', '02', '03', '04', '05', '...'],
+        customErrors: {
+          required: 'Add a Day!!'
+        }
       },
       month: {
         label: 'Month',
         type: 'select',
         validators: [ Validators.required ],
-        options: ['Jun', 'Feb', 'Mar', 'Apr', '...']
+        value: 'Jun',
+        options: [
+          {value: 'Jun', label: 'Jun'},
+          {value: 'Feb', label: 'Feb'},
+          {value: 'Mar', label: 'Mar'},
+          {value: 'Apr', label: 'Apr'},
+          {value: '...', label: '...'}
+        ]
       },
       year: {
         label: 'Year',
         type: 'select',
+        value: '93',
         validators: [ Validators.required ],
         options: ['93', '94', '95', '96', '97', '...']
-      }
+      },
     }
   },
   skills: {
     label: 'Skills:',
     type: 'checkbox',
-    // validators: [ minOptionsRequired() ],
+    value: ['js', 'ts'],
+    validators: [ minOptionsRequired() ],
     customErrors: {
       minoptionsrequired: `At least one option is required`
     },
@@ -144,15 +160,15 @@ export const newFields: {[key: string]: NewFormField } = {
   },
   score: {
     label: 'Score',
-    valueParam: 'score',
+    value: 80,
     type: 'range',
-    // validators: [ Validators.min(10), Validators.max(90) ]
+    validators: [ Validators.min(10), Validators.max(90) ]
   },
   resume: {
     label: 'Resume:',
-    valueParam: 'resume',
+    value: 'My Resume',
     type: 'textarea',
-    // validators: [ Validators.required ],
+    validators: [ Validators.required ],
     attrs: {
       rows: 4,
       cols: 50,

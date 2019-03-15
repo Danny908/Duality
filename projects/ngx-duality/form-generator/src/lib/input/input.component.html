@@ -8,8 +8,9 @@
       #input
       [formControlName]="controlName">
       <ng-container 
-        *ngFor="let option of field.options">
+        *ngFor="let option of field.options;">
         <option 
+          [disabled]="option.isDefault"
           [value]="checkPropType(option, 'value')">
             {{checkPropType(option, 'label')}}
         </option>
