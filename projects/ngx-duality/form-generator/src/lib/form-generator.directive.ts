@@ -1,4 +1,4 @@
-import { Directive, Input, ComponentFactoryResolver, ComponentRef, ViewContainerRef, OnInit } from '@angular/core';
+import { Directive, Input, ComponentFactoryResolver, ComponentRef, ViewContainerRef, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormField } from '@ngx-duality/types';
 
@@ -12,6 +12,7 @@ export class FormGeneratorDirective implements OnInit {
   @Input() field: any;
   @Input() group: FormGroup;
   @Input() controlName: string;
+  @Input() isGroup: boolean;
   component: ComponentRef<any>;
   components = {
     input: InputComponent,
@@ -32,6 +33,7 @@ export class FormGeneratorDirective implements OnInit {
     this.component.instance.group = this.group;
     this.component.instance.field = this.field;
     this.component.instance.controlName = this.controlName;
+    this.component.instance.isGroup = this.isGroup;
   }
 
 }

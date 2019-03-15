@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, AbstractControl, FormArray } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
 import { FormField } from '@ngx-duality/types';
 import { ValidationService } from '../validation.service';
@@ -11,9 +11,8 @@ import { ValidationService } from '../validation.service';
 })
 export class GroupComponent implements OnInit {
   field: FormField | any;
-  group: FormGroup | AbstractControl;
-  subGroup: AbstractControl;
-  formGroup: any;
+  group: FormGroup;
+  subGroup: FormGroup;
   controlName: string;
   keys: Array<string>;
   constructor(
@@ -21,16 +20,26 @@ export class GroupComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // console.log(this.field, this.group);
     const { group } = this.field;
     this.keys = Object.keys(group);
-    this.subGroup = this.group.get(this.controlName);
+    this.subGroup = this.group.get(this.controlName) as FormGroup;
   }
 
   error(): string {
-    const { label, customErrors } = this.field;
-    const control = this.group;
-    const error = this.validationService.validate(label, customErrors, control);
+    const { group } = this.field;
+    const { invalid, controls } = this.subGroup;
+    let error: string;
+
+    if (invalid) {
+      const keys = Object.keys(controls);
+      for (const key of keys) {
+        if (controls[key].invalid) {
+          const { label, customErrors } = group[key];
+          error = this.validationService.validate(label, customErrors, controls[key]);
+          break;
+        }
+      }
+    }
     return error;
   }
 }

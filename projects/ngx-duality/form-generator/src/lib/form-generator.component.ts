@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterContentInit } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, FormArray, AbstractControl } from '@angular/forms';
 // import { FormField } from '@ngx-duality/types';
 
@@ -40,7 +40,7 @@ export interface FormField {
       </button>
     </form>
   `,
-  styles: []
+  encapsulation: ViewEncapsulation.None
 })
 export class FormGeneratorComponent implements OnInit {
   @Input() fields: {[key: string]: FormField};
@@ -61,30 +61,17 @@ export class FormGeneratorComponent implements OnInit {
   createFormGroup(fields: {[key: string]: any}): FormGroup {
     const form = new FormGroup({});
     console.log('FIELDS:', fields);
-    for (const field in fields) {
-      if (fields[field].isGroup) {
-        form.addControl(field, this.createFormGroup(fields[field].group));
+    Object.keys(fields).forEach(key => {
+      if (fields[key].isGroup) {
+        form.addControl(key, this.createFormGroup(fields[key].group));
       } else {
-        if (fields[field].type === 'checkbox') {
-          form.addControl(field, this.createFormArray(fields[field]));
+        if (fields[key].type === 'checkbox') {
+          form.addControl(key, this.createFormArray(fields[key]));
         } else {
-          form.addControl(field, this.newControl(fields[field]));
+          form.addControl(key, this.newControl(fields[key]));
         }
       }
-    }
-    // fields.forEach(field => {
-    //   if (field.group && field.group.length > 0) {
-    //     if (field.type === 'array') {
-    //       form.addControl(field.controlName, this.createFormArray(field.group));
-    //     } else {
-    //       form.addControl(field.controlName, this.createFormGroup(field.group));
-    //     }
-    //   } else {
-    //     if (field.controlName) {
-    //         form.addControl(field.controlName, this.createControl(field));
-    //     }
-    //   }
-    // });
+    });
     return form;
   }
 
@@ -93,7 +80,7 @@ export class FormGeneratorComponent implements OnInit {
     // console.log('Checkbox Parent', field);
     const form = new FormArray([], validators, asyncValidators);
     for (const option of options) {
-      const val = value ? value : this.setFormState(valueParam);
+      const val = value ? value : this.setControlValue(valueParam);
       form.push(this.newControl(option, val ? val.includes(option.value) : false));
     }
     return form;
@@ -101,13 +88,13 @@ export class FormGeneratorComponent implements OnInit {
 
   newControl(field: any, optionsVal?: boolean): FormControl {
     const { valueParam, value, validators = [], asyncValidators = [] } = field;
-    const val = value ? value : this.setFormState(valueParam);
+    const val = value ? value : this.setControlValue(valueParam);
     return optionsVal !== undefined ?
       new FormControl(optionsVal, validators, asyncValidators) :
       new FormControl(val, validators, asyncValidators);
   }
 
-  setFormState(valueParam: string): string {
+  setControlValue(valueParam: string): string {
     let state: string;
     if (valueParam && this.data) {
       if (valueParam.includes('.')) {
@@ -120,14 +107,20 @@ export class FormGeneratorComponent implements OnInit {
     return null;
   }
 
-  submit() {
-    Object.keys(this.form.controls).forEach((k) => {
-      const control = this.form.get(k);
-      if (control.invalid) {
+  updateFormControls(controls: {[key: string]: AbstractControl | FormGroup}): void {
+    Object.keys(controls).forEach((k) => {
+      const control = controls[k];
+      if (control instanceof FormGroup) {
+        this.updateFormControls(control.controls);
+      } else if (control.invalid) {
         control.markAsTouched();
         control.markAsDirty();
       }
     });
+  }
+
+  submit() {
+    this.updateFormControls(this.form.controls);
     console.log('%cSUBMIT', 'color: green; font-weight: bold');
     console.log(this.form.value);
   }

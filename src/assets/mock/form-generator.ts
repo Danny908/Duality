@@ -63,24 +63,24 @@ export const data: {[key: string]: any} = {
 export const newFields: {[key: string]: NewFormField } = {
   name: {
     label: 'Name:',
-    // validators: [ Validators.required ],
+    validators: [ Validators.required ],
   },
   lastname: {
     label: 'Lastname:',
-    // valueParam: 'lastname',
+    valueParam: 'lastname',
     // validators: [ Validators.minLength(4), Validators.maxLength(10), Validators.required ]
   },
-  // password: {
-  //   label: 'Password',
-  //   validators: [checkPassRemotely]
-  // },
-  // repeatPassword: {
-  //   label: 'Repeat Password',
-  //   validators: [samePass],
-  //   customErrors: {
-  //     passnotmatch: `Passwords does not match`
-  //   }
-  // },
+  password: {
+    label: 'Password',
+    validators: [checkPassRemotely]
+  },
+  repeatPassword: {
+    label: 'Repeat Password',
+    validators: [samePass],
+    customErrors: {
+      passnotmatch: `Passwords does not match`
+    }
+  },
   gender: {
     label: 'Gender:',
     type: 'radio',
@@ -103,26 +103,20 @@ export const newFields: {[key: string]: NewFormField } = {
       day: {
         label: 'Day',
         type: 'select',
+        validators: [ Validators.required ],
         options: ['01', '02', '03', '04', '05', '...']
       },
       month: {
         label: 'Month',
         type: 'select',
+        validators: [ Validators.required ],
         options: ['Jun', 'Feb', 'Mar', 'Apr', '...']
       },
       year: {
         label: 'Year',
         type: 'select',
+        validators: [ Validators.required ],
         options: ['93', '94', '95', '96', '97', '...']
-      },
-      extra: {
-        label: 'extra',
-        isGroup: true,
-        group: {
-          extras: {
-            label: 'Extras:'
-          }
-        }
       }
     }
   },
@@ -130,9 +124,9 @@ export const newFields: {[key: string]: NewFormField } = {
     label: 'Skills:',
     type: 'checkbox',
     // validators: [ minOptionsRequired() ],
-    // customErrors: {
-    //   minoptionsrequired: `At least one option is required`
-    // },
+    customErrors: {
+      minoptionsrequired: `At least one option is required`
+    },
     options: [
       {
         label: 'JS',
@@ -148,43 +142,22 @@ export const newFields: {[key: string]: NewFormField } = {
       }
     ]
   },
-  // score: {
-  //   label: 'Score',
-  //   valueParam: 'score',
-  //   type: 'range',
-  //   validators: [ Validators.min(10), Validators.max(90) ]
-  // },
-  // country: {
-  //   label: 'Country',
-  //   validators: [ minOptionsRequired(2) ],
-  //   type: 'select',
-  //   attrs: {
-  //     multiple: true
-  //   },
-  //   customErrors: {
-  //     minoptionsrequired: `At least two options are required`
-  //   },
-  //   options: {
-  //     mexico: {
-  //       label: 'Mexico',
-  //       value: 'mexico'
-  //     },
-  //     us: {
-  //       label: 'US',
-  //       value: 'us'
-  //     }
-  //   }
-  // },
-  // resume: {
-  //   label: 'Resume:',
-  //   valueParam: 'resume',
-  //   type: 'textarea',
-  //   validators: [ Validators.required ],
-  //   attrs: {
-  //     rows: 4,
-  //     cols: 50,
-  //   }
-  // }
+  score: {
+    label: 'Score',
+    valueParam: 'score',
+    type: 'range',
+    // validators: [ Validators.min(10), Validators.max(90) ]
+  },
+  resume: {
+    label: 'Resume:',
+    valueParam: 'resume',
+    type: 'textarea',
+    // validators: [ Validators.required ],
+    attrs: {
+      rows: 4,
+      cols: 50,
+    }
+  }
 };
 
 function checkPassRemotely(control: AbstractControl): null {

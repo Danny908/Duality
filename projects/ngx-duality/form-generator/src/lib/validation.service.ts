@@ -10,7 +10,7 @@ export class ValidationService {
   validate(label: string, customErrors: Object, control: AbstractControl): string {
     const { invalid, touched, dirty, errors } = control;
     if (invalid && touched && dirty) {
-      console.log(errors);
+      console.log('in');
       return this.error(errors, label, customErrors);
     }
     return null;

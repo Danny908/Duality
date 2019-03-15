@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef, AfterViewInit, TemplateRef } from '@angular/core';
-import { FormGroup, FormArray, FormControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
 import { FormField } from '@ngx-duality/types';
 import { ValidationService } from '../validation.service';
@@ -14,7 +14,8 @@ export class InputComponent implements AfterViewInit {
   controlName: string;
   field: FormField | any;
   group: FormGroup;
-  options: boolean;
+  isGroup: boolean;
+
 
   constructor(
     private renderer: Renderer2,
@@ -22,7 +23,6 @@ export class InputComponent implements AfterViewInit {
   ) { }
 
   ngAfterViewInit() {
-    console.log(this.field, this.group, this.controlName);
     // const input = this.input.nativeElement;
     // const { attrs, value, type, options } = this.field;
     // this.keys = type === 'select' && Object.keys(options);
@@ -44,8 +44,12 @@ export class InputComponent implements AfterViewInit {
 
   error(): string {
     const { label, customErrors } = this.field;
-    const control = this.group.get(this.controlName);
-    const error = this.validationService.validate(label, customErrors, control);
+    let error: string;
+    if (!this.isGroup) {
+      console.log('in', label);
+      const control = this.group.get(this.controlName);
+      error = this.validationService.validate(label, customErrors, control);
+    }
     return error;
   }
 
