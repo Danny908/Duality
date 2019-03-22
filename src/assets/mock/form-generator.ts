@@ -35,10 +35,12 @@ export interface NewFormField {
   value?: any;
   valueParam?: string;
   type?: string;
-  isGroup?: boolean;
   group?: {[key: string]: NewFormField };
-  options?:
-    Array<{value: string|number, label: string|number, isDefault?: boolean}|string|number >;
+  options?: Array<{
+    value: string|number,
+    label: string|number,
+    isDefault?: boolean
+  }|string|number >;
   validators?: Array<any>;
   asyncValidators?: Array<any>;
   customErrors?: {[key: string]: any};
@@ -88,19 +90,9 @@ export const newFields: {[key: string]: NewFormField } = {
     type: 'radio',
     value: 'male',
     validators: [ Validators.required ],
-    options: [
-      {
-        value: 'male',
-        label: 'Male'
-      },
-      {
-        value: 'female',
-        label: 'Female'
-      }
-    ]
+    options: ['male', 'female']
   },
   birthday: {
-    isGroup: true,
     label: 'Birthday:',
     group: {
       day: {
@@ -143,20 +135,7 @@ export const newFields: {[key: string]: NewFormField } = {
     customErrors: {
       minoptionsrequired: `At least one option is required`
     },
-    options: [
-      {
-        label: 'JS',
-        value: 'js',
-      },
-      {
-        label: 'TS',
-        value: 'ts',
-      },
-      {
-        label: 'SCSS',
-        value: 'scss',
-      }
-    ]
+    options: ['js', 'ts', 'scss'],
   },
   score: {
     label: 'Score',

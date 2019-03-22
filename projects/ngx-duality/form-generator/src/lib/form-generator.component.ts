@@ -1,20 +1,7 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, FormArray, AbstractControl } from '@angular/forms';
-// import { FormField } from '@ngx-duality/types';
+import { FormField } from '@ngx-duality/types';
 
-export interface FormField {
-  label?: string;
-  element?: string;
-  type?: string;
-  value?: any;
-  valueParam?: string;
-  multiple?: boolean;
-  options?: {[key: string]: FormField};
-  validators?: Array<any>;
-  asyncValidators?: Array<any>;
-  errors?: {[key: string]: any};
-  attrs?: {[key: string]: any};
-}
 @Component({
   selector: 'duality-form-generator',
   template: `
@@ -58,10 +45,10 @@ export class FormGeneratorComponent implements OnInit {
     console.log(this.form);
   }
 
-  createFormGroup(fields: {[key: string]: any}): FormGroup {
+  createFormGroup(fields: {[key: string]: FormField}): FormGroup {
     const form = new FormGroup({});
     Object.keys(fields).forEach(key => {
-      if (fields[key].isGroup) {
+      if (!!fields[key].group) {
         form.addControl(key, this.createFormGroup(fields[key].group));
       } else {
         if (fields[key].type === 'checkbox') {
@@ -74,26 +61,26 @@ export class FormGeneratorComponent implements OnInit {
     return form;
   }
 
-  createFormArray(field: any): FormArray {
+  createFormArray(field: FormField): FormArray {
     const { options, validators = [], asyncValidators = [], value, valueParam, } = field;
     const form = new FormArray([], validators, asyncValidators);
     for (const option of options) {
       const val = value ? value : this.setControlValue(valueParam);
-      form.push(this.newControl(option, val ? val.includes(option.value) : false));
+      const optValue = typeof option !== 'object' ? option : option.value;
+      form.push(new FormControl(val ? val.includes(optValue) : false));
     }
     return form;
   }
 
-  newControl(field: any, optionsVal?: boolean): FormControl {
+  newControl(field: FormField): FormControl {
     const { valueParam, value, validators = [], asyncValidators = [] } = field;
     let val = value ? value : this.setControlValue(valueParam);
-    // Set default valu on select
+    // Set default value on select
     if (field.type === 'select' && !val) {
-      val = typeof field.options[0] === 'string' ? field.options[0] : field.options[0].value;
+      const opt = field.options[0];
+      val = typeof opt !== 'object' ? opt : opt.value;
     }
-    return optionsVal !== undefined ?
-      new FormControl(optionsVal, validators, asyncValidators) :
-      new FormControl(val, validators, asyncValidators);
+    return new FormControl(val, validators, asyncValidators);
   }
 
   setControlValue(valueParam: string): string {

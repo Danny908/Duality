@@ -11,8 +11,8 @@
         *ngFor="let option of field.options;">
         <option 
           [disabled]="option.isDefault"
-          [value]="checkPropType(option, 'value')">
-            {{checkPropType(option, 'label')}}
+          [value]="checkValueType(option, 'value')">
+            {{checkValueType(option, 'label')}}
         </option>
       </ng-container>
     </select>
@@ -38,7 +38,7 @@
           #input 
           type="checkbox"
           [formControlName]="i">
-        {{checkPropType(option, 'label')}}
+        {{checkValueType(option, 'label')}}
       </label>
     </div>
   </div>
@@ -53,15 +53,23 @@
         <input
           #input
           type="radio"
-          [value]="option.value"
+          [value]="checkValueType(option, 'value')"
           [formControlName]="controlName">
-        {{checkPropType(option, 'label')}}
+        {{checkValueType(option, 'label')}}
       </label>
     </div>
   </div>
   <label
+    *ngSwitchCase="'number'">
+    {{field.label}}
+    <input
+      #input
+      type="number"
+      [formControlName]="controlName">
+  </label>
+  <label
     *ngSwitchDefault>
-  {{field.label}}
+    {{field.label}}
     <input
       #input
       [type]="field.type"

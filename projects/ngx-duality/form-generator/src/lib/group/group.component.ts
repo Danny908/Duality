@@ -10,7 +10,7 @@ import { ValidationService } from '../validation.service';
   styleUrls: ['./group.component.scss']
 })
 export class GroupComponent implements OnInit {
-  field: FormField | any;
+  field: FormField;
   group: FormGroup;
   subGroup: FormGroup;
   controlName: string;

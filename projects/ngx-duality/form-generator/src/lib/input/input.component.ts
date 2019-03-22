@@ -12,7 +12,7 @@ import { ValidationService } from '../validation.service';
 export class InputComponent implements AfterViewInit {
   @ViewChild('input') input: ElementRef;
   controlName: string;
-  field: FormField | any;
+  field: FormField;
   group: FormGroup;
   isGroup: boolean;
 
@@ -37,8 +37,8 @@ export class InputComponent implements AfterViewInit {
     });
   }
 
-  checkPropType(value: any, tag: string): string | number {
-    return typeof value === 'string' ? value : value[tag];
+  checkValueType(value: any, tag: string): string | number {
+    return typeof value !== 'object' ? value : value[tag];
   }
 
   error(): string {

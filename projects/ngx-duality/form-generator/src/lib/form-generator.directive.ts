@@ -1,6 +1,5 @@
 import { Directive, Input, ComponentFactoryResolver, ComponentRef, ViewContainerRef, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormField } from '@ngx-duality/types';
 
 import { InputComponent } from './input/input.component';
 import { GroupComponent } from './group/group.component';
@@ -25,8 +24,7 @@ export class FormGeneratorDirective implements OnInit {
   ) { }
 
   ngOnInit() {
-    const { isGroup } = this.field;
-    this.defaultComponent = isGroup ? 'group' : this.defaultComponent;
+    this.defaultComponent = !!this.field.group ? 'group' : this.defaultComponent;
     const component = this.components[this.defaultComponent];
     const factory = this.resolver.resolveComponentFactory<any>(component);
     this.component = this.container.createComponent(factory);
