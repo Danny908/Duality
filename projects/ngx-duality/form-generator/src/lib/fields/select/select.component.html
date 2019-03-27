@@ -1,0 +1,30 @@
+<div [formGroup]="group">
+  <label>
+    {{field.label}}
+    <select 
+      multiple
+      *ngIf="field.type === 'multiple'"
+      [formControlName]="controlName">
+      <ng-container 
+        *ngFor="let option of field.options;">
+        <option 
+          [disabled]="option.isDefault"
+          [ngValue]="checkValueType(option, 'value')">
+          {{checkValueType(option, 'label')}}
+        </option>
+      </ng-container>
+    </select>
+    <select 
+      *ngIf="field.type !== 'multiple'"
+      [formControlName]="controlName">
+      <ng-container 
+        *ngFor="let option of field.options;">
+        <option 
+          [disabled]="option.isDefault"
+          [ngValue]="checkValueType(option, 'value')">
+          {{checkValueType(option, 'label')}}
+        </option>
+      </ng-container>
+    </select>
+  </label>
+</div>

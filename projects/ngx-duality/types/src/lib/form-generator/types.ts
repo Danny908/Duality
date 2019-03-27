@@ -1,14 +1,15 @@
 import { ValidatorFn, AsyncValidatorFn } from '@angular/forms';
 
 export interface FormField {
+  tag?: string;
   label?: string;
   value?: any;
   valueParam?: string;
   type?: string;
   group?: {[key: string]: FormField };
   options?: Array<Option|string|number >;
-  validators?: Array<any>;
-  asyncValidators?: Array<any>;
+  validators?: Array<ValidatorFn>;
+  asyncValidators?: Array<AsyncValidatorFn>;
   customErrors?: {[key: string]: any};
   attrs?: {[key: string]: any};
 }

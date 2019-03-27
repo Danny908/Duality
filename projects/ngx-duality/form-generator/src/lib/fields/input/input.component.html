@@ -1,30 +1,6 @@
 <div
   [formGroup]="group"
   [ngSwitch]="field.type">
-  <label
-    *ngSwitchCase="'select'">
-    {{field.label}}
-    <select 
-      #input
-      [formControlName]="controlName">
-      <ng-container 
-        *ngFor="let option of field.options;">
-        <option 
-          [disabled]="option.isDefault"
-          [value]="checkValueType(option, 'value')">
-            {{checkValueType(option, 'label')}}
-        </option>
-      </ng-container>
-    </select>
-  </label>
-  <label 
-    *ngSwitchCase="'textarea'">
-    {{field.label}}
-    <textarea 
-      #input
-      [formControlName]="controlName">
-    </textarea>
-  </label>
   <div
     *ngSwitchCase="'checkbox'"
     [formArrayName]="controlName">
@@ -35,7 +11,6 @@
       *ngFor="let option of field.options; let i = index">
       <label>
         <input
-          #input 
           type="checkbox"
           [formControlName]="i">
         {{checkValueType(option, 'label')}}
@@ -51,7 +26,6 @@
       *ngFor="let option of field.options">
       <label>
         <input
-          #input
           type="radio"
           [value]="checkValueType(option, 'value')"
           [formControlName]="controlName">
@@ -63,20 +37,21 @@
     *ngSwitchCase="'number'">
     {{field.label}}
     <input
-      #input
       type="number"
+      [formControlName]="controlName">
+  </label>
+  <label
+    *ngSwitchCase="'range'">
+    {{field.label}}
+    <input
+      type="range"
       [formControlName]="controlName">
   </label>
   <label
     *ngSwitchDefault>
     {{field.label}}
     <input
-      #input
       [type]="field.type"
       [formControlName]="controlName">
   </label>
-  <p
-    *ngIf="!isGroup"
-    class="error">{{error()}}
-  </p>
 </div>

@@ -1,0 +1,76 @@
+<form
+  [ngClass]="formClass"
+  [formGroup]="form"
+  (ngSubmit)="submit()">
+    <ng-container 
+      *ngTemplateOutlet="fieldTemplate; context: {fields: fields, form: form}">
+    </ng-container>
+    <button
+      *ngIf="submitBtn"
+      type="submit">
+        Submit
+    </button>
+    <button
+      *ngIf="resetBtn"
+      type="submit">
+        Reset
+    </button>
+  </form>
+
+<ng-template 
+  #fieldTemplate
+  let-fields="fields"
+  let-form="form"
+  let-group="group">
+  <ng-container *ngFor="let key of getKeys(fields)">
+    <ng-container [ngSwitch]="fields[key].tag">
+      <div>
+        <ng-container *ngSwitchCase="'textarea'">
+          <div duality-textarea
+            [group]="form"
+            [controlName]="key"
+            [field]="fields[key]">
+          </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'select'">
+          <div duality-select
+            [group]="form"
+            [controlName]="key"
+            [field]="fields[key]">
+          </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'group'">
+          <div>
+            <label>
+              {{fields[key].label}}
+            </label>
+            <div>
+              <ng-container 
+                *ngTemplateOutlet="
+                  fieldTemplate;
+                  context: {
+                    fields: fields[key].group,
+                    form: getSubGroup(form, key),
+                    group: true
+                  }">
+              </ng-container>  
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+          <div duality-input
+            [group]="form"
+            [controlName]="key"
+            [field]="fields[key]">
+          </div>
+        </ng-container>
+        <p 
+          class="error"
+          *ngIf="!group || fields[key].tag === 'group'">
+          {{getError(form, fields[key], key)}}
+        </p>
+      </div>
+      </ng-container>
+    </ng-container>
+  </ng-template>
+  

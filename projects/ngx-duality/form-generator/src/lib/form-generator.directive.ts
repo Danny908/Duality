@@ -1,7 +1,7 @@
 import { Directive, Input, ComponentFactoryResolver, ComponentRef, ViewContainerRef, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { InputComponent } from './input/input.component';
+// import { InputComponentOld } from './input/input.component';
 import { GroupComponent } from './group/group.component';
 
 @Directive({
@@ -14,7 +14,7 @@ export class FormGeneratorDirective implements OnInit {
   @Input() isGroup: boolean;
   component: ComponentRef<any>;
   components = {
-    input: InputComponent,
+    input: '',
     group: GroupComponent
   };
   defaultComponent = 'input';
@@ -24,14 +24,14 @@ export class FormGeneratorDirective implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.defaultComponent = !!this.field.group ? 'group' : this.defaultComponent;
-    const component = this.components[this.defaultComponent];
-    const factory = this.resolver.resolveComponentFactory<any>(component);
-    this.component = this.container.createComponent(factory);
-    this.component.instance.group = this.group;
-    this.component.instance.field = this.field;
-    this.component.instance.controlName = this.controlName;
-    this.component.instance.isGroup = this.isGroup;
+    // this.defaultComponent = !!this.field.group ? 'group' : this.defaultComponent;
+    // const component = this.components[this.defaultComponent];
+    // const factory = this.resolver.resolveComponentFactory<any>(component);
+    // this.component = this.container.createComponent(factory);
+    // this.component.instance.group = this.group;
+    // this.component.instance.field = this.field;
+    // this.component.instance.controlName = this.controlName;
+    // this.component.instance.isGroup = this.isGroup;
   }
 
 }

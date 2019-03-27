@@ -28,24 +28,9 @@ const styles = {
     marginTop: '5px',
     paddingLeft: '10px'
   }
-};
-
-export interface NewFormField {
-  label?: string;
-  value?: any;
-  valueParam?: string;
-  type?: string;
-  group?: {[key: string]: NewFormField };
-  options?: Array<{
-    value: string|number,
-    label: string|number,
-    isDefault?: boolean
-  }|string|number >;
-  validators?: Array<any>;
-  asyncValidators?: Array<any>;
-  customErrors?: {[key: string]: any};
-  attrs?: {[key: string]: any};
 }
+
+
 export const data: {[key: string]: any} = {
   name: 'Daniel',
   lastname: 'Torres',
@@ -61,11 +46,16 @@ export const data: {[key: string]: any} = {
   resume: 'My Resume',
   country: 'mexico'
 };
-export const newFields: {[key: string]: NewFormField } = {
+export const newFields: {[key: string]: FormField } = {
   name: {
     label: 'Name:',
     validators: [ Validators.required ],
     value: 'Danny'
+  },
+  age: {
+    label: 'Age:',
+    value: 25,
+    type: 'number'
   },
   lastname: {
     label: 'Lastname:',
@@ -94,10 +84,11 @@ export const newFields: {[key: string]: NewFormField } = {
   },
   birthday: {
     label: 'Birthday:',
+    tag: 'group',
     group: {
       day: {
         label: 'Day',
-        type: 'select',
+        tag: 'select',
         value: '',
         validators: [ Validators.required ],
         options: [{value: null, label: 'Select a Day!', isDefault: true}, '01', '02', '03', '04', '05', '...'],
@@ -107,7 +98,7 @@ export const newFields: {[key: string]: NewFormField } = {
       },
       month: {
         label: 'Month',
-        type: 'select',
+        tag: 'select',
         validators: [ Validators.required ],
         value: 'Jun',
         options: [
@@ -120,11 +111,11 @@ export const newFields: {[key: string]: NewFormField } = {
       },
       year: {
         label: 'Year',
-        type: 'select',
-        value: '93',
+        tag: 'select',
+        value: 93,
         validators: [ Validators.required ],
-        options: ['93', '94', '95', '96', '97', '...']
-      },
+        options: [93, 94, 95, 96, 97, '...']
+      }
     }
   },
   skills: {
@@ -146,7 +137,7 @@ export const newFields: {[key: string]: NewFormField } = {
   resume: {
     label: 'Resume:',
     value: 'My Resume',
-    type: 'textarea',
+    tag: 'textarea',
     validators: [ Validators.required ],
     attrs: {
       rows: 4,

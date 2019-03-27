@@ -1,99 +1,65 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormControl, FormArray, AbstractControl } from '@angular/forms';
+import { FormGroup, AbstractControl } from '@angular/forms';
 import { FormField } from '@ngx-duality/types';
+
+import { FormGeneratorService } from './services/form-generator.service';
+import { FormValidationService } from './services/form-validation.service';
 
 @Component({
   selector: 'duality-form-generator',
-  template: `
-    <form
-    [formGroup]="form"
-    (ngSubmit)="submit()">
-      <ng-container
-        *ngFor="let key of keys"
-        dualityFormGenerator
-        [group]="form"
-        [field]="fields[key]"
-        [controlName]="key">
-      </ng-container>
-      <button
-        *ngIf="submitBtn"
-        type="submit">
-          Submit
-      </button>
-      <button
-        *ngIf="resetBtn"
-        type="submit">
-          Reset
-      </button>
-    </form>
-  `,
-  encapsulation: ViewEncapsulation.None
+  templateUrl: './form-generator.component.html',
+  styles: [`
+    p.error {
+      color: red;
+      font-size: small;
+    }
+  `]
 })
 export class FormGeneratorComponent implements OnInit {
   @Input() fields: {[key: string]: FormField};
   @Input() data: {[key: string]: any};
   @Input() submitBtn = true;
   @Input() resetBtn: boolean;
+  @Input() formClass: string | Array<string> | Object;
   form: FormGroup;
-  keys: Array<string> = [];
-  constructor() { }
+  constructor(
+    private formGeneratorService: FormGeneratorService,
+    private formValidationService: FormValidationService
+  ) { }
 
   ngOnInit() {
-    this.form = this.createFormGroup(this.fields);
-    this.keys = Object.keys(this.fields);
+    this.formGeneratorService.data = this.data;
+    this.form = this.formGeneratorService.createFormGroup(this.fields);
     console.log('%cFORM CREATED', 'color: green; font-weight: bold');
     console.log(this.form);
   }
 
-  createFormGroup(fields: {[key: string]: FormField}): FormGroup {
-    const form = new FormGroup({});
-    Object.keys(fields).forEach(key => {
-      if (!!fields[key].group) {
-        form.addControl(key, this.createFormGroup(fields[key].group));
-      } else {
-        if (fields[key].type === 'checkbox') {
-          form.addControl(key, this.createFormArray(fields[key]));
-        } else {
-          form.addControl(key, this.newControl(fields[key]));
+  getKeys(fields: {[key: string]: FormField}): Array<string> {
+    return Object.keys(fields);
+  }
+
+  getSubGroup(form: FormGroup, key: string): FormGroup {
+    return form.get(key) as FormGroup;
+  }
+
+  getError(group: FormGroup, field: FormField, controlName: string): string {
+    const { label, customErrors, tag, group: groupFields } = field;
+    const control = group.get(controlName) as FormGroup;
+    let error: string;
+
+    if (tag === 'group' && control.invalid) {
+      const keys = Object.keys(groupFields);
+      for (const key of keys) {
+        if (control.controls[key].invalid) {
+          const { label: groupLabel, customErrors: groupCustomErrors } = groupFields[key];
+          error = this.formValidationService.validate(groupLabel, groupCustomErrors, control.controls[key]);
+          break;
         }
       }
-    });
-    return form;
-  }
-
-  createFormArray(field: FormField): FormArray {
-    const { options, validators = [], asyncValidators = [], value, valueParam, } = field;
-    const form = new FormArray([], validators, asyncValidators);
-    for (const option of options) {
-      const val = value ? value : this.setControlValue(valueParam);
-      const optValue = typeof option !== 'object' ? option : option.value;
-      form.push(new FormControl(val ? val.includes(optValue) : false));
+    } else {
+      error = this.formValidationService.validate(label, customErrors, control);
     }
-    return form;
-  }
-
-  newControl(field: FormField): FormControl {
-    const { valueParam, value, validators = [], asyncValidators = [] } = field;
-    let val = value ? value : this.setControlValue(valueParam);
-    // Set default value on select
-    if (field.type === 'select' && !val) {
-      const opt = field.options[0];
-      val = typeof opt !== 'object' ? opt : opt.value;
-    }
-    return new FormControl(val, validators, asyncValidators);
-  }
-
-  setControlValue(valueParam: string): string {
-    let state: string;
-    if (valueParam && this.data) {
-      if (valueParam.includes('.')) {
-        valueParam.split('.').forEach(sp => state = this.data[sp]);
-        return state;
-      }
-      state = this.data[valueParam];
-      return state;
-    }
-    return null;
+    return error;
   }
 
   updateFormControls(controls: {[key: string]: AbstractControl | FormGroup}): void {

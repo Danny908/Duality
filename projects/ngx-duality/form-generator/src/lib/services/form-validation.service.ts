@@ -4,7 +4,7 @@ import { AbstractControl } from '@angular/forms';
 @Injectable({
   providedIn: 'root'
 })
-export class ValidationService {
+export class FormValidationService {
   constructor() { }
 
   validate(label: string, customErrors: Object, control: AbstractControl): string {
