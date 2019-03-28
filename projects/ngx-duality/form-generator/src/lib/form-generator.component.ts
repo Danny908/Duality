@@ -74,10 +74,22 @@ export class FormGeneratorComponent implements OnInit {
     });
   }
 
+  removeFalseValues(values: {[key: string]: any}): {[key: string]: any} {
+    const keys = Object.keys(values);
+    for (const key of keys) {
+      if (Array.isArray(values[key])) {
+        const newValues = [];
+        values[key] = values[key].filter(val => !!val);
+      }
+    }
+    return values;
+  }
+
   submit() {
     this.updateFormControls(this.form.controls);
     console.log('%cSUBMIT', 'color: green; font-weight: bold');
-    console.log(this.form.value);
+    const { value } = this.form;
+    console.log(this.removeFalseValues(value));
   }
 
 }

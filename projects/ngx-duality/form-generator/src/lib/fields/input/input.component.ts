@@ -10,7 +10,6 @@ export class InputComponent implements AfterViewInit {
   @Input() controlName: string;
   @Input() field: FormField;
   @Input() group: FormGroup;
-  @Input() isGroup: boolean;
 
   constructor(
     private renderer: Renderer2,
@@ -24,6 +23,14 @@ export class InputComponent implements AfterViewInit {
     // if (attrs) {
     //   this.setAttributes(attrs, input);
     // }
+  }
+
+  boolToVal(event: MouseEvent, index: number): void {
+    const { options } = this.field;
+    if ((event.target as HTMLInputElement).checked) {
+      const formArray = this.group.get(this.controlName).get([index]); 
+      formArray.setValue(options[index]);
+    }
   }
 
   setAttributes(attrs: Object, input: TemplateRef<any>) {

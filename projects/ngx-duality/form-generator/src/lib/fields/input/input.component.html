@@ -12,7 +12,8 @@
       <label>
         <input
           type="checkbox"
-          [formControlName]="i">
+          [formControlName]="i"
+          (change)="boolToVal($event, i)">
         {{checkValueType(option, 'label')}}
       </label>
     </div>

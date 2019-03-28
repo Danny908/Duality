@@ -29,9 +29,10 @@ export class FormGeneratorService {
     const { options, validators = [], asyncValidators = [], value, valueParam, } = field;
     const form = new FormArray([], validators, asyncValidators);
     for (const option of options) {
-      const val = value ? value : this.setControlValue(valueParam);
+      let val = value ? value : this.setControlValue(valueParam);
+      val = !val ? this.defaultValue(field) : val;
       const optValue = typeof option !== 'object' ? option : option.value;
-      form.push(new FormControl(val ? val.includes(optValue) : false));
+      form.push(new FormControl(val.includes(optValue) && optValue));
     }
     return form;
   }
@@ -40,11 +41,14 @@ export class FormGeneratorService {
     const { valueParam, value, validators = [], asyncValidators = [] } = field;
     let val = value ? value : this.setControlValue(valueParam);
     // Set default value on select
-    if (field.type === 'select' && !val) {
-      const opt = field.options[0];
-      val = typeof opt !== 'object' ? opt : opt.value;
-    }
+    val = !val && field.options ? this.defaultValue(field) : val;
     return new FormControl(val, validators, asyncValidators);
+  }
+
+  defaultValue(field: FormField): string | number {
+    // Set default value on select
+    const opt = field.options[0];
+    return typeof opt === 'object' && opt.isDefault && opt.value;
   }
 
   setControlValue(valueParam: string): string {

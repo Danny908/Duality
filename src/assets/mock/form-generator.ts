@@ -28,7 +28,7 @@ const styles = {
     marginTop: '5px',
     paddingLeft: '10px'
   }
-}
+};
 
 
 export const data: {[key: string]: any} = {
@@ -47,10 +47,10 @@ export const data: {[key: string]: any} = {
   country: 'mexico'
 };
 export const newFields: {[key: string]: FormField } = {
-  name: {
+  namee: {
     label: 'Name:',
     validators: [ Validators.required ],
-    value: 'Danny'
+    valueParam: 'name'
   },
   age: {
     label: 'Age:',
@@ -78,9 +78,8 @@ export const newFields: {[key: string]: FormField } = {
   gender: {
     label: 'Gender:',
     type: 'radio',
-    value: 'male',
     validators: [ Validators.required ],
-    options: ['male', 'female']
+    options: [{value: 'male', label: 'Male', isDefault: true}, 'female']
   },
   birthday: {
     label: 'Birthday:',

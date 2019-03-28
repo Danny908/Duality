@@ -10,7 +10,6 @@ export class SelectComponent implements OnInit {
   @Input() controlName: string;
   @Input() field: FormField;
   @Input() group: FormGroup;
-  @Input() isGroup: boolean;
 
   constructor() { }
 
