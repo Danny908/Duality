@@ -18,10 +18,14 @@ import { FormValidationService } from './services/form-validation.service';
 export class FormGeneratorComponent implements OnInit {
   @Input() fields: {[key: string]: FormField};
   @Input() data: {[key: string]: any};
+  @Input() validateOnSubmit: false;
   @Input() submitBtn = true;
   @Input() resetBtn: boolean;
   @Input() formClass: string | Array<string> | Object;
   form: FormGroup;
+  error: string;
+  private submitted: boolean;
+
   constructor(
     private formGeneratorService: FormGeneratorService,
     private formValidationService: FormValidationService
@@ -47,17 +51,19 @@ export class FormGeneratorComponent implements OnInit {
     const control = group.get(controlName) as FormGroup;
     let error: string;
 
-    if (tag === 'group' && control.invalid) {
-      const keys = Object.keys(groupFields);
-      for (const key of keys) {
-        if (control.controls[key].invalid) {
-          const { label: groupLabel, customErrors: groupCustomErrors } = groupFields[key];
-          error = this.formValidationService.validate(groupLabel, groupCustomErrors, control.controls[key]);
-          break;
+    if (this.validateOnSubmit && this.submitted || !this.validateOnSubmit ) {
+      if (tag === 'group' && control.invalid) {
+        const keys = Object.keys(groupFields);
+        for (const key of keys) {
+          if (control.controls[key].invalid) {
+            const { label: groupLabel, customErrors: groupCustomErrors } = groupFields[key];
+            error = this.formValidationService.validate(groupLabel, groupCustomErrors, control.controls[key]);
+            break;
+          }
         }
+      } else {
+        error = this.formValidationService.validate(label, customErrors, control);
       }
-    } else {
-      error = this.formValidationService.validate(label, customErrors, control);
     }
     return error;
   }
@@ -86,6 +92,7 @@ export class FormGeneratorComponent implements OnInit {
   }
 
   submit() {
+    this.submitted = true;
     this.updateFormControls(this.form.controls);
     console.log('%cSUBMIT', 'color: green; font-weight: bold');
     const { value } = this.form;

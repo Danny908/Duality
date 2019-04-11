@@ -32,7 +32,7 @@ export class FormGeneratorService {
       let val = value ? value : this.setControlValue(valueParam);
       val = !val ? this.defaultValue(field) : val;
       const optValue = typeof option !== 'object' ? option : option.value;
-      form.push(new FormControl(val.includes(optValue) && optValue));
+      form.push(new FormControl(val && val.includes(optValue) && optValue));
     }
     return form;
   }

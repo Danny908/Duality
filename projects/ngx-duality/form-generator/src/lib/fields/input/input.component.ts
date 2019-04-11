@@ -28,8 +28,10 @@ export class InputComponent implements AfterViewInit {
   boolToVal(event: MouseEvent, index: number): void {
     const { options } = this.field;
     if ((event.target as HTMLInputElement).checked) {
-      const formArray = this.group.get(this.controlName).get([index]); 
-      formArray.setValue(options[index]);
+      const formArray = this.group.get(this.controlName).get([index]);
+      const option = options[index];
+      const value = typeof option === 'object' ? option.value : option;
+      formArray.setValue(value);
     }
   }
 

@@ -47,7 +47,7 @@ export const data: {[key: string]: any} = {
   country: 'mexico'
 };
 export const newFields: {[key: string]: FormField } = {
-  namee: {
+  name: {
     label: 'Name:',
     validators: [ Validators.required ],
     valueParam: 'name'
@@ -79,7 +79,7 @@ export const newFields: {[key: string]: FormField } = {
     label: 'Gender:',
     type: 'radio',
     validators: [ Validators.required ],
-    options: [{value: 'male', label: 'Male', isDefault: true}, 'female']
+    options: [{value: 'male', label: 'Male', isDefault: true}, {value: 'female', label: 'Female'}]
   },
   birthday: {
     label: 'Birthday:',
@@ -120,12 +120,11 @@ export const newFields: {[key: string]: FormField } = {
   skills: {
     label: 'Skills:',
     type: 'checkbox',
-    value: ['js', 'ts'],
     validators: [ minOptionsRequired() ],
     customErrors: {
       minoptionsrequired: `At least one option is required`
     },
-    options: ['js', 'ts', 'scss'],
+    options: [{value: 'js', label: 'JS', isDefault: true}, 'ts', 'scss'],
   },
   score: {
     label: 'Score',
