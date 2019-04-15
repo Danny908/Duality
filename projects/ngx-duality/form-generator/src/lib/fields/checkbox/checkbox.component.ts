@@ -7,8 +7,8 @@ import { FormField } from '@ngx-duality/types';
   template: `
     <div
       #el
-      [formGroup]="group"
-      [ngSwitch]="field.type">
+      [ngClass]="field.classes"
+      [formGroup]="group">
       <div
         [formArrayName]="controlName">
         <label>

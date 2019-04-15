@@ -1,15 +1,15 @@
 div.dl-sidebar-backdrop {
     position: absolute;
-    &.mobile {
+    &.dl-mobile {
       top: 0;
       right: 0;
       bottom: 0;
       left: 0;
       z-index: 98;
-      &.not-animated {
+      &.dl-not-animated {
         opacity: 0;
         z-index: -1;
-        &.open {
+        &.dl-open {
           opacity: 1;
           z-index: 98;
         }
@@ -21,9 +21,9 @@ div.dl-sidebar {
   will-change: transform;
   position: absolute;
   z-index: 99;
-  &.not-animated {
+  &.dl-not-animated {
     transform: translateX(-100%);
-    &.open {
+    &.dl-open {
       transform: translateX(0);
     }
   }

@@ -1,7 +1,7 @@
 <div class="dl-accordion">
   <div 
     class="dl-accordion-header"
-    [ngClass]="[isOpen ? 'open':'close', !animated ? 'not-animated' : '']"
+    [ngClass]="[isOpen ? 'dl-open':'dl-close', !animated ? 'dl-not-animated' : '']"
     [ngSwitch]="!!dualityAccordionHeaderTemplate"
     (click)=" toggle()">
     <ng-container  *ngSwitchCase="true">
@@ -10,10 +10,10 @@
     </ng-container>
     <h3 
       *ngSwitchDefault
-      [class.disabled]="disabled"
+      [class.dl-disabled]="disabled"
       [ngClass]="headerClass"
       [ngStyle]="headerStyle"
-      [class.open]="isOpen ? 'open':''">
+      [class.open]="isOpen ? 'dl-open':''">
       {{header}}
       <span 
         class="dl-accordion-arrow"
@@ -24,7 +24,7 @@
   </div>
   <div 
     class="dl-accordion-content"
-    [ngClass]="[isOpen ? 'open':'close', !animated ? 'not-animated' : '']"
+    [ngClass]="[isOpen ? 'dl-open':'dl-close', !animated ? 'dl-not-animated' : '']"
     [ngSwitch]="!!dualityAccordionContentTemplate"
     [@expandHeight]="{value: animated && animationState, params: {timing: expandTiming}}">
     <ng-container *ngSwitchCase="true">

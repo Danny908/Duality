@@ -50,7 +50,8 @@ export const newFields: {[key: string]: FormField } = {
   name: {
     label: 'Name:',
     validators: [ Validators.required ],
-    valueParam: 'name'
+    valueParam: 'name',
+    classes: 'inputClass'
   },
   age: {
     label: 'Age:',

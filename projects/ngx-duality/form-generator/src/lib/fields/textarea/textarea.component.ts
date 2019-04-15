@@ -7,6 +7,7 @@ import { FormField } from '@ngx-duality/types';
   template: `
     <label
       #el
+      [ngClass]="field.classes"
       [formGroup]="group">
       {{field.label}}
       <textarea

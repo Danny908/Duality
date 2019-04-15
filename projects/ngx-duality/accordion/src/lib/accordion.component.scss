@@ -15,7 +15,7 @@ div.dl-accordion {
       user-select: none;
       margin: 0;
       padding: 15px;
-      &.disabled {
+      &.dl-disabled {
         cursor: not-allowed;
         background-color: lightgray;
         color: gray;
@@ -25,14 +25,14 @@ div.dl-accordion {
         will-change: transform;
       }
     }
-    &.not-animated.open > h3 > span.dl-accordion-arrow {
+    &.dl-not-animated.dl-open > h3 > span.dl-accordion-arrow {
       transform: rotate(90deg);
     }
   }
   > div.dl-accordion-content { 
     will-change: height;
     overflow: hidden;
-    &.not-animated.close {
+    &.dl-not-animated.dl-close {
       height: 0;
     }
     > div {
