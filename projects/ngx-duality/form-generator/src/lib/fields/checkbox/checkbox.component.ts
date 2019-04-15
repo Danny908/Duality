@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, AfterViewInit, Renderer2, ViewChild, ElementRef, TemplateRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormField } from '@ngx-duality/types';
 
@@ -6,6 +6,7 @@ import { FormField } from '@ngx-duality/types';
   selector: 'div[duality-checkbox]',
   template: `
     <div
+      #el
       [formGroup]="group"
       [ngSwitch]="field.type">
       <div
@@ -27,16 +28,30 @@ import { FormField } from '@ngx-duality/types';
     </div>
   `
 })
-export class CheckboxComponent implements OnInit {
+export class CheckboxComponent implements AfterViewInit {
+  @ViewChild('el') el: ElementRef;
   @Input() controlName: string;
   @Input() field: FormField;
   @Input() group: FormGroup;
 
-  constructor() { }
+  constructor(
+    private renderer: Renderer2
+  ) { }
 
-  ngOnInit() {
-    console.log(this.group);
+  ngAfterViewInit() {
+    const input = this.el.nativeElement.querySelector('input');
+    const { attrs } = this.field;
+    if (attrs) {
+      this.setAttributes(attrs, input);
+    }
   }
+
+  setAttributes(attrs: Object, input: TemplateRef<HTMLInputElement>) {
+    Object.keys(attrs).forEach(key => {
+      this.renderer.setAttribute(input, key, attrs[key]);
+    });
+  }
+
 
   checkValueType(value: any, tag: string): string | number {
     return typeof value !== 'object' ? value : value[tag];

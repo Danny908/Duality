@@ -11,6 +11,8 @@ export interface FormField {
   validators?: Array<ValidatorFn>;
   asyncValidators?: Array<AsyncValidatorFn>;
   customErrors?: {[key: string]: any};
+  classes?: string | Array<string> | {[key: string]: any};
+  styles?: {[key: string]: any};
   attrs?: {[key: string]: any};
 }
 interface Option {

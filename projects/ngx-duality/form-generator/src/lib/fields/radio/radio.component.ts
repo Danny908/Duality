@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, TemplateRef, ElementRef, AfterViewInit, Renderer2, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormField } from '@ngx-duality/types';
 
@@ -6,6 +6,7 @@ import { FormField } from '@ngx-duality/types';
   selector: 'div[duality-radio]',
   template: `
     <div
+      #el
       [formGroup]="group"
       [ngSwitch]="field.type">
       <label>
@@ -24,12 +25,29 @@ import { FormField } from '@ngx-duality/types';
     </div>
   `
 })
-export class RadioComponent {
+export class RadioComponent implements AfterViewInit {
+  @ViewChild('el') el: ElementRef;
   @Input() controlName: string;
   @Input() field: FormField;
   @Input() group: FormGroup;
 
-  constructor() { }
+  constructor(
+    private renderer: Renderer2
+  ) { }
+
+  ngAfterViewInit() {
+    const input = this.el.nativeElement.querySelector('input');
+    const { attrs } = this.field;
+    if (attrs) {
+      this.setAttributes(attrs, input);
+    }
+  }
+
+  setAttributes(attrs: Object, input: TemplateRef<HTMLInputElement>) {
+    Object.keys(attrs).forEach(key => {
+      this.renderer.setAttribute(input, key, attrs[key]);
+    });
+  }
 
   checkValueType(value: any, tag: string): string | number {
     return typeof value !== 'object' ? value : value[tag];

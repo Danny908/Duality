@@ -15,10 +15,10 @@ export class AccordionComponent {
   @Input() header: string;
   @Input() content: string;
   @Input() disabled: boolean;
-  @Input() headerClass: any;
-  @Input() headerStyle: any;
-  @Input() contentClass: any;
-  @Input() contentStyle: any;
+  @Input() headerClass: string | Array<string> | Object;
+  @Input() headerStyle: Object;
+  @Input() contentClass: string | Array<string> | Object;
+  @Input() contentStyle: Object;
   @Input() expandTiming = '200ms ease-in-out';
   @Input() rotateTiming = '150ms ease-in-out';
   @Input() animated = true;

@@ -1,11 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, AfterViewInit, TemplateRef, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormField } from '@ngx-duality/types';
 
 @Component({
   selector: 'div[duality-textarea]',
   template: `
-    <label [formGroup]="group">
+    <label
+      #el
+      [formGroup]="group">
       {{field.label}}
       <textarea
         [formControlName]="controlName">
@@ -13,13 +15,28 @@ import { FormField } from '@ngx-duality/types';
   </label>
   `
 })
-export class TextareaComponent implements OnInit {
+export class TextareaComponent implements AfterViewInit {
+  @ViewChild('el') el: ElementRef;
   @Input() controlName: string;
   @Input() field: FormField;
   @Input() group: FormGroup;
 
-  constructor() { }
+  constructor(
+    private renderer: Renderer2
+  ) { }
 
-  ngOnInit() {}
+  ngAfterViewInit() {
+    const input = this.el.nativeElement.querySelector('textarea');
+    const { attrs } = this.field;
+    if (attrs) {
+      this.setAttributes(attrs, input);
+    }
+  }
+
+  setAttributes(attrs: Object, input: TemplateRef<HTMLSelectElement>) {
+    Object.keys(attrs).forEach(key => {
+      this.renderer.setAttribute(input, key, attrs[key]);
+    });
+  }
 
 }
