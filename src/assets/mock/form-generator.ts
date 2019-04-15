@@ -65,19 +65,19 @@ export const newFields: {[key: string]: FormField } = {
   password: {
     label: 'Password',
     type: 'password',
-    validators: [checkPassRemotely]
+    validators: [checkPassRemotely, Validators.required]
   },
   repeatPassword: {
     label: 'Repeat Password',
     type: 'password',
-    validators: [samePass],
+    validators: [samePass, Validators.required],
     customErrors: {
       passnotmatch: `Passwords does not match`
     }
   },
   gender: {
     label: 'Gender:',
-    type: 'radio',
+    tag: 'radio',
     validators: [ Validators.required ],
     options: [{value: 'male', label: 'Male', isDefault: true}, {value: 'female', label: 'Female'}]
   },
@@ -119,7 +119,7 @@ export const newFields: {[key: string]: FormField } = {
   },
   skills: {
     label: 'Skills:',
-    type: 'checkbox',
+    tag: 'checkbox',
     validators: [ minOptionsRequired() ],
     customErrors: {
       minoptionsrequired: `At least one option is required`

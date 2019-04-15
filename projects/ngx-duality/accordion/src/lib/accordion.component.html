@@ -2,10 +2,10 @@
   <div 
     class="dl-accordion-header"
     [ngClass]="[isOpen ? 'open':'close', !animated ? 'not-animated' : '']"
-    [ngSwitch]="!!headerTemplate"
+    [ngSwitch]="!!dualityAccordionHeaderTemplate"
     (click)=" toggle()">
     <ng-container  *ngSwitchCase="true">
-      <ng-container *ngTemplateOutlet="headerTemplate; context: { $implicit: header }">
+      <ng-container *ngTemplateOutlet="dualityAccordionHeaderTemplate; context: { $implicit: header }">
       </ng-container>
     </ng-container>
     <h3 
@@ -25,10 +25,10 @@
   <div 
     class="dl-accordion-content"
     [ngClass]="[isOpen ? 'open':'close', !animated ? 'not-animated' : '']"
-    [ngSwitch]="!!contentTemplate"
+    [ngSwitch]="!!dualityAccordionContentTemplate"
     [@expandHeight]="{value: animated && animationState, params: {timing: expandTiming}}">
     <ng-container *ngSwitchCase="true">
-      <ng-container *ngTemplateOutlet="contentTemplate; context: { $implicit: content }">
+      <ng-container *ngTemplateOutlet="dualityAccordionContentTemplate; context: { $implicit: content }">
       </ng-container>
     </ng-container>
     <div 

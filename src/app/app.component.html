@@ -59,6 +59,30 @@
         [fields]="fields"
         [data]="data"
         validateOnSubmit="true">
+        <ng-template
+          #dualityCheckboxTemplate
+          let-form="form"
+          let-field="field"
+          let-controlName="controlName">
+          <div
+            [formGroup]="form">
+            <div
+              [formArrayName]="controlName">
+              <label>
+                {{field.label}} Template
+              </label>
+              <div
+                *ngFor="let option of field.options; let i = index">
+                <label>
+                  <input
+                    type="checkbox"
+                    [formControlName]="i">
+                    {{option}}
+                </label>
+              </div>
+            </div>
+          </div>
+        </ng-template>
       </duality-form-generator>
     </div>
   </div>

@@ -4,7 +4,33 @@ import { FormField } from '@ngx-duality/types';
 
 @Component({
   selector: 'div[duality-input]',
-  templateUrl: './input.component.html'
+  template: `
+    <div
+      [formGroup]="group"
+      [ngSwitch]="field.type">
+      <label
+        *ngSwitchCase="'number'">
+        {{field.label}}
+        <input
+          type="number"
+          [formControlName]="controlName">
+      </label>
+      <label
+        *ngSwitchCase="'range'">
+        {{field.label}}
+        <input
+          type="range"
+          [formControlName]="controlName">
+      </label>
+      <label
+        *ngSwitchDefault>
+        {{field.label}}
+        <input
+          [type]="field.type"
+          [formControlName]="controlName">
+      </label>
+    </div>
+  `
 })
 export class InputComponent implements AfterViewInit {
   @Input() controlName: string;
@@ -23,16 +49,6 @@ export class InputComponent implements AfterViewInit {
     // if (attrs) {
     //   this.setAttributes(attrs, input);
     // }
-  }
-
-  boolToVal(event: MouseEvent, index: number): void {
-    const { options } = this.field;
-    if ((event.target as HTMLInputElement).checked) {
-      const formArray = this.group.get(this.controlName).get([index]);
-      const option = options[index];
-      const value = typeof option === 'object' ? option.value : option;
-      formArray.setValue(value);
-    }
   }
 
   setAttributes(attrs: Object, input: TemplateRef<any>) {

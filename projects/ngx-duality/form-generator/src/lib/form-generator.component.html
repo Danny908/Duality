@@ -27,17 +27,71 @@
       <div>
         <ng-container *ngSwitchCase="'textarea'">
           <div duality-textarea
+            *ngIf="!dualityTextareaTemplate"
             [group]="form"
             [controlName]="key"
             [field]="fields[key]">
           </div>
+          <ng-container 
+            *ngTemplateOutlet="
+              dualityTextareaTemplate;
+              context: {
+                field: fields[key],
+                controlName: key,
+                form: form
+              }">
+          </ng-container>
         </ng-container>
         <ng-container *ngSwitchCase="'select'">
           <div duality-select
+            *ngIf="!dualitySelectTemplate"
             [group]="form"
             [controlName]="key"
             [field]="fields[key]">
           </div>
+          <ng-container 
+            *ngTemplateOutlet="
+              dualitySelectTemplate;
+              context: {
+                field: fields[key],
+                controlName: key,
+                form: form
+              }">
+          </ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="'radio'">
+          <div duality-radio
+            *ngIf="!dualityRadioTemplate"
+            [group]="form"
+            [controlName]="key"
+            [field]="fields[key]">
+          </div>
+          <ng-container 
+            *ngTemplateOutlet="
+              dualityRadioTemplate;
+              context: {
+                field: fields[key],
+                controlName: key,
+                form: form
+              }">
+          </ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="'checkbox'">
+          <div duality-checkbox
+            *ngIf="!dualityCheckboxTemplate"
+            [group]="form"
+            [controlName]="key"
+            [field]="fields[key]">
+          </div>
+          <ng-container 
+            *ngTemplateOutlet="
+              dualityCheckboxTemplate;
+              context: {
+                field: fields[key],
+                controlName: key,
+                form: form
+              }">
+          </ng-container>
         </ng-container>
         <ng-container *ngSwitchCase="'group'">
           <div>
@@ -59,10 +113,20 @@
         </ng-container>
         <ng-container *ngSwitchDefault>
           <div duality-input
+            *ngIf="!dualityInputTemplate"
             [group]="form"
             [controlName]="key"
             [field]="fields[key]">
           </div>
+          <ng-container 
+            *ngTemplateOutlet="
+              dualityInputTemplate;
+              context: {
+                field: fields[key],
+                controlName: key,
+                form: form
+              }">
+          </ng-container>
         </ng-container>
         <p 
           class="error"

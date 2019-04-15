@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation, ContentChild } from '@angular/core';
 import { FormGroup, AbstractControl } from '@angular/forms';
 import { FormField } from '@ngx-duality/types';
 
@@ -16,6 +16,11 @@ import { FormValidationService } from './services/form-validation.service';
   `]
 })
 export class FormGeneratorComponent implements OnInit {
+  @ContentChild('dualityTextareaTemplate') dualityTextareaTemplate;
+  @ContentChild('dualitySelectTemplate') dualitySelectTemplate;
+  @ContentChild('dualityInputTemplate') dualityInputTemplate;
+  @ContentChild('dualityCheckboxTemplate') dualityCheckboxTemplate;
+  @ContentChild('dualityRadioTemplate') dualityRadioTemplate;
   @Input() fields: {[key: string]: FormField};
   @Input() data: {[key: string]: any};
   @Input() validateOnSubmit: false;

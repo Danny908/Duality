@@ -7,6 +7,8 @@ import { InputComponent } from './fields/input/input.component';
 import { FormGeneratorDirective } from './form-generator.directive';
 import { SelectComponent } from './fields/select/select.component';
 import { TextareaComponent } from './fields/textarea/textarea.component';
+import { RadioComponent } from './fields/radio/radio.component';
+import { CheckboxComponent } from './fields/checkbox/checkbox.component';
 
 @NgModule({
   imports: [
@@ -19,12 +21,16 @@ import { TextareaComponent } from './fields/textarea/textarea.component';
     InputComponent,
     FormGeneratorDirective,
     SelectComponent,
-    TextareaComponent
+    TextareaComponent,
+    RadioComponent,
+    CheckboxComponent
   ],
   entryComponents: [
     InputComponent,
     SelectComponent,
-    TextareaComponent
+    TextareaComponent,
+    RadioComponent,
+    CheckboxComponent
   ],
   exports: [FormGeneratorComponent]
 })

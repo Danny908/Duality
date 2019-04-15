@@ -15,7 +15,7 @@ export class FormGeneratorService {
       if (!!fields[key].group) {
         form.addControl(key, this.createFormGroup(fields[key].group));
       } else {
-        if (fields[key].type === 'checkbox') {
+        if (fields[key].tag === 'checkbox') {
           form.addControl(key, this.createFormArray(fields[key]));
         } else {
           form.addControl(key, this.newControl(fields[key]));

@@ -9,8 +9,8 @@ import { Expand, Rotate } from '@ngx-duality/animations';
   animations: [Expand, Rotate],
 })
 export class AccordionComponent {
-  @ContentChild('dualityHeaderTemplate') headerTemplate;
-  @ContentChild('dualityContentTemplate') contentTemplate;
+  @ContentChild('dualityAccordionHeaderTemplate') dualityAccordionHeaderTemplate;
+  @ContentChild('dualityAccordionContentTemplate') dualityAccordionContentTemplate;
   @Output() toggled: EventEmitter<boolean> = new EventEmitter(false);
   @Input() header: string;
   @Input() content: string;
