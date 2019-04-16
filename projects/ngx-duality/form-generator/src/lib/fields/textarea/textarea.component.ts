@@ -5,15 +5,17 @@ import { FormField } from '@ngx-duality/types';
 @Component({
   selector: 'div[duality-textarea]',
   template: `
-    <label
-      #el
-      [ngClass]="field.classes"
+    <ng-container
       [formGroup]="group">
-      {{field.label}}
-      <textarea
-        [formControlName]="controlName">
-      </textarea>
-  </label>
+      <label
+        class="dl-label"
+        #el>
+        {{field.label}}
+        <textarea
+          [formControlName]="controlName">
+        </textarea>
+      </label>
+    </ng-container>
   `
 })
 export class TextareaComponent implements AfterViewInit {

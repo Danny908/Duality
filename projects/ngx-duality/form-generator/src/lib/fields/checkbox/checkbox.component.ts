@@ -5,27 +5,26 @@ import { FormField } from '@ngx-duality/types';
 @Component({
   selector: 'div[duality-checkbox]',
   template: `
-    <div
-      #el
-      [ngClass]="field.classes"
+    <ng-container
       [formGroup]="group">
+      <label
+        class="dl-label dl-label-checkbox">
+        {{field.label}}
+      </label>
       <div
-        [formArrayName]="controlName">
-        <label>
-          {{field.label}}
+        #el
+        *ngFor="let option of field.options; let i = index">
+        <label
+          class="dl-label dl-label-option"
+          [formArrayName]="controlName">
+          <input
+            type="checkbox"
+            [formControlName]="i"
+            (change)="boolToVal($event, i)">
+          {{checkValueType(option, 'label')}}
         </label>
-        <div
-          *ngFor="let option of field.options; let i = index">
-          <label>
-            <input
-              type="checkbox"
-              [formControlName]="i"
-              (change)="boolToVal($event, i)">
-            {{checkValueType(option, 'label')}}
-          </label>
-        </div>
       </div>
-    </div>
+    </ng-container>
   `
 })
 export class CheckboxComponent implements AfterViewInit {

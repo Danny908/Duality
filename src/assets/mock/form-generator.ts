@@ -51,22 +51,25 @@ export const newFields: {[key: string]: FormField } = {
     label: 'Name:',
     validators: [ Validators.required ],
     valueParam: 'name',
-    classes: 'inputClass'
-  },
-  age: {
-    label: 'Age:',
-    value: 25,
-    type: 'number'
+    classes: 'col-4'
   },
   lastname: {
     label: 'Lastname:',
     value: 'Torres',
-    validators: [ Validators.minLength(4), Validators.maxLength(10), Validators.required ]
+    validators: [ Validators.minLength(4), Validators.maxLength(10), Validators.required ],
+    classes: 'col-4'
+  },
+  age: {
+    label: 'Age:',
+    value: 25,
+    type: 'number',
+    classes: 'col-4'
   },
   password: {
     label: 'Password',
     type: 'password',
-    validators: [checkPassRemotely, Validators.required]
+    validators: [checkPassRemotely, Validators.required],
+    classes: 'col-6'
   },
   repeatPassword: {
     label: 'Repeat Password',
@@ -74,17 +77,20 @@ export const newFields: {[key: string]: FormField } = {
     validators: [samePass, Validators.required],
     customErrors: {
       passnotmatch: `Passwords does not match`
-    }
+    },
+    classes: 'col-6'
   },
   gender: {
     label: 'Gender:',
     tag: 'radio',
     validators: [ Validators.required ],
-    options: [{value: 'male', label: 'Male', isDefault: true}, {value: 'female', label: 'Female'}]
+    options: ['male', 'female'],
+    classes: 'col-2'
   },
   birthday: {
     label: 'Birthday:',
     tag: 'group',
+    classes: 'row col-10',
     group: {
       day: {
         label: 'Day',
@@ -94,7 +100,8 @@ export const newFields: {[key: string]: FormField } = {
         options: [{value: null, label: 'Select a Day!', isDefault: true}, '01', '02', '03', '04', '05', '...'],
         customErrors: {
           required: 'Add a Day!!'
-        }
+        },
+        classes: 'col-4',
       },
       month: {
         label: 'Month',
@@ -107,14 +114,16 @@ export const newFields: {[key: string]: FormField } = {
           {value: 'Mar', label: 'Mar'},
           {value: 'Apr', label: 'Apr'},
           {value: '...', label: '...'}
-        ]
+        ],
+        classes: 'col-4',
       },
       year: {
         label: 'Year',
         tag: 'select',
         value: 93,
         validators: [ Validators.required ],
-        options: [93, 94, 95, 96, 97, '...']
+        options: [93, 94, 95, 96, 97, '...'],
+        classes: 'col-4',
       }
     }
   },
@@ -126,12 +135,14 @@ export const newFields: {[key: string]: FormField } = {
       minoptionsrequired: `At least one option is required`
     },
     options: [{value: 'js', label: 'JS', isDefault: true}, 'ts', 'scss'],
+    classes: 'col-1'
   },
   score: {
     label: 'Score',
     value: 80,
     type: 'range',
-    validators: [ Validators.min(10), Validators.max(90) ]
+    validators: [ Validators.min(10), Validators.max(90) ],
+    classes: 'col-4'
   },
   resume: {
     label: 'Resume:',
@@ -141,7 +152,8 @@ export const newFields: {[key: string]: FormField } = {
     attrs: {
       rows: 4,
       cols: 50,
-    }
+    },
+    classes: 'col-7'
   }
 };
 

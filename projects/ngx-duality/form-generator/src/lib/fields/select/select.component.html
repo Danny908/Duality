@@ -1,8 +1,8 @@
-<div
-  #el
-  [ngClass]="field.classes"
+<ng-container
   [formGroup]="group">
-  <label>
+  <label
+    class="dl-label"
+    #el>
     {{field.label}}
     <select 
       multiple
@@ -30,4 +30,4 @@
       </ng-container>
     </select>
   </label>
-</div>
+</ng-container>

@@ -38,17 +38,16 @@ export class FormGeneratorService {
   }
 
   newControl(field: FormField): FormControl {
-    const { valueParam, value, validators = [], asyncValidators = [] } = field;
+    const { valueParam, value, validators = [], asyncValidators = [], options } = field;
     let val = value ? value : this.setControlValue(valueParam);
-    // Set default value on select
-    val = !val && field.options ? this.defaultValue(field) : val;
+    // Set default value to options input (radio, checkbox, select)
+    val = !val && options ? this.defaultValue(field) : val;
     return new FormControl(val, validators, asyncValidators);
   }
 
   defaultValue(field: FormField): string | number {
-    // Set default value on select
     const opt = field.options[0];
-    return typeof opt === 'object' && opt.isDefault && opt.value;
+    return typeof opt === 'object' && opt.isDefault ? opt.value : null;
   }
 
   setControlValue(valueParam: string): string {

@@ -5,16 +5,15 @@ import { FormField } from '@ngx-duality/types';
 @Component({
   selector: 'div[duality-radio]',
   template: `
-    <div
-      #el
-      [ngClass]="field.classes"
+    <ng-container
       [formGroup]="group">
-      <label>
+      <label class="dl-label dl-label-radio">
         {{field.label}}
       </label>
       <div
+        #el
         *ngFor="let option of field.options">
-        <label>
+        <label class="dl-label dl-label-option">
           <input
             type="radio"
             [value]="checkValueType(option, 'value')"
@@ -22,7 +21,7 @@ import { FormField } from '@ngx-duality/types';
           {{checkValueType(option, 'label')}}
         </label>
       </div>
-    </div>
+    </ng-container>
   `
 })
 export class RadioComponent implements AfterViewInit {

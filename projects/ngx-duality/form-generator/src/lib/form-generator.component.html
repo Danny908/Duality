@@ -2,7 +2,7 @@
   [ngClass]="formClass"
   [formGroup]="form"
   (ngSubmit)="submit()">
-    <ng-container 
+    <ng-container
       *ngTemplateOutlet="fieldTemplate; context: {fields: fields, form: form}">
     </ng-container>
     <button
@@ -22,119 +22,126 @@
   let-fields="fields"
   let-form="form"
   let-group="group">
-  <ng-container *ngFor="let key of getKeys(fields)">
-    <ng-container [ngSwitch]="fields[key].tag">
-      <div>
-        <ng-container *ngSwitchCase="'textarea'">
-          <div duality-textarea
-            *ngIf="!dualityTextareaTemplate"
-            [group]="form"
-            [controlName]="key"
-            [field]="fields[key]">
-          </div>
-          <ng-container 
-            *ngTemplateOutlet="
-              dualityTextareaTemplate;
-              context: {
-                field: fields[key],
-                controlName: key,
-                form: form
-              }">
-          </ng-container>
+  <ng-container 
+    *ngFor="let key of getKeys(fields)"
+    [formGroup]="form">
+    <div 
+      [ngClass]="fields[key].classes"
+      [ngSwitch]="fields[key].tag">
+      <ng-container *ngSwitchCase="'textarea'">
+        <div duality-textarea
+          ngDefaultControl
+          *ngIf="!dualityTextareaTemplate"
+          [formControlName]="key"
+          [group]="form"
+          [controlName]="key"
+          [field]="fields[key]">
+        </div>
+        <ng-container 
+          *ngTemplateOutlet="
+            dualityTextareaTemplate;
+            context: {
+              field: fields[key],
+              controlName: key,
+              form: form
+            }">
         </ng-container>
-        <ng-container *ngSwitchCase="'select'">
-          <div duality-select
-            *ngIf="!dualitySelectTemplate"
-            [group]="form"
-            [controlName]="key"
-            [field]="fields[key]">
-          </div>
-          <ng-container 
-            *ngTemplateOutlet="
-              dualitySelectTemplate;
-              context: {
-                field: fields[key],
-                controlName: key,
-                form: form
-              }">
-          </ng-container>
-        </ng-container>
-        <ng-container *ngSwitchCase="'radio'">
-          <div duality-radio
-            *ngIf="!dualityRadioTemplate"
-            [group]="form"
-            [controlName]="key"
-            [field]="fields[key]">
-          </div>
-          <ng-container 
-            *ngTemplateOutlet="
-              dualityRadioTemplate;
-              context: {
-                field: fields[key],
-                controlName: key,
-                form: form
-              }">
-          </ng-container>
-        </ng-container>
-        <ng-container *ngSwitchCase="'checkbox'">
-          <div duality-checkbox
-            *ngIf="!dualityCheckboxTemplate"
-            [group]="form"
-            [controlName]="key"
-            [field]="fields[key]">
-          </div>
-          <ng-container 
-            *ngTemplateOutlet="
-              dualityCheckboxTemplate;
-              context: {
-                field: fields[key],
-                controlName: key,
-                form: form
-              }">
-          </ng-container>
-        </ng-container>
-        <ng-container *ngSwitchCase="'group'">
-          <div>
-            <label>
-              {{fields[key].label}}
-            </label>
-            <div>
-              <ng-container 
-                *ngTemplateOutlet="
-                  fieldTemplate;
-                  context: {
-                    fields: fields[key].group,
-                    form: getSubGroup(form, key),
-                    group: true
-                  }">
-              </ng-container>  
-            </div>
-          </div>
-        </ng-container>
-        <ng-container *ngSwitchDefault>
-          <div duality-input
-            *ngIf="!dualityInputTemplate"
-            [group]="form"
-            [controlName]="key"
-            [field]="fields[key]">
-          </div>
-          <ng-container 
-            *ngTemplateOutlet="
-              dualityInputTemplate;
-              context: {
-                field: fields[key],
-                controlName: key,
-                form: form
-              }">
-          </ng-container>
-        </ng-container>
-        <p 
-          class="error"
-          *ngIf="!group || fields[key].tag === 'group'">
-          {{getError(form, fields[key], key)}}
-        </p>
-      </div>
       </ng-container>
-    </ng-container>
-  </ng-template>
+      <ng-container *ngSwitchCase="'select'">
+        <div duality-select
+          ngDefaultControl
+          *ngIf="!dualitySelectTemplate"
+          [formControlName]="key"
+          [group]="form"
+          [controlName]="key"
+          [field]="fields[key]">
+        </div>
+        <ng-container 
+          *ngTemplateOutlet="
+            dualitySelectTemplate;
+            context: {
+              field: fields[key],
+              controlName: key,
+              form: form
+            }">
+        </ng-container>
+      </ng-container>
+      <ng-container *ngSwitchCase="'radio'">
+        <div duality-radio
+          ngDefaultControl
+          *ngIf="!dualityRadioTemplate"
+          [formControlName]="key"
+          [group]="form"
+          [controlName]="key"
+          [field]="fields[key]">
+        </div>
+        <ng-container 
+          *ngTemplateOutlet="
+            dualityRadioTemplate;
+            context: {
+              field: fields[key],
+              controlName: key,
+              form: form
+            }">
+        </ng-container>
+      </ng-container>
+      <ng-container *ngSwitchCase="'checkbox'">
+        <div duality-checkbox
+          *ngIf="!dualityCheckboxTemplate"
+          [formArrayName]="key"
+          [group]="form"
+          [controlName]="key"
+          [field]="fields[key]">
+        </div>
+        <ng-container 
+          *ngTemplateOutlet="
+            dualityCheckboxTemplate;
+            context: {
+              field: fields[key],
+              controlName: key,
+              form: form
+            }">
+        </ng-container>
+      </ng-container>
+      <ng-container *ngSwitchCase="'group'">
+        <label class="dl-label dl-label-group">
+          {{fields[key].label}}
+        </label>
+        <ng-container 
+          *ngTemplateOutlet="
+            fieldTemplate;
+            context: {
+              fields: fields[key].group,
+              form: getSubGroup(form, key),
+              group: true
+            }">
+        </ng-container>  
+      </ng-container>
+      <ng-container *ngSwitchDefault>
+        <div duality-input
+          ngDefaultControl
+          *ngIf="!dualityInputTemplate"
+          [formControlName]="key"
+          [group]="form"
+          [controlName]="key"
+          [field]="fields[key]">
+        </div>
+        <ng-container 
+          *ngTemplateOutlet="
+            dualityInputTemplate;
+            context: {
+              field: fields[key],
+              controlName: key,
+              form: form
+            }">
+        </ng-container>
+      </ng-container>
+      <p 
+        class="dl-error"
+        *ngIf="!group || fields[key].tag === 'group'">
+        {{getError(form, fields[key], key)}}
+      </p>
+    </div>
+  </ng-container>
+</ng-template>
   

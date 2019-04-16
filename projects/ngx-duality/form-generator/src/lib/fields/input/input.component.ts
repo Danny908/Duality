@@ -5,33 +5,27 @@ import { FormField } from '@ngx-duality/types';
 @Component({
   selector: 'div[duality-input]',
   template: `
-    <div
-      #el
-      [ngClass]="field.classes"
+    <ng-container
       [formGroup]="group"
       [ngSwitch]="field.type">
       <label
-        *ngSwitchCase="'number'">
+        #el
+        class="dl-label">
         {{field.label}}
         <input
+          *ngSwitchCase="'number'"
           type="number"
           [formControlName]="controlName">
-      </label>
-      <label
-        *ngSwitchCase="'range'">
-        {{field.label}}
         <input
+          *ngSwitchCase="'range'"
           type="range"
           [formControlName]="controlName">
-      </label>
-      <label
-        *ngSwitchDefault>
-        {{field.label}}
         <input
+          *ngSwitchDefault
           [type]="field.type"
           [formControlName]="controlName">
       </label>
-    </div>
+    </ng-container>
   `
 })
 export class InputComponent implements AfterViewInit {

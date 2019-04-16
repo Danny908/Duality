@@ -9,9 +9,10 @@ import { FormValidationService } from './services/form-validation.service';
   selector: 'duality-form-generator',
   templateUrl: './form-generator.component.html',
   styles: [`
-    p.error {
+    p.dl-error {
       color: red;
       font-size: small;
+      text-align: right;
     }
   `]
 })
