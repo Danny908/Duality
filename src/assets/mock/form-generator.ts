@@ -51,7 +51,10 @@ export const newFields: {[key: string]: FormField } = {
     label: 'Name:',
     validators: [ Validators.required ],
     valueParam: 'name',
-    classes: 'col-4'
+    classes: 'col-4',
+    customErrors: {
+      required: 'Name is Missing!'
+    }
   },
   lastname: {
     label: 'Lastname:',

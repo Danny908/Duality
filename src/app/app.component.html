@@ -58,7 +58,9 @@
       <duality-form-generator
         [fields]="fields"
         [data]="data"
+        (formSubmit)="onSubmit($event)"
         formClass="row"
+        resetBtn="true"
         validateOnSubmit="true">
       </duality-form-generator>
     </div>

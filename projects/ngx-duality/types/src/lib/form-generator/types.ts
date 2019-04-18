@@ -7,7 +7,7 @@ export interface FormField {
   valueParam?: string;
   type?: string;
   group?: {[key: string]: FormField };
-  options?: Array<Option|string|number >;
+  options?: Array<Option|string|number>;
   validators?: Array<ValidatorFn>;
   asyncValidators?: Array<AsyncValidatorFn>;
   customErrors?: {[key: string]: any};

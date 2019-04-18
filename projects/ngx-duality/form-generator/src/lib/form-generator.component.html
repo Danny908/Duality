@@ -1,19 +1,22 @@
 <form
   [ngClass]="formClass"
+  [ngStyle]="formStyle"
   [formGroup]="form"
   (ngSubmit)="submit()">
     <ng-container
       *ngTemplateOutlet="fieldTemplate; context: {fields: fields, form: form}">
     </ng-container>
     <button
+      class="dl-form-btn"
+      *ngIf="resetBtn"
+      type="reset">
+        Reset
+    </button>
+    <button
+      class="dl-form-btn"
       *ngIf="submitBtn"
       type="submit">
         Submit
-    </button>
-    <button
-      *ngIf="resetBtn"
-      type="submit">
-        Reset
     </button>
   </form>
 
@@ -138,9 +141,11 @@
       </ng-container>
       <p 
         class="dl-error"
-        *ngIf="!group || fields[key].tag === 'group'">
-        {{getError(form, fields[key], key)}}
-      </p>
+        *ngIf="
+          !group ||
+          fields[key].tag === 'group'">{{
+          getError(form, fields[key], key)
+      }}</p>
     </div>
   </ng-container>
 </ng-template>

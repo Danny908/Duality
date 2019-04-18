@@ -15,6 +15,7 @@ import { FormField } from '@ngx-duality/types';
         *ngFor="let option of field.options">
         <label class="dl-label dl-label-option">
           <input
+            class="dl-input"
             type="radio"
             [value]="checkValueType(option, 'value')"
             [formControlName]="controlName">

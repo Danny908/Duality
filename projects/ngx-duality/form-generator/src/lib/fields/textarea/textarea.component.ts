@@ -12,6 +12,7 @@ import { FormField } from '@ngx-duality/types';
         #el>
         {{field.label}}
         <textarea
+          class="dl-textarea"
           [formControlName]="controlName">
         </textarea>
       </label>

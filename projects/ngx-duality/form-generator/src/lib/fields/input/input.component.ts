@@ -13,14 +13,17 @@ import { FormField } from '@ngx-duality/types';
         class="dl-label">
         {{field.label}}
         <input
+          class="dl-input"
           *ngSwitchCase="'number'"
           type="number"
           [formControlName]="controlName">
         <input
+          class="dl-input"
           *ngSwitchCase="'range'"
           type="range"
           [formControlName]="controlName">
         <input
+          class="dl-input"
           *ngSwitchDefault
           [type]="field.type"
           [formControlName]="controlName">

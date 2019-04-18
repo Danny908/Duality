@@ -6,24 +6,24 @@
     {{field.label}}
     <select 
       multiple
+      class="dl-select"
       *ngIf="field.type === 'multiple'"
       [formControlName]="controlName">
       <ng-container 
         *ngFor="let option of field.options;">
         <option 
-          [disabled]="option.isDefault"
           [ngValue]="checkValueType(option, 'value')">
           {{checkValueType(option, 'label')}}
         </option>
       </ng-container>
     </select>
     <select 
+      class="dl-select"
       *ngIf="field.type !== 'multiple'"
       [formControlName]="controlName">
       <ng-container 
         *ngFor="let option of field.options;">
         <option 
-          [disabled]="option.isDefault"
           [ngValue]="checkValueType(option, 'value')">
           {{checkValueType(option, 'label')}}
         </option>

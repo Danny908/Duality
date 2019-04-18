@@ -38,4 +38,8 @@ export class AppComponent {
   sidebarStatus(status: any) {
     this.sidebarstatus = status;
   }
+
+  onSubmit(event) {
+    console.log(event);
+  }
 }

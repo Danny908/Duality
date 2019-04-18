@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewEncapsulation, ContentChild } from '@angular/core';
+import { Component, OnInit, Input, ContentChild, Output, EventEmitter } from '@angular/core';
 import { FormGroup, AbstractControl } from '@angular/forms';
 import { FormField } from '@ngx-duality/types';
 
@@ -10,6 +10,7 @@ import { FormValidationService } from './services/form-validation.service';
   templateUrl: './form-generator.component.html',
   styles: [`
     p.dl-error {
+      width: 100%;
       color: red;
       font-size: small;
       text-align: right;
@@ -28,6 +29,8 @@ export class FormGeneratorComponent implements OnInit {
   @Input() submitBtn = true;
   @Input() resetBtn: boolean;
   @Input() formClass: string | Array<string> | Object;
+  @Input() formStyle: Object;
+  @Output() formSubmit = new EventEmitter<any>();
   form: FormGroup;
   error: string;
   private submitted: boolean;
@@ -57,7 +60,7 @@ export class FormGeneratorComponent implements OnInit {
     const control = group.get(controlName) as FormGroup;
     let error: string;
 
-    if (this.validateOnSubmit && this.submitted || !this.validateOnSubmit ) {
+    if (this.validateOnSubmit && this.submitted || !this.validateOnSubmit) {
       if (tag === 'group' && control.invalid) {
         const keys = Object.keys(groupFields);
         for (const key of keys) {
@@ -101,8 +104,8 @@ export class FormGeneratorComponent implements OnInit {
     this.submitted = true;
     this.updateFormControls(this.form.controls);
     console.log('%cSUBMIT', 'color: green; font-weight: bold');
-    const { value } = this.form;
-    console.log(this.removeFalseValues(value));
+    const value = this.removeFalseValues(this.form.value);
+    this.formSubmit.emit(value);
   }
 
 }

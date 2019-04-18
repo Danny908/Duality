@@ -18,6 +18,7 @@ import { FormField } from '@ngx-duality/types';
           class="dl-label dl-label-option"
           [formArrayName]="controlName">
           <input
+            class="dl-input"
             type="checkbox"
             [formControlName]="i"
             (change)="boolToVal($event, i)">
